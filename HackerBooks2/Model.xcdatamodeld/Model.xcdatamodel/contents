@@ -28,12 +28,12 @@
         <relationship name="annotations" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="location" inverseEntity="Annotation" syncable="YES"/>
     </entity>
     <entity name="Pdf" representedClassName="MAVPdf" syncable="YES">
-        <attribute name="data" attributeType="Binary" syncable="YES"/>
+        <attribute name="pdfData" attributeType="Binary" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="pdf" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="MAVPhoto" syncable="YES">
-        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="annotations" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="photo" inverseEntity="Annotation" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="photo" inverseEntity="Book" syncable="YES"/>
@@ -43,12 +43,12 @@
         <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Author" positionX="-54" positionY="0" width="128" height="75"/>
-        <element name="Tag" positionX="-36" positionY="18" width="128" height="75"/>
-        <element name="Pdf" positionX="-18" positionY="36" width="128" height="90"/>
-        <element name="Annotation" positionX="0" positionY="63" width="128" height="150"/>
-        <element name="Photo" positionX="18" positionY="99" width="128" height="105"/>
-        <element name="Location" positionX="36" positionY="108" width="128" height="105"/>
+        <element name="Book" positionX="-56" positionY="-207" width="128" height="135"/>
+        <element name="Author" positionX="367" positionY="-183" width="128" height="75"/>
+        <element name="Tag" positionX="-360" positionY="-207" width="128" height="75"/>
+        <element name="Pdf" positionX="-299" positionY="126" width="128" height="88"/>
+        <element name="Annotation" positionX="295" positionY="-18" width="128" height="150"/>
+        <element name="Photo" positionX="117" positionY="198" width="128" height="103"/>
+        <element name="Location" positionX="486" positionY="129" width="128" height="105"/>
     </elements>
 </model>
