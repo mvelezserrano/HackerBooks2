@@ -12,6 +12,7 @@
 		55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE161ADE6A8900798260 /* Images.xcassets */; };
 		55B8AE1A1ADE6A8900798260 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE181ADE6A8900798260 /* LaunchScreen.xib */; };
 		55B8AE261ADE6A8900798260 /* HackerBooks2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE251ADE6A8900798260 /* HackerBooks2Tests.m */; };
+		55B8AE311ADEC23700798260 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE2F1ADEC23700798260 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		55B8AE1F1ADE6A8900798260 /* HackerBooks2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerBooks2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B8AE241ADE6A8900798260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B8AE251ADE6A8900798260 /* HackerBooks2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerBooks2Tests.m; sourceTree = "<group>"; };
+		55B8AE301ADEC23700798260 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		55B8AE0E1ADE6A8900798260 /* HackerBooks2 */ = {
 			isa = PBXGroup;
 			children = (
+				55B8AE321ADEC23E00798260 /* Models */,
 				55B8AE131ADE6A8900798260 /* AppDelegate.h */,
 				55B8AE141ADE6A8900798260 /* AppDelegate.m */,
 				55B8AE161ADE6A8900798260 /* Images.xcassets */,
@@ -109,6 +112,14 @@
 				55B8AE241ADE6A8900798260 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55B8AE321ADEC23E00798260 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				55B8AE2F1ADEC23700798260 /* Model.xcdatamodeld */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 			files = (
 				55B8AE151ADE6A8900798260 /* AppDelegate.m in Sources */,
 				55B8AE121ADE6A8900798260 /* main.m in Sources */,
+				55B8AE311ADEC23700798260 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +422,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		55B8AE2F1ADEC23700798260 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				55B8AE301ADEC23700798260 /* Model.xcdatamodel */,
+			);
+			currentVersion = 55B8AE301ADEC23700798260 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 55B8AE041ADE6A8900798260 /* Project object */;
 }
