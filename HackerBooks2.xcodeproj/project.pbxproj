@@ -28,6 +28,7 @@
 		55B8AE5D1ADEDDEE00798260 /* MAVPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE4D1ADEDDEE00798260 /* MAVPdf.m */; };
 		55B8AE5E1ADEDDEE00798260 /* MAVPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */; };
 		55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE511ADEDDEE00798260 /* MAVTag.m */; };
+		55B8AE621ADEE61600798260 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE611ADEE61600798260 /* books_readable.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVPhoto.m; sourceTree = "<group>"; };
 		55B8AE501ADEDDEE00798260 /* MAVTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVTag.h; sourceTree = "<group>"; };
 		55B8AE511ADEDDEE00798260 /* MAVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVTag.m; sourceTree = "<group>"; };
+		55B8AE611ADEE61600798260 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = books_readable.json; path = "../../../2.Recursos para proyectos/books_readable.json"; sourceTree = "<group>"; };
+		55B8AE631ADEE71700798260 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,11 +126,13 @@
 		55B8AE0E1ADE6A8900798260 /* HackerBooks2 */ = {
 			isa = PBXGroup;
 			children = (
+				55B8AE611ADEE61600798260 /* books_readable.json */,
 				55B8AE321ADEC23E00798260 /* Models */,
 				55B8AE131ADE6A8900798260 /* AppDelegate.h */,
 				55B8AE141ADE6A8900798260 /* AppDelegate.m */,
 				55B8AE161ADE6A8900798260 /* Images.xcassets */,
 				55B8AE181ADE6A8900798260 /* LaunchScreen.xib */,
+				55B8AE631ADEE71700798260 /* Settings.h */,
 				55B8AE0F1ADE6A8900798260 /* Supporting Files */,
 			);
 			path = HackerBooks2;
@@ -287,6 +292,7 @@
 			files = (
 				55B8AE1A1ADE6A8900798260 /* LaunchScreen.xib in Resources */,
 				55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */,
+				55B8AE621ADEE61600798260 /* books_readable.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

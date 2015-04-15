@@ -6,9 +6,13 @@
 //  Copyright (c) 2015 Miguel Ángel Vélez Serrano. All rights reserved.
 //
 
+#import "Settings.h"
 #import "AppDelegate.h"
+#import "AGTCoreDataStack.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) AGTCoreDataStack *stack;
 
 @end
 
@@ -18,6 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // Creamos una instancia del stack
+    self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
+    
+    // Creamos los datos del modelo.
+    [self createLibraryData];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -44,5 +55,101 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void) createLibraryData {
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    BOOL isFirstBoot=NO;
+    // Comprobamos si es el primer arranque
+    if (![def boolForKey:FIRST_BOOT]) {
+        [def setBool:YES
+              forKey:FIRST_BOOT];
+        [def synchronize];
+        isFirstBoot = YES;
+    }
+
+    
+    // Obtenemos el JSON en formato NSData, ya sea descargándolo o leyéndolo del directorio Documents.
+    NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
+    
+    NSError *err;
+    
+    NSArray * JSONObjects = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:kNilOptions
+                                                              error:&err];
+    
+    if (JSONObjects != nil) {
+        // No ha habido error
+        for(NSDictionary *dict in JSONObjects){
+            
+        }
+    } else {
+        NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
+    }
+    
+}
+
+
+#pragma marks - Utils
+
+-(NSData *) getJSONDependingOnBoot: (BOOL) firstBoot {
+    NSData *json;
+    // Averiguar la url a la carpeta de caches
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory
+                               inDomains:NSUserDomainMask];
+    NSURL *cachesUrl = [urls lastObject];
+    
+    // Añadir el componente del nombre del fichero
+    NSError *err = nil;
+    
+    // Si es el primer arranque ...
+    if (firstBoot) {
+        // ... descargamos el JSON y lo guardamos en Documents de mi Sandbox
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"]];
+        NSURLResponse *response = [[NSURLResponse alloc] init];
+        json = [NSURLConnection sendSynchronousRequest:request
+                                     returningResponse:&response
+                                                 error:&err];
+        
+        if (json == nil) {
+            NSLog(@"Error al descargar datos del servidor: %@", err.localizedDescription);
+        }
+        
+        // ... y si no es el primer arranque....
+    } else {
+        // Obtenemos el json del disco duro.
+        json = [fm contentsAtPath:[[cachesUrl URLByAppendingPathComponent:@"books_readable.json"] path]];
+        if (json == nil) {
+            NSLog(@"Error al leer: %@", err.localizedDescription);
+        }
+    }
+    
+    return json;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
