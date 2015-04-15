@@ -5,36 +5,50 @@
         <attribute name="modificationDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="annotations" inverseEntity="Book" syncable="YES"/>
+        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="annotations" inverseEntity="Location" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="annotations" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Author" representedClassName="MAVAuthor" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="authors" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Book" representedClassName="MAVBook" syncable="YES">
         <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Annotation" inverseName="book" inverseEntity="Annotation" syncable="YES"/>
+        <relationship name="authors" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
+        <relationship name="pdf" maxCount="1" deletionRule="Cascade" destinationEntity="Pdf" inverseName="book" inverseEntity="Pdf" syncable="YES"/>
+        <relationship name="photo" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="book" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="MAVLocation" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="annotations" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="location" inverseEntity="Annotation" syncable="YES"/>
     </entity>
     <entity name="Pdf" representedClassName="MAVPdf" syncable="YES">
         <attribute name="data" attributeType="Binary" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="pdf" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="MAVPhoto" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="annotations" toMany="YES" deletionRule="Nullify" destinationEntity="Annotation" inverseName="photo" inverseEntity="Annotation" syncable="YES"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="photo" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="MAVTag" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="Author" positionX="-54" positionY="0" width="128" height="60"/>
-        <element name="Tag" positionX="-36" positionY="18" width="128" height="60"/>
-        <element name="Pdf" positionX="-18" positionY="36" width="128" height="75"/>
-        <element name="Annotation" positionX="0" positionY="63" width="128" height="105"/>
-        <element name="Photo" positionX="18" positionY="99" width="128" height="75"/>
-        <element name="Location" positionX="36" positionY="108" width="128" height="90"/>
+        <element name="Book" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Author" positionX="-54" positionY="0" width="128" height="75"/>
+        <element name="Tag" positionX="-36" positionY="18" width="128" height="75"/>
+        <element name="Pdf" positionX="-18" positionY="36" width="128" height="90"/>
+        <element name="Annotation" positionX="0" positionY="63" width="128" height="150"/>
+        <element name="Photo" positionX="18" positionY="99" width="128" height="105"/>
+        <element name="Location" positionX="36" positionY="108" width="128" height="105"/>
     </elements>
 </model>
