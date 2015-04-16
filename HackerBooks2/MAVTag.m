@@ -15,9 +15,33 @@
 + (id) tagWithName: (NSString *) name
            context: (NSManagedObjectContext *) context {
     
-    MAVTag *tag = [self insertInManagedObjectContext:context];
-    tag.name = name;
+    //MAVTag *tag = [self insertInManagedObjectContext:context];
+    //tag.name = name;
     
+    
+    // Comprobamos que el tag no exista ya en la BBDD.
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    req.fetchBatchSize = 20;
+    req.predicate= [NSPredicate predicateWithFormat:@"name = %@",name];
+    NSError *error;
+    NSArray *result = [context executeFetchRequest:req
+                                             error:&error];
+    
+    MAVTag *tag = nil;
+    
+    // Si el tag existe, devuelvo el objeto, sino, lo creo.
+    if ([result count] != 0 ) {
+        
+        tag = [result lastObject];
+    } else {
+        
+        tag = [self insertInManagedObjectContext:context];
+        tag.name = name;
+    }
+
     return tag;
 }
 
@@ -26,7 +50,8 @@
            context: (NSManagedObjectContext *) context {
     
     MAVTag *tag = [self insertInManagedObjectContext:context];
-     
+    tag.name = name;
+    
     return tag;
 }
 

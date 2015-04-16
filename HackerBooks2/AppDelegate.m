@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "AGTCoreDataStack.h"
 #import "MAVBook.h"
+#import "MAVLibraryViewController.h"
 
 @interface AppDelegate ()
 
@@ -89,15 +90,32 @@
             [MAVBook bookWithDictionary:dict
                                 context:self.stack.context];
         }
-        
-        /*// Probar un libro
-        NSDictionary *dict = [JSONObjects objectAtIndex:0];
-        [MAVBook bookWithDictionary:dict
-                            context:self.stack.context];
-         */
     } else {
         NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
     }
+    
+    // Un fetchRequest
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookAttributes.title
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    
+    // FetchedResultsController
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
+                                      initWithFetchRequest:req
+                                      managedObjectContext:self.stack.context
+                                      // Habrá que utilizarlo para crear las secciones de los libros con los tags.
+                                      sectionNameKeyPath:nil
+                                      cacheName:nil];
+    
+    
+    // Creamos el controlador
+    MAVLibraryViewController *libVC = [[MAVLibraryViewController alloc] initWithFetchedResultsController:fc
+                                                                                                     style:UITableViewStylePlain];
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:libVC];
+    
+    self.window.rootViewController = navVC;
     
     // Guardar cambios
     [self.stack saveWithErrorBlock:^(NSError *error) {

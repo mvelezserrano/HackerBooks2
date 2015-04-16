@@ -29,6 +29,8 @@
 		55B8AE5E1ADEDDEE00798260 /* MAVPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */; };
 		55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE511ADEDDEE00798260 /* MAVTag.m */; };
 		55B8AE621ADEE61600798260 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE611ADEE61600798260 /* books_readable.json */; };
+		55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */; };
+		55B8AE6D1ADFCE0500798260 /* MAVLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,10 @@
 		55B8AE511ADEDDEE00798260 /* MAVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVTag.m; sourceTree = "<group>"; };
 		55B8AE611ADEE61600798260 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = books_readable.json; path = "../../../2.Recursos para proyectos/books_readable.json"; sourceTree = "<group>"; };
 		55B8AE631ADEE71700798260 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		55B8AE681ADFCD1A00798260 /* AGTCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataTableViewController.h; sourceTree = "<group>"; };
+		55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
+		55B8AE6B1ADFCE0500798260 /* MAVLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVLibraryViewController.h; sourceTree = "<group>"; };
+		55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVLibraryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				55B8AE611ADEE61600798260 /* books_readable.json */,
+				55B8AE671ADFCCF700798260 /* Controllers */,
 				55B8AE321ADEC23E00798260 /* Models */,
 				55B8AE131ADE6A8900798260 /* AppDelegate.h */,
 				55B8AE141ADE6A8900798260 /* AppDelegate.m */,
@@ -208,6 +215,17 @@
 				55B8AE431ADEDDEE00798260 /* _MAVTag.m */,
 			);
 			name = Machine;
+			sourceTree = "<group>";
+		};
+		55B8AE671ADFCCF700798260 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				55B8AE681ADFCD1A00798260 /* AGTCoreDataTableViewController.h */,
+				55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */,
+				55B8AE6B1ADFCE0500798260 /* MAVLibraryViewController.h */,
+				55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55B8AE541ADEDDEE00798260 /* _MAVBook.m in Sources */,
+				55B8AE6D1ADFCE0500798260 /* MAVLibraryViewController.m in Sources */,
 				55B8AE5D1ADEDDEE00798260 /* MAVPdf.m in Sources */,
 				55B8AE591ADEDDEE00798260 /* MAVAnnotation.m in Sources */,
 				55B8AE151ADE6A8900798260 /* AppDelegate.m in Sources */,
@@ -322,6 +341,7 @@
 				55B8AE5C1ADEDDEE00798260 /* MAVLocation.m in Sources */,
 				55B8AE5B1ADEDDEE00798260 /* MAVBook.m in Sources */,
 				55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */,
+				55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */,
 				55B8AE5A1ADEDDEE00798260 /* MAVAuthor.m in Sources */,
 				55B8AE571ADEDDEE00798260 /* _MAVPhoto.m in Sources */,
 				55B8AE531ADEDDEE00798260 /* _MAVAuthor.m in Sources */,

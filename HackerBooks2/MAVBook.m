@@ -35,7 +35,7 @@
     NSMutableSet *mutSet = [[NSMutableSet alloc] init];
     
     // Gestión de los tags
-    NSArray *arr = [[dict objectForKey:@"tags"]componentsSeparatedByString:@", "];
+    NSArray *arr = [[dict objectForKey:@"tags"] componentsSeparatedByString:@", "];
     
     [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 
@@ -50,7 +50,7 @@
     
     
     // Gestión de los autores
-    arr = [[dict objectForKey:@"authors"]componentsSeparatedByString:@", "];
+    arr = [[dict objectForKey:@"authors"] componentsSeparatedByString:@", "];
     
     [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
