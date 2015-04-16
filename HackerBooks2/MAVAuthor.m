@@ -8,6 +8,13 @@
 
 @implementation MAVAuthor
 
-// Custom logic goes here.
++ (id) authorWithName: (NSString *) name
+              context: (NSManagedObjectContext *) context {
+    
+    MAVAuthor *author = [self insertInManagedObjectContext:context];
+    author.name = name;
+    
+    return author;
+}
 
 @end

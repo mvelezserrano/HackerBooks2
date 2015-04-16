@@ -1,5 +1,12 @@
 #import "_MAVTag.h"
 
 @interface MAVTag : _MAVTag {}
-// Custom logic goes here.
+
++ (id) tagWithName: (NSString *) name
+           context: (NSManagedObjectContext *) context;
+
++ (id) tagWithName: (NSString *) name
+              book: (MAVBook *) book
+           context: (NSManagedObjectContext *) context;
+ 
 @end

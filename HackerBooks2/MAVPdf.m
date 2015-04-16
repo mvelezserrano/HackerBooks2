@@ -8,6 +8,17 @@
 
 @implementation MAVPdf
 
-// Custom logic goes here.
+#pragma mark - Class Methods
+
++ (id) pdfWithUrl: (NSString *) url
+          context: (NSManagedObjectContext *) context {
+    
+    MAVPdf *pdf = [self insertInManagedObjectContext:context];
+    pdf.url = url;
+    
+    // Descargar pdf en 2º plano.
+    
+    return pdf;
+}
 
 @end

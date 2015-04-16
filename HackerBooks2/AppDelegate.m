@@ -9,6 +9,7 @@
 #import "Settings.h"
 #import "AppDelegate.h"
 #import "AGTCoreDataStack.h"
+#import "MAVBook.h"
 
 @interface AppDelegate ()
 
@@ -71,22 +72,37 @@
 
     
     // Obtenemos el JSON en formato NSData, ya sea descargándolo o leyéndolo del directorio Documents.
-    NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
+    //NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
+    NSData *jsonData = [self getJSONDependingOnBoot: YES];
     
     NSError *err;
     
     NSArray * JSONObjects = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:kNilOptions
                                                               error:&err];
+    [self.stack zapAllData];
     
     if (JSONObjects != nil) {
         // No ha habido error
+        
         for(NSDictionary *dict in JSONObjects){
-            
+            [MAVBook bookWithDictionary:dict
+                                context:self.stack.context];
         }
+        
+        /*// Probar un libro
+        NSDictionary *dict = [JSONObjects objectAtIndex:0];
+        [MAVBook bookWithDictionary:dict
+                            context:self.stack.context];
+         */
     } else {
         NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
     }
+    
+    // Guardar cambios
+    [self.stack saveWithErrorBlock:^(NSError *error) {
+        NSLog(@"Error al guardar! %@", error);
+    }];
     
 }
 

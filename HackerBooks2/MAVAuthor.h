@@ -1,5 +1,8 @@
 #import "_MAVAuthor.h"
 
 @interface MAVAuthor : _MAVAuthor {}
-// Custom logic goes here.
+
++ (id) authorWithName: (NSString *) name
+              context: (NSManagedObjectContext *) context;
+
 @end
