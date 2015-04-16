@@ -31,6 +31,7 @@
 		55B8AE621ADEE61600798260 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE611ADEE61600798260 /* books_readable.json */; };
 		55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */; };
 		55B8AE6D1ADFCE0500798260 /* MAVLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */; };
+		55B8AE701AE0259900798260 /* book_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE6F1AE0259900798260 /* book_front.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,12 +86,13 @@
 		55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVPhoto.m; sourceTree = "<group>"; };
 		55B8AE501ADEDDEE00798260 /* MAVTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVTag.h; sourceTree = "<group>"; };
 		55B8AE511ADEDDEE00798260 /* MAVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVTag.m; sourceTree = "<group>"; };
-		55B8AE611ADEE61600798260 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = books_readable.json; path = "../../../2.Recursos para proyectos/books_readable.json"; sourceTree = "<group>"; };
+		55B8AE611ADEE61600798260 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = books_readable.json; path = "../../2.Recursos para proyectos/books_readable.json"; sourceTree = "<group>"; };
 		55B8AE631ADEE71700798260 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		55B8AE681ADFCD1A00798260 /* AGTCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataTableViewController.h; sourceTree = "<group>"; };
 		55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
 		55B8AE6B1ADFCE0500798260 /* MAVLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVLibraryViewController.h; sourceTree = "<group>"; };
 		55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVLibraryViewController.m; sourceTree = "<group>"; };
+		55B8AE6F1AE0259900798260 /* book_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_front.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		55B8AE031ADE6A8900798260 = {
 			isa = PBXGroup;
 			children = (
+				55B8AE6E1AE0258F00798260 /* Resources */,
 				55B8AE0E1ADE6A8900798260 /* HackerBooks2 */,
 				55B8AE221ADE6A8900798260 /* HackerBooks2Tests */,
 				55B8AE0D1ADE6A8900798260 /* Products */,
@@ -132,7 +135,6 @@
 		55B8AE0E1ADE6A8900798260 /* HackerBooks2 */ = {
 			isa = PBXGroup;
 			children = (
-				55B8AE611ADEE61600798260 /* books_readable.json */,
 				55B8AE671ADFCCF700798260 /* Controllers */,
 				55B8AE321ADEC23E00798260 /* Models */,
 				55B8AE131ADE6A8900798260 /* AppDelegate.h */,
@@ -228,6 +230,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		55B8AE6E1AE0258F00798260 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55B8AE611ADEE61600798260 /* books_readable.json */,
+				55B8AE6F1AE0259900798260 /* book_front.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -308,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55B8AE701AE0259900798260 /* book_front.png in Resources */,
 				55B8AE1A1ADE6A8900798260 /* LaunchScreen.xib in Resources */,
 				55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */,
 				55B8AE621ADEE61600798260 /* books_readable.json in Resources */,

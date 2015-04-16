@@ -39,7 +39,6 @@
     
     [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 
-        
         [mutSet addObject:[MAVTag tagWithName:obj
                                       context:context]];
         NSLog(@"Tag %lu: %@", (unsigned long)idx, obj);
@@ -53,7 +52,6 @@
     arr = [[dict objectForKey:@"authors"] componentsSeparatedByString:@", "];
     
     [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
         
         [mutSet addObject:[MAVAuthor authorWithName:obj
                                             context:context]];

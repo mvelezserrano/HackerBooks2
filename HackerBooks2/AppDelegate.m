@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "AGTCoreDataStack.h"
 #import "MAVBook.h"
+#import "MAVTag.h"
 #import "MAVLibraryViewController.h"
 
 @interface AppDelegate ()
@@ -94,7 +95,8 @@
         NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
     }
     
-    // Un fetchRequest
+    //// Fetch con MAVBook
+    /*// Un fetchRequest
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookAttributes.title
                                                           ascending:YES
@@ -106,6 +108,23 @@
                                       managedObjectContext:self.stack.context
                                       // Habrá que utilizarlo para crear las secciones de los libros con los tags.
                                       sectionNameKeyPath:nil
+                                      cacheName:nil];
+    */
+    
+    
+    //// Fetch con MAVTag
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    
+    
+    // FetchedResultsController
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
+                                      initWithFetchRequest:req
+                                      managedObjectContext:self.stack.context
+                                      // Habrá que utilizarlo para crear las secciones de los libros con los tags.
+                                      sectionNameKeyPath:MAVTagAttributes.name
                                       cacheName:nil];
     
     
