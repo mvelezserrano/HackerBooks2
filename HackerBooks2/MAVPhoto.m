@@ -30,10 +30,20 @@
     MAVPhoto *photo = [self insertInManagedObjectContext:context];
     photo.url = url;
     
-    // Descargar portada en 2º plano.
-    
     return photo;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

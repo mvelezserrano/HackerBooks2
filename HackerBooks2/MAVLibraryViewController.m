@@ -9,6 +9,7 @@
 #import "MAVLibraryViewController.h"
 #import "MAVBook.h"
 #import "MAVAuthor.h"
+#import "MAVPhoto.h"
 
 @interface MAVLibraryViewController ()
 
@@ -43,6 +44,19 @@
     }
     
     // Configurarla (sincronizar libreta --> celda)
+    
+    // Si la imagen no está descargada, la descargo, sino, la obtengo.
+    if (b.photo.photoData == nil) {
+        [self withImageURL:[NSURL URLWithString:b.photo.url]
+           completionBlock:^(NSData *data) {
+               NSLog(@"Descarga completa!!");
+               b.photo.photoData = data;
+               cell.imageView.image = [b.photo image];
+           }];
+    } else {
+        cell.imageView.image = [b.photo image];
+    }
+    
     cell.textLabel.text = b.title;
     NSArray *authorsArray = [b.authors allObjects];
     NSMutableArray *mut = [[NSMutableArray alloc] init];
@@ -50,12 +64,38 @@
         [mut addObject:author.name];
     }
     
-    //cell.detailTextLabel.text = [[b.authors allObjects] componentsJoinedByString:@", "];
     cell.detailTextLabel.text = [mut componentsJoinedByString:@", "];
     
     // Devolverla
     return cell;
 }
+
+
+#pragma mark - Utils
+
+- (void) withImageURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        
+        // Descargo el NSData de la imagen
+        NSData *data = [NSData dataWithContentsOfURL:url];
+
+        // Cuando lo tengo, me voy a primer plano
+        // Llamo al completionBlock
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(data);
+        });
+        
+    });
+}
+
+
+
+
+
+
+
+
 
 
 
