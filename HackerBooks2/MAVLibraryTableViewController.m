@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Miguel Ángel Vélez Serrano. All rights reserved.
 //
 
-#import "MAVLibraryViewController.h"
+#import "MAVLibraryTableViewController.h"
 #import "MAVBook.h"
 #import "MAVTag.h"
 #import "MAVAuthor.h"
 #import "MAVPhoto.h"
 
-@interface MAVLibraryViewController ()
+@interface MAVLibraryTableViewController ()
 
 @end
 
-@implementation MAVLibraryViewController
+@implementation MAVLibraryTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

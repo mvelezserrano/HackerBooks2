@@ -30,8 +30,14 @@
 		55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE511ADEDDEE00798260 /* MAVTag.m */; };
 		55B8AE621ADEE61600798260 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE611ADEE61600798260 /* books_readable.json */; };
 		55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */; };
-		55B8AE6D1ADFCE0500798260 /* MAVLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */; };
+		55B8AE6D1ADFCE0500798260 /* MAVLibraryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE6C1ADFCE0500798260 /* MAVLibraryTableViewController.m */; };
 		55B8AE701AE0259900798260 /* book_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE6F1AE0259900798260 /* book_front.png */; };
+		55B8AE741AE1105C00798260 /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE731AE1105C00798260 /* UIViewController+Navigation.m */; };
+		55B8AE7F1AE115D000798260 /* MAVSimplePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE7D1AE115D000798260 /* MAVSimplePDFViewController.m */; };
+		55B8AE801AE115D000798260 /* MAVSimplePDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE7E1AE115D000798260 /* MAVSimplePDFViewController.xib */; };
+		55B8AE851AE1170000798260 /* MAVBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE821AE1170000798260 /* MAVBookViewController.m */; };
+		55B8AE861AE1170000798260 /* MAVBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE831AE1170000798260 /* MAVBookViewController.xib */; };
+		55B8AE871AE1170000798260 /* MAVBookViewControlleriPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,9 +96,18 @@
 		55B8AE631ADEE71700798260 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		55B8AE681ADFCD1A00798260 /* AGTCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataTableViewController.h; sourceTree = "<group>"; };
 		55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataTableViewController.m; sourceTree = "<group>"; };
-		55B8AE6B1ADFCE0500798260 /* MAVLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVLibraryViewController.h; sourceTree = "<group>"; };
-		55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVLibraryViewController.m; sourceTree = "<group>"; };
+		55B8AE6B1ADFCE0500798260 /* MAVLibraryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVLibraryTableViewController.h; sourceTree = "<group>"; };
+		55B8AE6C1ADFCE0500798260 /* MAVLibraryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVLibraryTableViewController.m; sourceTree = "<group>"; };
 		55B8AE6F1AE0259900798260 /* book_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_front.png; sourceTree = "<group>"; };
+		55B8AE721AE1105C00798260 /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
+		55B8AE731AE1105C00798260 /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
+		55B8AE7C1AE115D000798260 /* MAVSimplePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVSimplePDFViewController.h; sourceTree = "<group>"; };
+		55B8AE7D1AE115D000798260 /* MAVSimplePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVSimplePDFViewController.m; sourceTree = "<group>"; };
+		55B8AE7E1AE115D000798260 /* MAVSimplePDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVSimplePDFViewController.xib; sourceTree = "<group>"; };
+		55B8AE811AE1170000798260 /* MAVBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVBookViewController.h; sourceTree = "<group>"; };
+		55B8AE821AE1170000798260 /* MAVBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBookViewController.m; sourceTree = "<group>"; };
+		55B8AE831AE1170000798260 /* MAVBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVBookViewController.xib; sourceTree = "<group>"; };
+		55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVBookViewControlleriPhone.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +150,7 @@
 		55B8AE0E1ADE6A8900798260 /* HackerBooks2 */ = {
 			isa = PBXGroup;
 			children = (
+				55B8AE711AE1103E00798260 /* Categories */,
 				55B8AE671ADFCCF700798260 /* Controllers */,
 				55B8AE321ADEC23E00798260 /* Models */,
 				55B8AE131ADE6A8900798260 /* AppDelegate.h */,
@@ -224,8 +240,15 @@
 			children = (
 				55B8AE681ADFCD1A00798260 /* AGTCoreDataTableViewController.h */,
 				55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */,
-				55B8AE6B1ADFCE0500798260 /* MAVLibraryViewController.h */,
-				55B8AE6C1ADFCE0500798260 /* MAVLibraryViewController.m */,
+				55B8AE6B1ADFCE0500798260 /* MAVLibraryTableViewController.h */,
+				55B8AE6C1ADFCE0500798260 /* MAVLibraryTableViewController.m */,
+				55B8AE811AE1170000798260 /* MAVBookViewController.h */,
+				55B8AE821AE1170000798260 /* MAVBookViewController.m */,
+				55B8AE831AE1170000798260 /* MAVBookViewController.xib */,
+				55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */,
+				55B8AE7C1AE115D000798260 /* MAVSimplePDFViewController.h */,
+				55B8AE7D1AE115D000798260 /* MAVSimplePDFViewController.m */,
+				55B8AE7E1AE115D000798260 /* MAVSimplePDFViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -237,6 +260,16 @@
 				55B8AE6F1AE0259900798260 /* book_front.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		55B8AE711AE1103E00798260 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				55B8AE721AE1105C00798260 /* UIViewController+Navigation.h */,
+				55B8AE731AE1105C00798260 /* UIViewController+Navigation.m */,
+			);
+			name = Categories;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,7 +353,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				55B8AE701AE0259900798260 /* book_front.png in Resources */,
+				55B8AE801AE115D000798260 /* MAVSimplePDFViewController.xib in Resources */,
+				55B8AE861AE1170000798260 /* MAVBookViewController.xib in Resources */,
 				55B8AE1A1ADE6A8900798260 /* LaunchScreen.xib in Resources */,
+				55B8AE871AE1170000798260 /* MAVBookViewControlleriPhone.xib in Resources */,
 				55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */,
 				55B8AE621ADEE61600798260 /* books_readable.json in Resources */,
 			);
@@ -341,9 +377,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				55B8AE541ADEDDEE00798260 /* _MAVBook.m in Sources */,
-				55B8AE6D1ADFCE0500798260 /* MAVLibraryViewController.m in Sources */,
+				55B8AE6D1ADFCE0500798260 /* MAVLibraryTableViewController.m in Sources */,
 				55B8AE5D1ADEDDEE00798260 /* MAVPdf.m in Sources */,
 				55B8AE591ADEDDEE00798260 /* MAVAnnotation.m in Sources */,
+				55B8AE851AE1170000798260 /* MAVBookViewController.m in Sources */,
 				55B8AE151ADE6A8900798260 /* AppDelegate.m in Sources */,
 				55B8AE581ADEDDEE00798260 /* _MAVTag.m in Sources */,
 				55B8AE521ADEDDEE00798260 /* _MAVAnnotation.m in Sources */,
@@ -352,12 +389,14 @@
 				55B8AE561ADEDDEE00798260 /* _MAVPdf.m in Sources */,
 				55B8AE5C1ADEDDEE00798260 /* MAVLocation.m in Sources */,
 				55B8AE5B1ADEDDEE00798260 /* MAVBook.m in Sources */,
+				55B8AE7F1AE115D000798260 /* MAVSimplePDFViewController.m in Sources */,
 				55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */,
 				55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */,
 				55B8AE5A1ADEDDEE00798260 /* MAVAuthor.m in Sources */,
 				55B8AE571ADEDDEE00798260 /* _MAVPhoto.m in Sources */,
 				55B8AE531ADEDDEE00798260 /* _MAVAuthor.m in Sources */,
 				55B8AE551ADEDDEE00798260 /* _MAVLocation.m in Sources */,
+				55B8AE741AE1105C00798260 /* UIViewController+Navigation.m in Sources */,
 				55B8AE351ADED6A700798260 /* AGTCoreDataStack.m in Sources */,
 				55B8AE311ADEC23700798260 /* Model.xcdatamodeld in Sources */,
 			);

@@ -11,7 +11,8 @@
 #import "AGTCoreDataStack.h"
 #import "MAVBook.h"
 #import "MAVTag.h"
-#import "MAVLibraryViewController.h"
+#import "MAVLibraryTableViewController.h"
+#import "UIViewController+Navigation.h"
 
 @interface AppDelegate ()
 
@@ -95,6 +96,12 @@
         NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
     }
     
+    // Comprobamos si existe el tag Favorites, si no existe, lo creamos,
+    // sino, lo ponemos en primer lugar....
+    
+    
+    
+    
     //// Fetch con MAVBook
     /*// Un fetchRequest
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
@@ -116,6 +123,7 @@
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
                                                           ascending:YES
                                                            selector:@selector(caseInsensitiveCompare:)]];
+    req.fetchBatchSize = 20;
     
     // FetchedResultsController
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
@@ -170,12 +178,12 @@
     
     
     // Creamos el controlador
-    MAVLibraryViewController *libVC = [[MAVLibraryViewController alloc] initWithFetchedResultsController:fc
+    MAVLibraryTableViewController *libVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
                                                                                                      style:UITableViewStylePlain];
     
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:libVC];
+    //UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:libVC];
     
-    self.window.rootViewController = navVC;
+    self.window.rootViewController = [libVC wrappedInNavigation];
     
     // Guardar cambios
     [self.stack saveWithErrorBlock:^(NSError *error) {
