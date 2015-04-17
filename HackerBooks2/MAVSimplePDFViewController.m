@@ -47,22 +47,9 @@
     // Asegurarse de que no se ocupa toda la pantalla cuando
     // estás en un combinador
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    /*
+    
     // Sincronizar modelo --> vista
     [self syncViewToModel];
-    */
-    
-    if (self.model.pdf.pdfData == nil) {
-        [self withPDFURL:[NSURL URLWithString:self.model.pdf.url]
-         completionBlock:^(NSData *data) {
-             NSLog(@"Descargado!!!!");
-             self.model.pdf.pdfData = data;
-             [self syncViewToModel];
-         }];
-    } else {
-        [self syncViewToModel];
-    }
-    
 }
 
 
@@ -116,46 +103,15 @@
 
 - (void)syncViewToModel {
     
-    [self.browser loadData:self.model.pdf.pdfData
-                  MIMEType:@"application/pdf"
-          textEncodingName:@"utf-8"
-                   baseURL:nil];
-    
-    /*
-    // Comprobar si existe el fichero en el Directorio Documents
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory
-                               inDomains:NSUserDomainMask];
-    NSURL *documentsUrl = [urls lastObject];
-    NSURL *pdfLocalUrl = [documentsUrl URLByAppendingPathComponent:[self.model.pdf.url lastPathComponent]];
-    
-    NSError *err;
-    NSData *pdfNSData;
-    
-    if ([fm fileExistsAtPath:[pdfLocalUrl path]]) {
-        // Si existe, entonces cargamos el pdf local
-        pdfNSData = [NSData dataWithContentsOfFile: [pdfLocalUrl path]];
-    } else {
-        // Si no existe, lo descargamos y lo guardamos en local.
-        NSData *downloadedPDFData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.model.pdf.url]
-                                                          options:kNilOptions
-                                                            error:&err];
-        BOOL result = [downloadedPDFData writeToURL:pdfLocalUrl
-                                            options:NSDataWritingAtomic
-                                              error:&err];
-        if (result == NO) {
-            NSLog(@"Error al guardar el pdf descargado: %@", err.localizedDescription);
-        }
-        pdfNSData = downloadedPDFData;
-    }
-    
-    // Finalmente, mostramos el pdf en el WebView.
-    [self.browser loadData:pdfNSData
-                  MIMEType:@"application/pdf"
-          textEncodingName:@"utf-8"
-                   baseURL:nil];
-    */
-    
+    [self withPDFURL:[NSURL URLWithString:self.model.pdf.url]
+     completionBlock:^(NSData *data) {
+         
+         self.model.pdf.pdfData = data;
+         [self.browser loadData:self.model.pdf.pdfData
+                       MIMEType:@"application/pdf"
+               textEncodingName:@"utf-8"
+                        baseURL:nil];
+     }];
 }
 
 
@@ -164,11 +120,17 @@
 - (void) withPDFURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        NSError *err;
-        // Descargo el NSData del pdf
-        NSData *data = [NSData dataWithContentsOfURL:url
+        NSData *data = nil;
+        // Si el pdf no está descargado, lo descargo, sino, devuelvo el pdfData.
+        if (self.model.pdf.pdfData == nil) {
+            NSError *err;
+            // Descargo el NSData del pdf
+             data = [NSData dataWithContentsOfURL:url
                                              options:kNilOptions
                                                error:&err];
+        } else {
+            data = self.model.pdf.pdfData;
+        }
         
         // Cuando lo tengo, me voy a primer plano
         // Llamo al completionBlock
