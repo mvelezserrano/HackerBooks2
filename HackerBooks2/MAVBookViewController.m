@@ -7,6 +7,7 @@
 //
 
 #import "MAVBook.h"
+#import "MAVPhoto.h"
 #import "MAVBookViewController.h"
 #import "MAVSimplePDFViewController.h"
 #import "Settings.h"
@@ -103,7 +104,7 @@
 - (void) syncViewToModel {
     
     self.title = self.model.title;
-    //self.bookImage.image = [self.model.photo image];
+    self.bookImage.image = [self.model.photo image];
     self.bookTitle.text = self.model.title;
     self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
@@ -121,7 +122,7 @@
     
     // Modo Apaisado
     self.title = self.model.title;
-    //self.bookImageLandscape.image = [UIImage imageWithData: [NSData dataWithContentsOfURL:self.model.imageURL]];
+    self.bookImageLandscape.image = [self.model.photo image];
     self.bookTitleLandscape.text = self.model.title;
     self.bookAuthorsLandscape.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     self.bookTagsLandscape.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];

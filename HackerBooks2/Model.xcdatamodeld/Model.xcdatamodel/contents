@@ -14,6 +14,7 @@
         <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="authors" inverseEntity="Book" syncable="YES"/>
     </entity>
     <entity name="Book" representedClassName="MAVBook" syncable="YES">
+        <attribute name="isFavorite" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Annotation" inverseName="book" inverseEntity="Annotation" syncable="YES"/>
         <relationship name="authors" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
@@ -43,7 +44,7 @@
         <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-56" positionY="-207" width="128" height="133"/>
+        <element name="Book" positionX="-56" positionY="-207" width="128" height="148"/>
         <element name="Author" positionX="367" positionY="-183" width="128" height="75"/>
         <element name="Tag" positionX="-360" positionY="-207" width="128" height="75"/>
         <element name="Pdf" positionX="-299" positionY="126" width="128" height="88"/>

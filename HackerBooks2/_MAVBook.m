@@ -4,6 +4,7 @@
 #import "_MAVBook.h"
 
 const struct MAVBookAttributes MAVBookAttributes = {
+	.isFavorite = @"isFavorite",
 	.title = @"title",
 };
 
@@ -41,7 +42,33 @@ const struct MAVBookRelationships MAVBookRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"isFavoriteValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isFavorite"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
+}
+
+@dynamic isFavorite;
+
+- (BOOL)isFavoriteValue {
+	NSNumber *result = [self isFavorite];
+	return [result boolValue];
+}
+
+- (void)setIsFavoriteValue:(BOOL)value_ {
+	[self setIsFavorite:@(value_)];
+}
+
+- (BOOL)primitiveIsFavoriteValue {
+	NSNumber *result = [self primitiveIsFavorite];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsFavoriteValue:(BOOL)value_ {
+	[self setPrimitiveIsFavorite:@(value_)];
 }
 
 @dynamic title;
