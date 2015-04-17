@@ -9,6 +9,7 @@
 #import "MAVSimplePDFViewController.h"
 #import "MAVLibraryTableViewController.h"
 #import "MAVBook.h"
+#import "MAVPdf.h"
 
 
 @implementation MAVSimplePDFViewController
@@ -32,24 +33,36 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    /*
+    
     // Asignar delegados!!!!
     self.browser.delegate = self;
-    
+    /*
     // Alta en notificación
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
            selector:@selector(notifyThatBookDidChange:)
                name:BOOK_DID_CHANGE_NOTIFICATION_NAME
              object:nil];
-    
+    */
     // Asegurarse de que no se ocupa toda la pantalla cuando
     // estás en un combinador
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    /*
     // Sincronizar modelo --> vista
     [self syncViewToModel];
-     */
+    */
+    
+    if (self.model.pdf.pdfData == nil) {
+        [self withPDFURL:[NSURL URLWithString:self.model.pdf.url]
+         completionBlock:^(NSData *data) {
+             NSLog(@"Descargado!!!!");
+             self.model.pdf.pdfData = data;
+             [self syncViewToModel];
+         }];
+    } else {
+        [self syncViewToModel];
+    }
+    
 }
 
 
@@ -64,7 +77,7 @@
 
 
 #pragma mark - UIWebViewDelegate
-/*
+
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     
     // Paro y oculto el activityView
@@ -78,7 +91,7 @@
     [self.activityView setHidden:NO];
     [self.activityView startAnimating];
 }
- */
+
 
 
 #pragma mark - Notifications
@@ -102,13 +115,19 @@
 #pragma mark - Utils
 
 - (void)syncViewToModel {
+    
+    [self.browser loadData:self.model.pdf.pdfData
+                  MIMEType:@"application/pdf"
+          textEncodingName:@"utf-8"
+                   baseURL:nil];
+    
     /*
     // Comprobar si existe el fichero en el Directorio Documents
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *urls = [fm URLsForDirectory:NSDocumentDirectory
+    NSArray *urls = [fm URLsForDirectory:NSCachesDirectory
                                inDomains:NSUserDomainMask];
     NSURL *documentsUrl = [urls lastObject];
-    NSURL *pdfLocalUrl = [documentsUrl URLByAppendingPathComponent:[self.model.pdfURL lastPathComponent]];
+    NSURL *pdfLocalUrl = [documentsUrl URLByAppendingPathComponent:[self.model.pdf.url lastPathComponent]];
     
     NSError *err;
     NSData *pdfNSData;
@@ -118,7 +137,7 @@
         pdfNSData = [NSData dataWithContentsOfFile: [pdfLocalUrl path]];
     } else {
         // Si no existe, lo descargamos y lo guardamos en local.
-        NSData *downloadedPDFData = [NSData dataWithContentsOfURL:self.model.pdfURL
+        NSData *downloadedPDFData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.model.pdf.url]
                                                           options:kNilOptions
                                                             error:&err];
         BOOL result = [downloadedPDFData writeToURL:pdfLocalUrl
@@ -128,18 +147,6 @@
             NSLog(@"Error al guardar el pdf descargado: %@", err.localizedDescription);
         }
         pdfNSData = downloadedPDFData;
-        
-        [self.model setDownloaded:YES];
-        
-        // Mandamos una notificación por haber descargado el pdf
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
-        NSDictionary *dict = @{BOOK_KEY : self.model};
-        
-        NSNotification *n = [NSNotification notificationWithName:BOOK_DOWNLOADED
-                                                          object:self
-                                                        userInfo:dict];
-        [nc postNotification:n];
     }
     
     // Finalmente, mostramos el pdf en el WebView.
@@ -147,8 +154,55 @@
                   MIMEType:@"application/pdf"
           textEncodingName:@"utf-8"
                    baseURL:nil];
-     */
+    */
+    
 }
+
+
+#pragma mark - Utils
+
+- (void) withPDFURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        NSError *err;
+        // Descargo el NSData del pdf
+        NSData *data = [NSData dataWithContentsOfURL:url
+                                             options:kNilOptions
+                                               error:&err];
+        
+        // Cuando lo tengo, me voy a primer plano
+        // Llamo al completionBlock
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(data);
+        });
+        
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

@@ -108,13 +108,13 @@
     self.bookTitle.text = self.model.title;
     self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
-    /*
-    if (self.model.isFavorite) {
+    
+    if ([self.model isFavoriteValue]) {
         [self.favoriteSwitch setOn:YES];
     } else {
         [self.favoriteSwitch setOn:NO];
     }
-    */
+    
     self.bookTitle.numberOfLines = 0;
     self.bookAuthors.numberOfLines = 0;
     self.bookTags.numberOfLines = 0;
@@ -126,13 +126,13 @@
     self.bookTitleLandscape.text = self.model.title;
     self.bookAuthorsLandscape.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     self.bookTagsLandscape.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
-    /*
-    if (self.model.isFavorite) {
+    
+    if ([self.model isFavoriteValue]) {
         [self.favoriteSwitchLandscape setOn:YES];
     } else {
         [self.favoriteSwitchLandscape setOn:NO];
     }
-    */
+    
     self.bookTitleLandscape.numberOfLines = 0;
     self.bookAuthorsLandscape.numberOfLines = 0;
     self.bookTagsLandscape.numberOfLines = 0;
@@ -154,13 +154,15 @@
 
 
 - (IBAction)setFavorite:(id)sender {
-    /*
-    if ([sender isOn]) {
-        self.model.isFavorite = YES;
-    } else {
-        self.model.isFavorite = NO;
-    }
     
+    if ([sender isOn]) {
+        //self.model.isFavorite = YES;
+        [self.model setIsFavoriteValue:YES];
+    } else {
+        //self.model.isFavorite = NO;
+        [self.model setIsFavoriteValue:NO];
+    }
+    /*
     // Mandamos una notificación por el cambio de favorito
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     

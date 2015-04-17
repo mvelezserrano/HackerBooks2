@@ -30,6 +30,9 @@
     MAVBook *book = [self insertInManagedObjectContext:context];
     book.title = [dict objectForKey:@"title"];
     
+    // Gestionar favorito....
+    [book setIsFavoriteValue:NO];
+    
     NSMutableSet *mutSet = [[NSMutableSet alloc] init];
     
     // Gestión de los tags

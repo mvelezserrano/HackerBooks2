@@ -158,7 +158,7 @@
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookAttributes.title
                                                           ascending:YES
                                                            selector:@selector(caseInsensitiveCompare:)]];
-    results = [self.stack executeFetchRequest:req
+    NSArray *results = [self.stack executeFetchRequest:req
                                    errorBlock:^(NSError *error) {
                                        NSLog(@"Error al buscar! %@", error);
                                    }];
@@ -171,6 +171,7 @@
         for (MAVTag *tag in tagsSet) {
             NSLog(@"    Tag: %@", tag.name);
         }
+        NSLog(@"Es favorito?: %d", book.isFavoriteValue);
     }
     
     NSLog(@"Total de Libros: %d", booksCount);
