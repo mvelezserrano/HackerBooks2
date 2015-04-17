@@ -42,4 +42,10 @@
     return author;
 }
 
+#pragma mark - Misc
+
+-(NSString *) description {
+    return [NSString stringWithFormat:@"%@", [self name]];
+}
+
 @end

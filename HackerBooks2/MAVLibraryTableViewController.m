@@ -11,6 +11,7 @@
 #import "MAVTag.h"
 #import "MAVAuthor.h"
 #import "MAVPhoto.h"
+#import "MAVBookViewController.h"
 
 @interface MAVLibraryTableViewController ()
 
@@ -20,7 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"Programming Library";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,17 +76,31 @@
     }
     
     cell.textLabel.text = b.title;
-    NSArray *authorsArray = [b.authors allObjects];
-    NSMutableArray *mut = [[NSMutableArray alloc] init];
-    for (MAVAuthor *author in authorsArray) {
-        [mut addObject:author.name];
-    }
-    
-    cell.detailTextLabel.text = [mut componentsJoinedByString:@", "];
+    cell.detailTextLabel.text = [[b.authors allObjects] componentsJoinedByString:@", "];
     
     // Devolverla
     return cell;
 }
+
+
+#pragma mark - Table Delegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Averiguar cual es el MAVTag
+    MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    // Averiguar cual es el libro
+    MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
+    
+    // Crear un controlador de libro
+    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b];
+    
+    // Hacer un push
+    [self.navigationController pushViewController:bVC
+                                         animated:YES];
+}
+
+
 
 
 #pragma mark - Utils

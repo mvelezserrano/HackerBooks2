@@ -101,19 +101,19 @@
 
 
 - (void) syncViewToModel {
-    /*
-    self.title = self.model.title;
-    self.bookImage.image = [UIImage imageWithData: [NSData dataWithContentsOfURL:self.model.imageURL]];
-    self.bookTitle.text = self.model.title;
-    self.bookAuthors.text = self.model.authors;
-    self.bookTags.text = self.model.tags;
     
+    self.title = self.model.title;
+    //self.bookImage.image = [self.model.photo image];
+    self.bookTitle.text = self.model.title;
+    self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
+    self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
+    /*
     if (self.model.isFavorite) {
         [self.favoriteSwitch setOn:YES];
     } else {
         [self.favoriteSwitch setOn:NO];
     }
-    
+    */
     self.bookTitle.numberOfLines = 0;
     self.bookAuthors.numberOfLines = 0;
     self.bookTags.numberOfLines = 0;
@@ -121,21 +121,21 @@
     
     // Modo Apaisado
     self.title = self.model.title;
-    self.bookImageLandscape.image = [UIImage imageWithData: [NSData dataWithContentsOfURL:self.model.imageURL]];
+    //self.bookImageLandscape.image = [UIImage imageWithData: [NSData dataWithContentsOfURL:self.model.imageURL]];
     self.bookTitleLandscape.text = self.model.title;
-    self.bookAuthorsLandscape.text = self.model.authors;
-    self.bookTagsLandscape.text = self.model.tags;
-    
+    self.bookAuthorsLandscape.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
+    self.bookTagsLandscape.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
+    /*
     if (self.model.isFavorite) {
         [self.favoriteSwitchLandscape setOn:YES];
     } else {
         [self.favoriteSwitchLandscape setOn:NO];
     }
-
+    */
     self.bookTitleLandscape.numberOfLines = 0;
     self.bookAuthorsLandscape.numberOfLines = 0;
     self.bookTagsLandscape.numberOfLines = 0;
-     */
+    
 }
 
 

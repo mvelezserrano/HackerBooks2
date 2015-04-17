@@ -8,6 +8,7 @@
 
 #import "AGTCoreDataTableViewController.h"
 @class MAVLibraryTableViewController;
+@class MAVBook;
 
 @protocol MAVLibraryTableViewControllerDelegate <NSObject>
 
