@@ -111,21 +111,62 @@
                                       cacheName:nil];
     */
     
-    
     //// Fetch con MAVTag
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
                                                           ascending:YES
                                                            selector:@selector(caseInsensitiveCompare:)]];
     
-    
     // FetchedResultsController
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
                                       initWithFetchRequest:req
                                       managedObjectContext:self.stack.context
-                                      // Habrá que utilizarlo para crear las secciones de los libros con los tags.
                                       sectionNameKeyPath:MAVTagAttributes.name
                                       cacheName:nil];
+    
+    
+    /* /// Debug tags + libros
+    // Array de tags... veamos qué libros tiene cada uno!!
+    NSArray *results = [self.stack executeFetchRequest:req
+                                            errorBlock:^(NSError *error) {
+                                                NSLog(@"Error al buscar! %@", error);
+                                            }];
+    int tagsCount = 0;
+    for (MAVTag *tag in results) {
+        tagsCount++;
+        NSLog(@"Título del tag: %@", tag.name);
+        NSArray *booksSet = [[tag books] allObjects];
+        for (MAVBook *book in booksSet) {
+            NSLog(@"    Libro: %@", book.title);
+        }
+    }
+    
+    NSLog(@"Total de tags: %d", tagsCount);
+    
+    
+    
+    // Array de libros... veamos qué arrays tiene cada uno!!
+    req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookAttributes.title
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    results = [self.stack executeFetchRequest:req
+                                   errorBlock:^(NSError *error) {
+                                       NSLog(@"Error al buscar! %@", error);
+                                   }];
+    
+    int booksCount = 0;
+    for (MAVBook *book in results) {
+        booksCount++;
+        NSLog(@"Título del Libro: %@", book.title);
+        NSArray *tagsSet = [[book tags] allObjects];
+        for (MAVTag *tag in tagsSet) {
+            NSLog(@"    Tag: %@", tag.name);
+        }
+    }
+    
+    NSLog(@"Total de Libros: %d", booksCount);
+    */
     
     
     // Creamos el controlador

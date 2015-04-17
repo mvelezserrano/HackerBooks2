@@ -1,4 +1,5 @@
 #import "MAVTag.h"
+#import "MAVBook.h"
 
 @interface MAVTag ()
 
@@ -15,9 +16,15 @@
 + (id) tagWithName: (NSString *) name
            context: (NSManagedObjectContext *) context {
     
-    //MAVTag *tag = [self insertInManagedObjectContext:context];
-    //tag.name = name;
+    MAVTag *tag = [self insertInManagedObjectContext:context];
+    tag.name = name;
     
+    return tag;
+}
+
++ (id) tagWithName: (NSString *) name
+              book: (MAVBook *) book
+           context: (NSManagedObjectContext *) context {
     
     // Comprobamos que el tag no exista ya en la BBDD.
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
@@ -34,23 +41,19 @@
     
     // Si el tag existe, devuelvo el objeto, sino, lo creo.
     if ([result count] != 0 ) {
-        
         tag = [result lastObject];
     } else {
-        
         tag = [self insertInManagedObjectContext:context];
         tag.name = name;
     }
-
-    return tag;
-}
-
-+ (id) tagWithName: (NSString *) name
-              book: (MAVBook *) book
-           context: (NSManagedObjectContext *) context {
     
-    MAVTag *tag = [self insertInManagedObjectContext:context];
-    tag.name = name;
+    /*NSMutableSet *mutSetOfBooks = [tag booksSet];
+    //NSLog(@"Set Length antes: %lu", (unsigned long)[mutSetOfBooks count]);
+    [mutSetOfBooks addObject:book];
+    [tag addBooks:[mutSetOfBooks copy]];
+    */
+    
+    [tag addBooksObject:book];
     
     return tag;
 }

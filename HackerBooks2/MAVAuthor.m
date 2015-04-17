@@ -1,4 +1,5 @@
 #import "MAVAuthor.h"
+#import "MAVBook.h"
 
 @interface MAVAuthor ()
 
@@ -9,6 +10,7 @@
 @implementation MAVAuthor
 
 + (id) authorWithName: (NSString *) name
+                 book: (MAVBook *) book
               context: (NSManagedObjectContext *) context {
     
     //MAVAuthor *author = [self insertInManagedObjectContext:context];
@@ -27,16 +29,15 @@
     
     MAVAuthor *author = nil;
     
-    // Si el tag existe, devuelvo el objeto, sino, lo creo.
+    // Si el author existe, devuelvo el objeto, sino, lo creo.
     if ([result count] != 0 ) {
-        
         author = [result lastObject];
     } else {
-        
         author = [self insertInManagedObjectContext:context];
         author.name = name;
     }
-
+    
+    [author addBooksObject:book];
     
     return author;
 }

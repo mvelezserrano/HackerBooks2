@@ -30,19 +30,18 @@
     MAVBook *book = [self insertInManagedObjectContext:context];
     book.title = [dict objectForKey:@"title"];
     
-    NSLog(@"Title: %@", book.title);
-    
     NSMutableSet *mutSet = [[NSMutableSet alloc] init];
     
     // Gestión de los tags
     NSArray *arr = [[dict objectForKey:@"tags"] componentsSeparatedByString:@", "];
     
-    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-
-        [mutSet addObject:[MAVTag tagWithName:obj
+    for (NSString *tag in arr) {
+        // NSSet no permite añadir dos veces el mismo objeto, por lo que
+        // no es necesario comprobar si el tag ya existe en el NSSet.
+        [mutSet addObject:[MAVTag tagWithName:tag
+                                         book:book
                                       context:context]];
-        NSLog(@"Tag %lu: %@", (unsigned long)idx, obj);
-    }];
+    }
     
     [book addTags:[mutSet copy]];
     [mutSet removeAllObjects];
@@ -51,12 +50,13 @@
     // Gestión de los autores
     arr = [[dict objectForKey:@"authors"] componentsSeparatedByString:@", "];
     
-    [arr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
-        [mutSet addObject:[MAVAuthor authorWithName:obj
+    for (NSString *author in arr) {
+        // NSSet no permite añadir dos veces el mismo objeto, por lo que
+        // no es necesario comprobar si el tag ya existe en el NSSet.
+        [mutSet addObject:[MAVAuthor authorWithName:author
+                                               book:book
                                             context:context]];
-        NSLog(@"Author %lu: %@", (unsigned long)idx, obj);
-    }];
+    }
     
     [book addAuthors:[mutSet copy]];
     [mutSet removeAllObjects];
