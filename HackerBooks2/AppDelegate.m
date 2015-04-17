@@ -12,6 +12,7 @@
 #import "MAVBook.h"
 #import "MAVTag.h"
 #import "MAVLibraryTableViewController.h"
+#import "MAVBookViewController.h"
 #import "UIViewController+Navigation.h"
 
 @interface AppDelegate ()
@@ -30,8 +31,70 @@
     // Creamos una instancia del stack
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
-    // Creamos los datos del modelo.
-    [self createLibraryData];
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    BOOL isFirstBoot=NO;
+    // Comprobamos si es el primer arranque
+    if (![def boolForKey:FIRST_BOOT]) {
+        [def setBool:YES
+              forKey:FIRST_BOOT];
+        [def synchronize];
+        isFirstBoot = YES;
+    }
+    
+    // Obtenemos el JSON en formato NSData, ya sea descargándolo o leyéndolo del directorio Documents.
+    NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
+    
+    NSError *err;
+    NSArray * JSONObjects = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:kNilOptions
+                                                              error:&err];
+    [self.stack zapAllData];
+    
+    if (JSONObjects != nil) {
+        // No ha habido error
+        
+        for(NSDictionary *dict in JSONObjects){
+            [MAVBook bookWithDictionary:dict
+                                context:self.stack.context];
+        }
+    } else {
+        NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
+    }
+    
+    // Comprobamos si existe el tag Favorites, si no existe, lo creamos,
+    // sino, lo ponemos en primer lugar....
+    
+    
+    
+    
+    
+    
+    
+    //// Fetch con MAVTag
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)]];
+    req.fetchBatchSize = 20;
+    
+    // FetchedResultsController
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
+                                      initWithFetchRequest:req
+                                      managedObjectContext:self.stack.context
+                                      sectionNameKeyPath:MAVTagAttributes.name
+                                      cacheName:nil];
+    
+    // Creamos el controlador
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                                  style:UITableViewStylePlain];
+    
+    self.window.rootViewController = [libTableVC wrappedInNavigation];
+    
+    // Guardar cambios
+    [self.stack saveWithErrorBlock:^(NSError *error) {
+        NSLog(@"Error al guardar! %@", error);
+    }];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -60,139 +123,49 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void) createLibraryData {
-    
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    
-    BOOL isFirstBoot=NO;
-    // Comprobamos si es el primer arranque
-    if (![def boolForKey:FIRST_BOOT]) {
-        [def setBool:YES
-              forKey:FIRST_BOOT];
-        [def synchronize];
-        isFirstBoot = YES;
-    }
 
+/*
+- (void) configureForPadWithModel: (NSFetchedResultsController *) fc {
     
-    // Obtenemos el JSON en formato NSData, ya sea descargándolo o leyéndolo del directorio Documents.
-    //NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
-    NSData *jsonData = [self getJSONDependingOnBoot: YES];
-    
-    NSError *err;
-    
-    NSArray * JSONObjects = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                            options:kNilOptions
-                                                              error:&err];
-    [self.stack zapAllData];
-    
-    if (JSONObjects != nil) {
-        // No ha habido error
-        
-        for(NSDictionary *dict in JSONObjects){
-            [MAVBook bookWithDictionary:dict
-                                context:self.stack.context];
-        }
-    } else {
-        NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
-    }
-    
-    // Comprobamos si existe el tag Favorites, si no existe, lo creamos,
-    // sino, lo ponemos en primer lugar....
+    // Creamos los controladores
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                             style:UITableViewStylePlain];
+    MAVBookViewController *bookVC = [[MAVBookViewController alloc] initWithModel:[self lastSelectedBookInModel: library]];
     
     
+    // Combinadores
+    UINavigationController *bookNav = [[UINavigationController alloc] initWithRootViewController:bookVC];
+    
+    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    splitVC.viewControllers = @[[libVC wrappedInNavigation], [bookNav wrappedInNavigation]];
     
     
-    //// Fetch con MAVBook
-    /*// Un fetchRequest
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookAttributes.title
-                                                          ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)]];
+    // Asignamos delegados
+    libTableVC.delegate = bookVC;
+    splitVC.delegate = bookVC;
     
-    // FetchedResultsController
-    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
-                                      initWithFetchRequest:req
-                                      managedObjectContext:self.stack.context
-                                      // Habrá que utilizarlo para crear las secciones de los libros con los tags.
-                                      sectionNameKeyPath:nil
-                                      cacheName:nil];
-    */
-    
-    //// Fetch con MAVTag
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
-                                                          ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)]];
-    req.fetchBatchSize = 20;
-    
-    // FetchedResultsController
-    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
-                                      initWithFetchRequest:req
-                                      managedObjectContext:self.stack.context
-                                      sectionNameKeyPath:MAVTagAttributes.name
-                                      cacheName:nil];
-    
-    
-    /* /// Debug tags + libros
-    // Array de tags... veamos qué libros tiene cada uno!!
-    NSArray *results = [self.stack executeFetchRequest:req
-                                            errorBlock:^(NSError *error) {
-                                                NSLog(@"Error al buscar! %@", error);
-                                            }];
-    int tagsCount = 0;
-    for (MAVTag *tag in results) {
-        tagsCount++;
-        NSLog(@"Título del tag: %@", tag.name);
-        NSArray *booksSet = [[tag books] allObjects];
-        for (MAVBook *book in booksSet) {
-            NSLog(@"    Libro: %@", book.title);
-        }
-    }
-    
-    NSLog(@"Total de tags: %d", tagsCount);
-    
-    
-    
-    // Array de libros... veamos qué arrays tiene cada uno!!
-    req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookAttributes.title
-                                                          ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)]];
-    NSArray *results = [self.stack executeFetchRequest:req
-                                   errorBlock:^(NSError *error) {
-                                       NSLog(@"Error al buscar! %@", error);
-                                   }];
-    
-    int booksCount = 0;
-    for (MAVBook *book in results) {
-        booksCount++;
-        NSLog(@"Título del Libro: %@", book.title);
-        NSArray *tagsSet = [[book tags] allObjects];
-        for (MAVTag *tag in tagsSet) {
-            NSLog(@"    Tag: %@", tag.name);
-        }
-        NSLog(@"Es favorito?: %d", book.isFavoriteValue);
-    }
-    
-    NSLog(@"Total de Libros: %d", booksCount);
-    */
-    
-    
-    // Creamos el controlador
-    MAVLibraryTableViewController *libVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
-                                                                                                     style:UITableViewStylePlain];
-    
-    //UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:libVC];
-    
-    self.window.rootViewController = [libVC wrappedInNavigation];
-    
-    // Guardar cambios
-    [self.stack saveWithErrorBlock:^(NSError *error) {
-        NSLog(@"Error al guardar! %@", error);
-    }];
-    
+    // Lo hacemos root
+    self.window.rootViewController = splitVC;
 }
 
+
+
+- (void) configureForPhoneWithModel: (AGTLibrary *) library {
+    
+    // Controlador
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithModel:library
+                                                                                               style:UITableViewStylePlain];
+    // Combinador
+    UINavigationController *libNav = [[UINavigationController alloc] initWithRootViewController:libTableVC];
+    
+    // Asignamos delegado, que será él mismo!
+    libTableVC.delegate = libTableVC;
+    
+    // Lo hacemos root
+    self.window.rootViewController = libNav;
+    
+}
+*/
 
 #pragma marks - Utils
 
@@ -203,26 +176,29 @@
     NSArray *urls = [fm URLsForDirectory:NSCachesDirectory
                                inDomains:NSUserDomainMask];
     NSURL *cachesUrl = [urls lastObject];
-    
-    // Añadir el componente del nombre del fichero
-    NSError *err = nil;
+    NSError *err;
     
     // Si es el primer arranque ...
     if (firstBoot) {
-        // ... descargamos el JSON y lo guardamos en Documents de mi Sandbox
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"]];
-        NSURLResponse *response = [[NSURLResponse alloc] init];
-        json = [NSURLConnection sendSynchronousRequest:request
-                                     returningResponse:&response
-                                                 error:&err];
+        NSLog(@"Primer arranque");
+        // ... descargamos el JSON y lo guardamos en Caches de mi Sandbox
+        json = [NSData dataWithContentsOfURL: [NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"]];
         
         if (json == nil) {
-            NSLog(@"Error al descargar datos del servidor: %@", err.localizedDescription);
+            NSLog(@"Error al descargar datos del JSON del servidor: %@", err.localizedDescription);
+        } else {
+            // Si se ha descargado correctamente, lo guardamos en la caché
+            BOOL result = [json writeToURL:[cachesUrl URLByAppendingPathComponent:@"books_readable.json"]
+                                   options:NSDataWritingAtomic
+                                     error:&err];
+            if (result == NO) {
+                NSLog(@"Error al guardar el JSON a disco: %@", err.localizedDescription);
+            }
         }
-        
         // ... y si no es el primer arranque....
     } else {
-        // Obtenemos el json del disco duro.
+        NSLog(@"NO ES Primer arranque");
+        // Obtenemos el json de la caché.
         json = [fm contentsAtPath:[[cachesUrl URLByAppendingPathComponent:@"books_readable.json"] path]];
         if (json == nil) {
             NSLog(@"Error al leer: %@", err.localizedDescription);
@@ -231,9 +207,6 @@
     
     return json;
 }
-
-
-
 
 
 
