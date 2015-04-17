@@ -18,7 +18,7 @@
 
 @implementation MAVBookViewController
 
-- (id)initWithModel:(MAVBook *)model {
+- (id)initWithModel:(MAVBook *)model context:(NSManagedObjectContext *)context {
     
     // Cargar un xib u otro según el dispositivo
     // la macro IS_IPHONE la hemos definido en el fichero Settings.h
@@ -30,6 +30,7 @@
     if (self = [super initWithNibName:nibName
                                bundle:nil]) {
         _model = model;
+        _context = context;
         self.title = model.title;
     }
     
@@ -145,7 +146,7 @@
 - (IBAction)displayPDF:(id)sender {
     
     // Creamos un PDFvC
-    MAVSimplePDFViewController *pdfVC = [[MAVSimplePDFViewController alloc] initWithModel:self.model];
+    MAVSimplePDFViewController *pdfVC = [[MAVSimplePDFViewController alloc] initWithModel:self.model context:self.context];
     
     // Hacemos push
     [self.navigationController pushViewController:pdfVC
@@ -214,7 +215,7 @@
     NSString *repr;
     
     if ([array count] == 1) {
-        repr = [array lastObject];
+        repr = [[array lastObject] stringByAppendingString:@"."];
     }
     else {
         repr = [[array componentsJoinedByString:@", "] stringByAppendingString:@"."];

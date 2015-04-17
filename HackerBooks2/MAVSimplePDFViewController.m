@@ -14,11 +14,12 @@
 
 @implementation MAVSimplePDFViewController
 
--(id) initWithModel:(MAVBook *) model {
+-(id) initWithModel:(MAVBook *) model context:(NSManagedObjectContext *)context {
     
     if (self = [super initWithNibName:nil
                                bundle:nil]) {
         _model = model;
+        _context = context;
     }
     
     return self;
@@ -107,6 +108,8 @@
      completionBlock:^(NSData *data) {
          
          self.model.pdf.pdfData = data;
+         //Cada vez que descargamos una foto, la guardamos en la bbdd.
+         [self saveToDB];
          [self.browser loadData:self.model.pdf.pdfData
                        MIMEType:@"application/pdf"
                textEncodingName:@"utf-8"
@@ -117,6 +120,12 @@
 
 #pragma mark - Utils
 
+- (void) saveToDB {
+    NSManagedObjectContext *context = self.context;
+    NSError *err;
+    [context save:&err];
+}
+
 - (void) withPDFURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
@@ -124,6 +133,7 @@
         // Si el pdf no está descargado, lo descargo, sino, devuelvo el pdfData.
         if (self.model.pdf.pdfData == nil) {
             NSError *err;
+            NSLog(@"Descargo el pdf");
             // Descargo el NSData del pdf
              data = [NSData dataWithContentsOfURL:url
                                              options:kNilOptions
