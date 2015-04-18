@@ -47,8 +47,8 @@
         tag.name = name;
     }
     
+    // Añado el libro al NSSet de books del tag
     [tag addBooksObject:book];
-    //NSLog(@"Favorites tiene %lu books",(unsigned long)[[tag books] count]);
     
     return tag;
 }

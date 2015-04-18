@@ -34,17 +34,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     MAVTag *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    if (section == 0) {
-        NSLog(@"Tag en section 0: %@ , con %lu rows.", tag.name, (unsigned long)[[tag.books allObjects] count]);
-    }
     return [[tag.books allObjects] count];
     
 }
 
 //FetchRequest con book
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //NSLog(@"Section: %ld, Row: %ld", (long)indexPath.section, (long)indexPath.row);
     
     // Averiguar cual es el MAVTag
     MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
@@ -119,7 +114,6 @@
 - (void) withImageURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        //NSLog(@"Descargo la imagen");
         // Descargo el NSData de la imagen
         NSData *data = [NSData dataWithContentsOfURL:url];
 

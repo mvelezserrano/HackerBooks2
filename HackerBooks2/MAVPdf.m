@@ -16,8 +16,6 @@
     MAVPdf *pdf = [self insertInManagedObjectContext:context];
     pdf.url = url;
     
-    // Descargar pdf en 2º plano.
-    
     return pdf;
 }
 

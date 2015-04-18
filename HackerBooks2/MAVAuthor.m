@@ -13,9 +13,6 @@
                  book: (MAVBook *) book
               context: (NSManagedObjectContext *) context {
     
-    //MAVAuthor *author = [self insertInManagedObjectContext:context];
-    //author.name = name;
-    
     // Comprobamos que el author no exista ya en la BBDD.
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVAuthor entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:MAVAuthorAttributes.name
