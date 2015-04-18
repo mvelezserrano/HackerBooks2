@@ -155,7 +155,8 @@
 
 
 - (IBAction)setFavorite:(id)sender {
-    
+    [self.model setIsFavoriteValue:![self.model isFavoriteValue]];
+    /*
     if ([sender isOn]) {
         //self.model.isFavorite = YES;
         [self.model setIsFavoriteValue:YES];
@@ -163,6 +164,7 @@
         //self.model.isFavorite = NO;
         [self.model setIsFavoriteValue:NO];
     }
+    */
     /*
     // Mandamos una notificación por el cambio de favorito
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

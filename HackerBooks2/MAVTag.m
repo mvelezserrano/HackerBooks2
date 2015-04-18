@@ -47,12 +47,6 @@
         tag.name = name;
     }
     
-    /*NSMutableSet *mutSetOfBooks = [tag booksSet];
-    //NSLog(@"Set Length antes: %lu", (unsigned long)[mutSetOfBooks count]);
-    [mutSetOfBooks addObject:book];
-    [tag addBooks:[mutSetOfBooks copy]];
-    */
-    
     [tag addBooksObject:book];
     
     return tag;
