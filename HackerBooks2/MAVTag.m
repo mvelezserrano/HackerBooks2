@@ -53,6 +53,24 @@
 }
 
 
+#pragma mark - Comparison
+- (NSComparisonResult) compare:(MAVTag *) other{
+    
+    /* favorite always comes first */
+    static NSString *fav = @"Favorite";
+    
+    if ([self.name isEqualToString:other.name]) {
+        return NSOrderedSame;
+    }else if ([self.name isEqualToString:fav]){
+        return NSOrderedAscending;
+    }else if ([other.name isEqualToString:fav]){
+        return NSOrderedDescending;
+    }else{
+        return [self.name compare:other.name];
+    }
+}
+
+
 #pragma mark - Misc
 
 -(NSString *) description {

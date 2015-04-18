@@ -121,7 +121,7 @@
 #pragma mark - Utils
 
 - (void) saveToDB {
-    NSManagedObjectContext *context = self.context;
+    NSManagedObjectContext *context = [self.model managedObjectContext];
     NSError *err;
     [context save:&err];
 }

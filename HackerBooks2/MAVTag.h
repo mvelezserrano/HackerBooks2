@@ -8,5 +8,7 @@
 + (id) tagWithName: (NSString *) name
               book: (MAVBook *) book
            context: (NSManagedObjectContext *) context;
+
+- (NSComparisonResult) compare:(MAVTag *) tag;
  
 @end

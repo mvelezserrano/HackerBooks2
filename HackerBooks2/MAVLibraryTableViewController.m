@@ -34,6 +34,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     MAVTag *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    NSLog(@"Filas para el tag: %@", tag.name);
     return [[tag.books allObjects] count];
     
 }
@@ -116,7 +117,7 @@
 - (void) withImageURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        NSLog(@"Descargo la imagen");
+        //NSLog(@"Descargo la imagen");
         // Descargo el NSData de la imagen
         NSData *data = [NSData dataWithContentsOfURL:url];
 

@@ -74,7 +74,7 @@
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
                                                           ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)]];
+                                                           selector:@selector(compare:)]];
     req.fetchBatchSize = 20;
     
     // FetchedResultsController

@@ -146,7 +146,7 @@
 - (IBAction)displayPDF:(id)sender {
     
     // Creamos un PDFvC
-    MAVSimplePDFViewController *pdfVC = [[MAVSimplePDFViewController alloc] initWithModel:self.model context:self.context];
+    MAVSimplePDFViewController *pdfVC = [[MAVSimplePDFViewController alloc] initWithModel:self.model context:[self.model managedObjectContext]];
     
     // Hacemos push
     [self.navigationController pushViewController:pdfVC
