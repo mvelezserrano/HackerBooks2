@@ -49,7 +49,6 @@
     NSArray * JSONObjects = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:kNilOptions
                                                               error:&err];
-    //[self.stack zapAllData];
     
     if (isFirstBoot) {
         // Creamos la BBDD
@@ -64,10 +63,6 @@
             NSLog(@"Error al parsear JSON: %@", err.localizedDescription);
         }
     }
-    
-    
-    // Comprobamos si existe el tag Favorites, si no existe, lo creamos,
-    // sino, lo ponemos en primer lugar....
     
     
     
