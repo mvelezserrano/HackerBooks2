@@ -34,7 +34,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     MAVTag *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    NSLog(@"Filas para el tag: %@", tag.name);
     return [[tag.books allObjects] count];
     
 }
@@ -96,7 +95,7 @@
     MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
     
     // Crear un controlador de libro
-    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b context:[self.fetchedResultsController managedObjectContext]];
+    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b];
     
     // Hacer un push
     [self.navigationController pushViewController:bVC

@@ -91,11 +91,20 @@
         [self addTagsObject:[MAVTag tagWithName:FAVORITE
                                            book:self
                                         context:[self managedObjectContext]]];
+        [self saveToDB];
     } else {
         NSLog(@"Lo quito de favoritos");
     }
 }
 
+
+#pragma mark - Utils
+
+- (void) saveToDB {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *err;
+    [context save:&err];
+}
 
 
 
