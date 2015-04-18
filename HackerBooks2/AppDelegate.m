@@ -65,16 +65,11 @@
     }
     
     
-    
-    
-    
-    
-    
     //// Fetch con MAVTag
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
                                                           ascending:YES
-                                                           selector:@selector(caseInsensitiveCompare:)]];
+                                                           selector:@selector(compare:)]];
     req.fetchBatchSize = 20;
     
     // FetchedResultsController
@@ -131,48 +126,6 @@
 }
 
 
-/*
-- (void) configureForPadWithModel: (NSFetchedResultsController *) fc {
-    
-    // Creamos los controladores
-    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
-                                                                                                             style:UITableViewStylePlain];
-    MAVBookViewController *bookVC = [[MAVBookViewController alloc] initWithModel:[self lastSelectedBookInModel: library]];
-    
-    
-    // Combinadores
-    UINavigationController *bookNav = [[UINavigationController alloc] initWithRootViewController:bookVC];
-    
-    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
-    splitVC.viewControllers = @[[libVC wrappedInNavigation], [bookNav wrappedInNavigation]];
-    
-    
-    // Asignamos delegados
-    libTableVC.delegate = bookVC;
-    splitVC.delegate = bookVC;
-    
-    // Lo hacemos root
-    self.window.rootViewController = splitVC;
-}
-
-
-
-- (void) configureForPhoneWithModel: (AGTLibrary *) library {
-    
-    // Controlador
-    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithModel:library
-                                                                                               style:UITableViewStylePlain];
-    // Combinador
-    UINavigationController *libNav = [[UINavigationController alloc] initWithRootViewController:libTableVC];
-    
-    // Asignamos delegado, que será él mismo!
-    libTableVC.delegate = libTableVC;
-    
-    // Lo hacemos root
-    self.window.rootViewController = libNav;
-    
-}
-*/
 
 #pragma marks - Utils
 

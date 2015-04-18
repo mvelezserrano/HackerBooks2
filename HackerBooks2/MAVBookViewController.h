@@ -14,7 +14,6 @@
 @interface MAVBookViewController : UIViewController <UISplitViewControllerDelegate, MAVLibraryTableViewControllerDelegate>
 
 @property (strong, nonatomic) MAVBook *model;
-@property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImage;
 @property (weak, nonatomic) IBOutlet UILabel *bookTitle;
@@ -36,6 +35,6 @@
 - (IBAction)displayPDF:(id)sender;
 - (IBAction)setFavorite:(id)sender;
 
-- (id)initWithModel:(MAVBook *)model context: (NSManagedObjectContext *) context;
+- (id)initWithModel:(MAVBook *)model;
 
 @end

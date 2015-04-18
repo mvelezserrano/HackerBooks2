@@ -41,8 +41,6 @@
 //FetchRequest con book
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //NSLog(@"Section: %ld, Row: %ld", (long)indexPath.section, (long)indexPath.row);
-    
     // Averiguar cual es el MAVTag
     MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     // Averiguar cual es el libro
@@ -95,7 +93,7 @@
     MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
     
     // Crear un controlador de libro
-    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b context:[self.fetchedResultsController managedObjectContext]];
+    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b];
     
     // Hacer un push
     [self.navigationController pushViewController:bVC
@@ -116,7 +114,6 @@
 - (void) withImageURL: (NSURL *) url completionBlock: (void (^)(NSData *data)) completionBlock {
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        NSLog(@"Descargo la imagen");
         // Descargo el NSData de la imagen
         NSData *data = [NSData dataWithContentsOfURL:url];
 

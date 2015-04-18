@@ -14,12 +14,11 @@
 
 @implementation MAVSimplePDFViewController
 
--(id) initWithModel:(MAVBook *) model context:(NSManagedObjectContext *)context {
+-(id) initWithModel:(MAVBook *) model{
     
     if (self = [super initWithNibName:nil
                                bundle:nil]) {
         _model = model;
-        _context = context;
     }
     
     return self;
@@ -121,7 +120,7 @@
 #pragma mark - Utils
 
 - (void) saveToDB {
-    NSManagedObjectContext *context = self.context;
+    NSManagedObjectContext *context = [self.model managedObjectContext];
     NSError *err;
     [context save:&err];
 }

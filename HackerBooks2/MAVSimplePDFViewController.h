@@ -15,8 +15,7 @@
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityView;
 
 @property (nonatomic, strong) MAVBook *model;
-@property (nonatomic, strong) NSManagedObjectContext *context;
 
--(id) initWithModel:(MAVBook *) model context: (NSManagedObjectContext *) context;
+-(id) initWithModel:(MAVBook *) model;
 
 @end

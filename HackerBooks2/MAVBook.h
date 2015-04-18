@@ -3,6 +3,8 @@
 @interface MAVBook : _MAVBook {}
 // Custom logic goes here.
 
+//@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 + (instancetype) bookWithTitle: (NSString *) title
                        context: (NSManagedObjectContext *) context;
 

@@ -4,6 +4,9 @@
 #import "MAVPdf.h"
 #import "MAVPhoto.h"
 
+
+#define FAVORITE @"Favorite"
+
 @interface MAVBook ()
 
 // Private interface goes here.
@@ -29,9 +32,10 @@
     
     MAVBook *book = [self insertInManagedObjectContext:context];
     book.title = [dict objectForKey:@"title"];
+    //book.managedObjectContext = context;
     
     // Gestionar favorito....
-    [book setIsFavoriteValue:NO];
+    //book.isFavoriteValue = NO;
     
     NSMutableSet *mutSet = [[NSMutableSet alloc] init];
     
@@ -79,6 +83,29 @@
     
     return book;
 }
+
+- (void)setIsFavoriteValue:(BOOL)value_ {
+    [self setIsFavorite:@(value_)];
+    if ([self isFavoriteValue]) {
+        NSLog(@"Lo pongo en favoritos");
+        [self addTagsObject:[MAVTag tagWithName:FAVORITE
+                                           book:self
+                                        context:[self managedObjectContext]]];
+        [self saveToDB];
+    } else {
+        NSLog(@"Lo quito de favoritos");
+    }
+}
+
+
+#pragma mark - Utils
+
+- (void) saveToDB {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *err;
+    [context save:&err];
+}
+
 
 
 
