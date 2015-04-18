@@ -34,6 +34,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     MAVTag *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    if (section == 0) {
+        NSLog(@"Tag en section 0: %@ , con %lu rows.", tag.name, (unsigned long)[[tag.books allObjects] count]);
+    }
     return [[tag.books allObjects] count];
     
 }

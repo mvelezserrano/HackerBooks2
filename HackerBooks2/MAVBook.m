@@ -91,6 +91,8 @@
         [self addTagsObject:[MAVTag tagWithName:FAVORITE
                                            book:self
                                         context:[self managedObjectContext]]];
+        //NSArray *tagsOfFavoriteBook = [[[self tags] allObjects] valueForKeyPath:@"name"];
+        //NSLog(@"Tags: %@", [tagsOfFavoriteBook componentsJoinedByString:@", "]);
         [self saveToDB];
     } else {
         NSLog(@"Lo quito de favoritos");

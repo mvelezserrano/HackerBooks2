@@ -64,6 +64,8 @@
         }
     }
     
+    // Test añado Tag Favorito
+    //[MAVTag tagWithName:@"Favorite" context:self.stack.context];
     
     
     

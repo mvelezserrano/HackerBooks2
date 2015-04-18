@@ -48,6 +48,7 @@
     }
     
     [tag addBooksObject:book];
+    //NSLog(@"Favorites tiene %lu books",(unsigned long)[[tag books] count]);
     
     return tag;
 }
