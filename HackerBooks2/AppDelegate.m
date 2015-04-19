@@ -126,6 +126,73 @@
 }
 
 
+- (void) configureForPadWithModel: (NSFetchedResultsController *) fc {
+    
+    // Controladores
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                                  style:UITableViewStylePlain];
+    MAVBookViewController *bookVC = [[MAVBookViewController alloc] initWithModel:[self lastSelectedBookInModel: fc]];
+    
+    
+    // Combinador
+    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    splitVC.viewControllers = @[[libTableVC wrappedInNavigation], [bookVC wrappedInNavigation]];
+    
+    
+    // Asignamos delegados
+    libTableVC.delegate = bookVC;
+    splitVC.delegate = bookVC;
+    
+    // Lo hacemos root
+    self.window.rootViewController = splitVC;
+}
+
+
+
+- (void) configureForPhoneWithModel: (NSFetchedResultsController *) fc {
+    
+    // Controlador
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                                  style:UITableViewStylePlain];
+    // Asignamos delegado, que será él mismo!
+    libTableVC.delegate = libTableVC;
+    
+    // Lo hacemos root
+    self.window.rootViewController = [libTableVC wrappedInNavigation];
+    
+}
+
+
+-(MAVBook *) lastSelectedBookInModel: (NSFetchedResultsController *) fc{
+    
+    // Obtengo el NSUserDefaults
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    // Saco las coordenadas del último libro seleccionado
+    NSArray *coords = [def objectForKey:LAST_SELECTED_BOOK];
+    //NSUInteger section = [[coords objectAtIndex:0] integerValue];
+    //NSUInteger pos = [[coords objectAtIndex:1] integerValue];
+    
+    MAVBook *book = nil;
+    // Obtengo el libro
+    //MAVBook *book = [library bookForTag:[[library tags] objectAtIndex:section] atIndex:pos];
+    
+    // Lo devuelvo
+    return book;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma marks - Utils
 
