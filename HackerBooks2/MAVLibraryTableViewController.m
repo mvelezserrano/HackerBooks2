@@ -93,12 +93,20 @@
     // Averiguar cual es el libro
     MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
     
-    // Crear un controlador de libro
+    /*// Crear un controlador de libro
     MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b];
     
     // Hacer un push
     [self.navigationController pushViewController:bVC
                                          animated:YES];
+    */
+    
+    // Envio información al delegado si corresponde
+    if ([self.delegate respondsToSelector:@selector(libraryTableViewController:didSelectBook:)]) {
+        
+        [self.delegate libraryTableViewController:self
+                                    didSelectBook:b];
+    }
     
     // Guardar el último libro seleccionado
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
@@ -109,6 +117,18 @@
 }
 
 
+#pragma mark - MAVLibraryTableViewControllerDelegate
+
+- (void) libraryTableViewController: (MAVLibraryTableViewController *) libVC
+                      didSelectBook: (MAVBook *) book {
+    
+    // Crear un controlador de libro
+    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:book];
+    
+    // Hacer un push
+    [self.navigationController pushViewController:bVC
+                                         animated:YES];
+}
 
 
 #pragma mark - Utils

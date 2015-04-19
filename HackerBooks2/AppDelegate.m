@@ -42,6 +42,8 @@
         isFirstBoot = YES;
     }
     
+    
+    
     // Obtenemos el JSON en formato NSData, ya sea descargándolo o leyéndolo del directorio Documents.
     NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
     
@@ -79,16 +81,37 @@
                                       sectionNameKeyPath:MAVTagAttributes.name
                                       cacheName:nil];
     
+    /*
     // Creamos el controlador
     MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
                                                                                                                   style:UITableViewStylePlain];
     
     self.window.rootViewController = [libTableVC wrappedInNavigation];
-    
+    */
     // Guardar cambios
     [self.stack saveWithErrorBlock:^(NSError *error) {
         NSLog(@"Error al guardar! %@", error);
     }];
+    
+    // Valor por defecto para el último libro seleccionado
+    if (![def objectForKey:LAST_SELECTED_BOOK]) {
+        
+        // guardamos un valor por defecto
+        [def setObject:[self firstBookURIRepresentation]
+                forKey:LAST_SELECTED_BOOK];
+        [def synchronize];
+    }
+    
+    // Detectamos el tipo de pantalla
+    if (!IS_IPHONE) {
+        // Tipo tableta
+        [self configureForPadWithModel: fc];
+    } else {
+        // Tipo teléfono
+        [self configureForPhoneWithModel: fc];
+    }
+    
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -168,24 +191,81 @@
     // Obtengo el NSUserDefaults
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     
-    // Saco las coordenadas del último libro seleccionado
-    NSArray *coords = [def objectForKey:LAST_SELECTED_BOOK];
-    //NSUInteger section = [[coords objectAtIndex:0] integerValue];
-    //NSUInteger pos = [[coords objectAtIndex:1] integerValue];
+    // Saco el NSData del uri del último libro seleccionado
+    NSData *uriData = [def objectForKey:LAST_SELECTED_BOOK];
     
-    MAVBook *book = nil;
     // Obtengo el libro
-    //MAVBook *book = [library bookForTag:[[library tags] objectAtIndex:section] atIndex:pos];
-    
+    MAVBook *book = [self objectWithArchivedURIRepresentation:uriData
+                                                      context:self.stack.context];
     // Lo devuelvo
     return book;
     
 }
 
 
+// Tries to recover the object from the archived URI representation (that probably
+// comes from some NSUserDefaults). If the object doesn't exist anymore, returns
+// nil.
+- (MAVBook *) objectWithArchivedURIRepresentation:(NSData*)archivedURI
+                                            context:(NSManagedObjectContext *) context{
+    
+    NSURL *uri = [NSKeyedUnarchiver unarchiveObjectWithData:archivedURI];
+    if (uri == nil) {
+        return nil;
+    }
+    
+    
+    NSManagedObjectID *nid = [context.persistentStoreCoordinator
+                              managedObjectIDForURIRepresentation:uri];
+    if (nid == nil) {
+        return nil;
+    }
+    
+    
+    NSManagedObject *ob = [context objectWithID:nid];
+    if (ob.isFault) {
+        // Got it!
+        return (MAVBook *) ob;
+    }else{
+        // Might not exist anymore. Let's fetch it!
+        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:ob.entity.name];
+        req.predicate = [NSPredicate predicateWithFormat:@"SELF = %@", ob];
+        
+        NSError *error;
+        NSArray *res = [context executeFetchRequest:req
+                                              error:&error];
+        if (res == nil) {
+            return nil;
+        }else{
+            return [res lastObject];
+        }
+    }
+    
+    
+}
 
-
-
+- (NSData *) firstBookURIRepresentation {
+    
+    // Un fetchRequest
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
+    req.fetchBatchSize = 20;
+    // Obtenemos todos los libros
+    NSArray *results = [self.stack executeFetchRequest:req
+                                            errorBlock:^(NSError *error) {
+                                                NSLog(@"Error al buscar! %@", error);
+                                            }];
+    
+    MAVTag *firstTag = [results objectAtIndex:0];
+    MAVBook *firstBook = [[[firstTag books] allObjects] objectAtIndex:0];
+    NSURL *uri = firstBook.objectID.URIRepresentation;
+    
+    NSLog(@"First Book title: %@", firstBook.title);
+    
+    return [NSKeyedArchiver archivedDataWithRootObject:uri];
+}
 
 
 

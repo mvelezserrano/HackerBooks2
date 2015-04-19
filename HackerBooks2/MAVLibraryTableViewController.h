@@ -20,6 +20,8 @@
 @end
 
 
-@interface MAVLibraryTableViewController : AGTCoreDataTableViewController
+@interface MAVLibraryTableViewController : AGTCoreDataTableViewController <MAVLibraryTableViewControllerDelegate>
+
+@property (weak, nonatomic) id<MAVLibraryTableViewControllerDelegate> delegate;
 
 @end
