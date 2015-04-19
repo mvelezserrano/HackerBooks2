@@ -12,6 +12,7 @@
 #import "MAVAuthor.h"
 #import "MAVPhoto.h"
 #import "MAVBookViewController.h"
+#import "Settings.h"
 
 @interface MAVLibraryTableViewController ()
 
@@ -98,12 +99,26 @@
     // Hacer un push
     [self.navigationController pushViewController:bVC
                                          animated:YES];
+    
+    // Guardar el último libro seleccionado
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSData *lastBookData = [self archiveURIRepresentationOfBook:b];
+    [def setObject:lastBookData
+            forKey:LAST_SELECTED_BOOK];
+    [def synchronize];
 }
 
 
 
 
 #pragma mark - Utils
+
+- (NSData *) archiveURIRepresentationOfBook: (MAVBook *) book {
+    
+    NSURL *uri = book.objectID.URIRepresentation;
+    return [NSKeyedArchiver archivedDataWithRootObject:uri];
+}
+
 
 - (void) saveToDB {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
