@@ -104,7 +104,12 @@
 - (void) syncViewToModel {
     
     self.title = self.model.title;
-    self.bookImage.image = [self.model.photo image];
+    //self.bookImage.image = [self.model.photo image];
+    if (self.model.photo.photoData == nil) {
+        self.bookImage.image = [UIImage imageNamed:@"book_front.png"];
+    } else {
+        self.bookImage.image = [self.model.photo image];
+    }
     self.bookTitle.text = self.model.title;
     self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
@@ -122,7 +127,12 @@
     
     // Modo Apaisado
     self.title = self.model.title;
-    self.bookImageLandscape.image = [self.model.photo image];
+    //self.bookImageLandscape.image = [self.model.photo image];
+    if (self.model.photo.photoData == nil) {
+        self.bookImageLandscape.image = [UIImage imageNamed:@"book_front.png"];
+    } else {
+        self.bookImageLandscape.image = [self.model.photo image];
+    }
     self.bookTitleLandscape.text = self.model.title;
     self.bookAuthorsLandscape.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     self.bookTagsLandscape.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
@@ -193,6 +203,12 @@
     
     // Actualizo el modelo
     self.model = book;
+    
+    // Sincronizo modelo --> vista(s);
+    [self syncViewToModel];
+}
+
+- (void) bookDidChange:(MAVBook *)book {
     
     // Sincronizo modelo --> vista(s);
     [self syncViewToModel];

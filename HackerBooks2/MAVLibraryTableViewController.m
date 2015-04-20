@@ -71,6 +71,12 @@
                    cell.imageView.image = [b.photo image];
                    [cell setNeedsLayout];
                }
+               
+               // Envio información al delegado si corresponde
+               if ([self.delegate respondsToSelector:@selector(bookDidChange:)]) {
+                   
+                   [self.delegate bookDidChange:b];
+               }
            }];
     } else {
         cell.imageView.image = [b.photo image];
@@ -92,14 +98,6 @@
     MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     // Averiguar cual es el libro
     MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
-    
-    /*// Crear un controlador de libro
-    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b];
-    
-    // Hacer un push
-    [self.navigationController pushViewController:bVC
-                                         animated:YES];
-    */
     
     // Envio información al delegado si corresponde
     if ([self.delegate respondsToSelector:@selector(libraryTableViewController:didSelectBook:)]) {

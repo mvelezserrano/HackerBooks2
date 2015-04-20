@@ -17,6 +17,8 @@
 - (void) libraryTableViewController: (MAVLibraryTableViewController *) libVC
                       didSelectBook: (MAVBook *) book;
 
+- (void) bookDidChange: (MAVBook *) book;
+
 @end
 
 
