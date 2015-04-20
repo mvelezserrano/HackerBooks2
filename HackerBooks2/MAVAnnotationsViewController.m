@@ -33,26 +33,6 @@
 }
 
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Creamos un botón superior derecho
-    UIBarButtonItem *add = [[UIBarButtonItem alloc]
-                            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                            target:self
-                            action:@selector(addNewAnnotation:)];
-    
-    self.navigationItem.rightBarButtonItem = add;
-}
-
-- (void) addNewAnnotation: (id) sender {
-    
-    [MAVAnnotation annotationWithName:@"Nueva nota"
-                                 book:self.book
-                              context:self.book.managedObjectContext];
-}
-
-
 - (UITableViewCell *) tableView:(UITableView *)tableView
           cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     

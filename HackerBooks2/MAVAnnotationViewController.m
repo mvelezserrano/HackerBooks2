@@ -8,8 +8,12 @@
 
 #import "MAVAnnotationViewController.h"
 #import "MAVAnnotation.h"
+#import "MAVBook.h"
 
 @interface MAVAnnotationViewController ()
+
+@property (nonatomic) BOOL new;
+@property (nonatomic) BOOL deleteNote;
 
 @end
 
@@ -26,6 +30,16 @@
     return self;
 }
 
+- (id) initWithNewNoteOnBook: (MAVBook *) book {
+    
+    MAVAnnotation * a = [MAVAnnotation annotationWithName:@"Nueva nota"
+                                                     book:book
+                                                  context:book.managedObjectContext];
+    _new = YES;
+    return [self initWithModel:a];
+}
+
+
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
@@ -34,6 +48,15 @@
     self.nameView.delegate = self;
     
     // Sincronizar modelo --> vista
+    
+    if (self.new) {
+        // Add the cancel button
+        UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                target:self
+                                                                                action:@selector(cancel:)];
+        self.navigationItem.rightBarButtonItem = cancel;
+    }
+    
     NSDateFormatter *fmt = [NSDateFormatter new];
     //fmt.dateStyle = NSDateFormatterShortStyle;
     [fmt setDateFormat:@"dd-MM-yyyy"];
@@ -54,12 +77,20 @@
     
     [super viewWillDisappear:animated];
     
-    // Sincronizo vistas --> modelo
-    self.model.name = self.nameView.text;
-    self.model.text = self.textView.text;
-    
+    if (self.deleteNote) {
+        [self.model.managedObjectContext deleteObject:self.model];
+    } else {
+        // Sincronizo vistas --> modelo
+        self.model.name = self.nameView.text;
+        self.model.text = self.textView.text;
+    }
     // Guardo la nota en la bbdd
     //[self saveToDB];
+}
+
+-(void) cancel:(id)sender{
+    self.deleteNote = YES;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)showLocation:(id)sender {

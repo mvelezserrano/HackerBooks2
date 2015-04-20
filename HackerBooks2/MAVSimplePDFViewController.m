@@ -8,8 +8,10 @@
 
 #import "MAVSimplePDFViewController.h"
 #import "MAVLibraryTableViewController.h"
+#import "MAVAnnotationViewController.h"
 #import "MAVBook.h"
 #import "MAVPdf.h"
+#import "MAVAnnotation.h"
 
 
 @implementation MAVSimplePDFViewController
@@ -27,7 +29,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Creamos un botón superior derecho
+    UIBarButtonItem *add = [[UIBarButtonItem alloc]
+                            initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                            target:self
+                            action:@selector(addNewAnnotation:)];
+    
+    self.navigationItem.rightBarButtonItem = add;
 
+
+}
+
+
+- (void) addNewAnnotation: (id) sender {
+    
+    
+    
+    // Crear el controlador
+    MAVAnnotationViewController *aVC = [[MAVAnnotationViewController alloc] initWithNewNoteOnBook:self.model];
+    
+    // Hacer el push
+    [self.navigationController pushViewController:aVC
+                                         animated:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
