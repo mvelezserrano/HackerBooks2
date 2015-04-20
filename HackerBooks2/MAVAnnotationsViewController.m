@@ -7,6 +7,7 @@
 //
 
 #import "MAVAnnotationsViewController.h"
+#import "MAVAnnotationViewController.h"
 #import "MAVBook.h"
 #import "MAVPhoto.h"
 #import "MAVAnnotation.h"
@@ -73,6 +74,32 @@
     // Devolverla
     return cell;
 }
+
+- (void) tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+ forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        MAVAnnotation *a = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.fetchedResultsController.managedObjectContext deleteObject:a];
+    }
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Averiguar la nota
+    MAVAnnotation *a = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    // Crear el controlador
+    MAVAnnotationViewController *aVC = [[MAVAnnotationViewController alloc] initWithModel:a];
+    
+    // Hacer el push
+    [self.navigationController pushViewController:aVC
+                                         animated:YES];
+}
+
+
 
 
 
