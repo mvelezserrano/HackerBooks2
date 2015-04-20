@@ -17,9 +17,13 @@
 - (void) libraryTableViewController: (MAVLibraryTableViewController *) libVC
                       didSelectBook: (MAVBook *) book;
 
+- (void) bookDidChange: (MAVBook *) book;
+
 @end
 
 
-@interface MAVLibraryTableViewController : AGTCoreDataTableViewController
+@interface MAVLibraryTableViewController : AGTCoreDataTableViewController <MAVLibraryTableViewControllerDelegate>
+
+@property (weak, nonatomic) id<MAVLibraryTableViewControllerDelegate> delegate;
 
 @end

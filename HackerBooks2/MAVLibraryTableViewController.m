@@ -12,6 +12,7 @@
 #import "MAVAuthor.h"
 #import "MAVPhoto.h"
 #import "MAVBookViewController.h"
+#import "Settings.h"
 
 @interface MAVLibraryTableViewController ()
 
@@ -70,6 +71,12 @@
                    cell.imageView.image = [b.photo image];
                    [cell setNeedsLayout];
                }
+               
+               // Envio información al delegado si corresponde
+               if ([self.delegate respondsToSelector:@selector(bookDidChange:)]) {
+                   
+                   [self.delegate bookDidChange:b];
+               }
            }];
     } else {
         cell.imageView.image = [b.photo image];
@@ -92,8 +99,29 @@
     // Averiguar cual es el libro
     MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
     
+    // Envio información al delegado si corresponde
+    if ([self.delegate respondsToSelector:@selector(libraryTableViewController:didSelectBook:)]) {
+        
+        [self.delegate libraryTableViewController:self
+                                    didSelectBook:b];
+    }
+    
+    // Guardar el último libro seleccionado
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSData *lastBookData = [self archiveURIRepresentationOfBook:b];
+    [def setObject:lastBookData
+            forKey:LAST_SELECTED_BOOK];
+    [def synchronize];
+}
+
+
+#pragma mark - MAVLibraryTableViewControllerDelegate
+
+- (void) libraryTableViewController: (MAVLibraryTableViewController *) libVC
+                      didSelectBook: (MAVBook *) book {
+    
     // Crear un controlador de libro
-    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:b];
+    MAVBookViewController *bVC = [[MAVBookViewController alloc] initWithModel:book];
     
     // Hacer un push
     [self.navigationController pushViewController:bVC
@@ -101,9 +129,14 @@
 }
 
 
-
-
 #pragma mark - Utils
+
+- (NSData *) archiveURIRepresentationOfBook: (MAVBook *) book {
+    
+    NSURL *uri = book.objectID.URIRepresentation;
+    return [NSKeyedArchiver archivedDataWithRootObject:uri];
+}
+
 
 - (void) saveToDB {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];

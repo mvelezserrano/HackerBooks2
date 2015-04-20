@@ -42,6 +42,8 @@
         isFirstBoot = YES;
     }
     
+    
+    
     // Obtenemos el JSON en formato NSData, ya sea descargándolo o leyéndolo del directorio Documents.
     NSData *jsonData = [self getJSONDependingOnBoot: isFirstBoot];
     
@@ -79,16 +81,37 @@
                                       sectionNameKeyPath:MAVTagAttributes.name
                                       cacheName:nil];
     
+    /*
     // Creamos el controlador
     MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
                                                                                                                   style:UITableViewStylePlain];
     
     self.window.rootViewController = [libTableVC wrappedInNavigation];
-    
+    */
     // Guardar cambios
     [self.stack saveWithErrorBlock:^(NSError *error) {
         NSLog(@"Error al guardar! %@", error);
     }];
+    
+    // Valor por defecto para el último libro seleccionado
+    if (![def objectForKey:LAST_SELECTED_BOOK]) {
+        
+        // guardamos un valor por defecto
+        [def setObject:[self firstBookURIRepresentation]
+                forKey:LAST_SELECTED_BOOK];
+        [def synchronize];
+    }
+    
+    // Detectamos el tipo de pantalla
+    if (!IS_IPHONE) {
+        // Tipo tableta
+        [self configureForPadWithModel: fc];
+    } else {
+        // Tipo teléfono
+        [self configureForPhoneWithModel: fc];
+    }
+    
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -124,6 +147,130 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+- (void) configureForPadWithModel: (NSFetchedResultsController *) fc {
+    
+    // Controladores
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                                  style:UITableViewStylePlain];
+    MAVBookViewController *bookVC = [[MAVBookViewController alloc] initWithModel:[self lastSelectedBookInModel: fc]];
+    
+    
+    // Combinador
+    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    splitVC.viewControllers = @[[libTableVC wrappedInNavigation], [bookVC wrappedInNavigation]];
+    
+    
+    // Asignamos delegados
+    libTableVC.delegate = bookVC;
+    splitVC.delegate = bookVC;
+    
+    // Lo hacemos root
+    self.window.rootViewController = splitVC;
+}
+
+
+
+- (void) configureForPhoneWithModel: (NSFetchedResultsController *) fc {
+    
+    // Controlador
+    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
+                                                                                                                  style:UITableViewStylePlain];
+    // Asignamos delegado, que será él mismo!
+    libTableVC.delegate = libTableVC;
+    
+    // Lo hacemos root
+    self.window.rootViewController = [libTableVC wrappedInNavigation];
+    
+}
+
+
+-(MAVBook *) lastSelectedBookInModel: (NSFetchedResultsController *) fc{
+    
+    // Obtengo el NSUserDefaults
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    // Saco el NSData del uri del último libro seleccionado
+    NSData *uriData = [def objectForKey:LAST_SELECTED_BOOK];
+    
+    // Obtengo el libro
+    MAVBook *book = [self objectWithArchivedURIRepresentation:uriData
+                                                      context:self.stack.context];
+    // Lo devuelvo
+    return book;
+    
+}
+
+
+// Tries to recover the object from the archived URI representation (that probably
+// comes from some NSUserDefaults). If the object doesn't exist anymore, returns
+// nil.
+- (MAVBook *) objectWithArchivedURIRepresentation:(NSData*)archivedURI
+                                            context:(NSManagedObjectContext *) context{
+    
+    NSURL *uri = [NSKeyedUnarchiver unarchiveObjectWithData:archivedURI];
+    if (uri == nil) {
+        return nil;
+    }
+    
+    
+    NSManagedObjectID *nid = [context.persistentStoreCoordinator
+                              managedObjectIDForURIRepresentation:uri];
+    if (nid == nil) {
+        return nil;
+    }
+    
+    
+    NSManagedObject *ob = [context objectWithID:nid];
+    if (ob.isFault) {
+        // Got it!
+        return (MAVBook *) ob;
+    }else{
+        // Might not exist anymore. Let's fetch it!
+        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:ob.entity.name];
+        req.predicate = [NSPredicate predicateWithFormat:@"SELF = %@", ob];
+        
+        NSError *error;
+        NSArray *res = [context executeFetchRequest:req
+                                              error:&error];
+        if (res == nil) {
+            return nil;
+        }else{
+            return [res lastObject];
+        }
+    }
+    
+    
+}
+
+- (NSData *) firstBookURIRepresentation {
+    
+    // Un fetchRequest
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
+    req.fetchBatchSize = 20;
+    // Obtenemos todos los libros
+    NSArray *results = [self.stack executeFetchRequest:req
+                                            errorBlock:^(NSError *error) {
+                                                NSLog(@"Error al buscar! %@", error);
+                                            }];
+    
+    MAVTag *firstTag = [results objectAtIndex:0];
+    MAVBook *firstBook = [[[firstTag books] allObjects] objectAtIndex:0];
+    NSURL *uri = firstBook.objectID.URIRepresentation;
+    
+    NSLog(@"First Book title: %@", firstBook.title);
+    
+    return [NSKeyedArchiver archivedDataWithRootObject:uri];
+}
+
+
+
+
+
 
 
 
