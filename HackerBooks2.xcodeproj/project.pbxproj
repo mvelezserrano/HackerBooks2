@@ -38,6 +38,7 @@
 		55B8AE851AE1170000798260 /* MAVBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE821AE1170000798260 /* MAVBookViewController.m */; };
 		55B8AE861AE1170000798260 /* MAVBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE831AE1170000798260 /* MAVBookViewController.xib */; };
 		55B8AE871AE1170000798260 /* MAVBookViewControlleriPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */; };
+		55F467761AE5556500B98B77 /* MAVAnnotationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F467751AE5556500B98B77 /* MAVAnnotationsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		55B8AE821AE1170000798260 /* MAVBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBookViewController.m; sourceTree = "<group>"; };
 		55B8AE831AE1170000798260 /* MAVBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVBookViewController.xib; sourceTree = "<group>"; };
 		55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVBookViewControlleriPhone.xib; sourceTree = "<group>"; };
+		55F467741AE5556500B98B77 /* MAVAnnotationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVAnnotationsViewController.h; sourceTree = "<group>"; };
+		55F467751AE5556500B98B77 /* MAVAnnotationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVAnnotationsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,8 @@
 				55B8AE7C1AE115D000798260 /* MAVSimplePDFViewController.h */,
 				55B8AE7D1AE115D000798260 /* MAVSimplePDFViewController.m */,
 				55B8AE7E1AE115D000798260 /* MAVSimplePDFViewController.xib */,
+				55F467741AE5556500B98B77 /* MAVAnnotationsViewController.h */,
+				55F467751AE5556500B98B77 /* MAVAnnotationsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -378,6 +383,7 @@
 			files = (
 				55B8AE541ADEDDEE00798260 /* _MAVBook.m in Sources */,
 				55B8AE6D1ADFCE0500798260 /* MAVLibraryTableViewController.m in Sources */,
+				55F467761AE5556500B98B77 /* MAVAnnotationsViewController.m in Sources */,
 				55B8AE5D1ADEDDEE00798260 /* MAVPdf.m in Sources */,
 				55B8AE591ADEDDEE00798260 /* MAVAnnotation.m in Sources */,
 				55B8AE851AE1170000798260 /* MAVBookViewController.m in Sources */,
@@ -587,6 +593,7 @@
 				55B8AE2B1ADE6A8900798260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55B8AE2C1ADE6A8900798260 /* Build configuration list for PBXNativeTarget "HackerBooks2Tests" */ = {
 			isa = XCConfigurationList;
@@ -595,6 +602,7 @@
 				55B8AE2E1ADE6A8900798260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
@@ -76,9 +76,22 @@
                     <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="wIl-OU-YBE"/>
                         <barButtonItem style="plain" id="7UI-Lp-NiI">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="anD-Po-lhB">
+                                <rect key="frame" x="10" y="4" width="108" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Annotations">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="displayAnnotations:" destination="-1" eventType="touchUpInside" id="4pm-SC-R74"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="wIl-OU-YBE"/>
+                        <barButtonItem style="plain" id="uly-8J-GUm">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rht-pa-L7R">
                                 <rect key="frame" x="658" y="338" width="88" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -86,7 +99,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="displayPDF:" destination="-1" eventType="touchUpInside" id="nfU-qz-wRZ"/>
+                                    <action selector="displayPDF:" destination="-1" eventType="touchUpInside" id="EE1-Qv-DwO"/>
                                 </connections>
                             </button>
                         </barButtonItem>
