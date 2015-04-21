@@ -35,6 +35,7 @@
     MAVAnnotation * a = [MAVAnnotation annotationWithName:@"Nueva nota"
                                                      book:book
                                                   context:book.managedObjectContext];
+    
     _new = YES;
     return [self initWithModel:a];
 }
