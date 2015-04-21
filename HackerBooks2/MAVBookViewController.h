@@ -34,6 +34,7 @@
 
 - (IBAction)displayPDF:(id)sender;
 - (IBAction)setFavorite:(id)sender;
+- (IBAction)displayAnnotations:(id)sender;
 
 - (id)initWithModel:(MAVBook *)model;
 

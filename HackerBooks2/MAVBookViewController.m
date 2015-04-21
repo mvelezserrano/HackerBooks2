@@ -10,6 +10,8 @@
 #import "MAVPhoto.h"
 #import "MAVBookViewController.h"
 #import "MAVSimplePDFViewController.h"
+#import "MAVAnnotation.h"
+#import "MAVAnnotationsViewController.h"
 #import "Settings.h"
 
 @interface MAVBookViewController ()
@@ -152,6 +154,36 @@
 
 #pragma marks - Actions
 
+- (IBAction)displayAnnotations:(id)sender {
+    
+    // Crear un controlador de Annotations
+    
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVAnnotation entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVAnnotationAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(caseInsensitiveCompare:)],
+                            [NSSortDescriptor sortDescriptorWithKey: MAVAnnotationAttributes.modificationDate
+                                                          ascending:NO]];
+    
+    req.fetchBatchSize = 20;
+    req.predicate = [NSPredicate predicateWithFormat:@"book = %@", self.model];
+    
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
+                                      initWithFetchRequest:req
+                                      managedObjectContext:self.model.managedObjectContext
+                                      sectionNameKeyPath:nil
+                                      cacheName:nil];
+    
+    MAVAnnotationsViewController *aVC = [[MAVAnnotationsViewController alloc] initWithFetchedResultsController:fc
+                                                                                                         style:UITableViewStylePlain
+                                                                                                          book:self.model];
+    
+    // Hacer un push
+    [self.navigationController pushViewController:aVC
+                                         animated:YES];
+}
+
+
 - (IBAction)displayPDF:(id)sender {
     
     // Creamos un PDFvC
@@ -177,7 +209,6 @@
     [nc postNotification:n];
      */
 }
-
 
 #pragma mark - UISplitViewControllerDelegate
 

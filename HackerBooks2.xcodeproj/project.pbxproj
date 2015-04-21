@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		552F92561AE6A4B600A99ABD /* MAVPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552F92541AE6A4B600A99ABD /* MAVPhotoViewController.m */; };
+		552F92571AE6A4B600A99ABD /* MAVPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552F92551AE6A4B600A99ABD /* MAVPhotoViewController.xib */; };
 		55B8AE121ADE6A8900798260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE111ADE6A8900798260 /* main.m */; };
 		55B8AE151ADE6A8900798260 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE141ADE6A8900798260 /* AppDelegate.m */; };
 		55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE161ADE6A8900798260 /* Images.xcassets */; };
@@ -38,6 +40,11 @@
 		55B8AE851AE1170000798260 /* MAVBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE821AE1170000798260 /* MAVBookViewController.m */; };
 		55B8AE861AE1170000798260 /* MAVBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE831AE1170000798260 /* MAVBookViewController.xib */; };
 		55B8AE871AE1170000798260 /* MAVBookViewControlleriPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */; };
+		55F467761AE5556500B98B77 /* MAVAnnotationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F467751AE5556500B98B77 /* MAVAnnotationsViewController.m */; };
+		55F4677A1AE55DCF00B98B77 /* MAVAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F467781AE55DCF00B98B77 /* MAVAnnotationViewController.m */; };
+		55F4677B1AE55DCF00B98B77 /* MAVAnnotationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F467791AE55DCF00B98B77 /* MAVAnnotationViewController.xib */; };
+		55F4677D1AE5625C00B98B77 /* placemark.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F4677C1AE5625C00B98B77 /* placemark.png */; };
+		55F4677F1AE562CC00B98B77 /* location-alt-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F4677E1AE562CC00B98B77 /* location-alt-512.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		552F92531AE6A4B600A99ABD /* MAVPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVPhotoViewController.h; sourceTree = "<group>"; };
+		552F92541AE6A4B600A99ABD /* MAVPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVPhotoViewController.m; sourceTree = "<group>"; };
+		552F92551AE6A4B600A99ABD /* MAVPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVPhotoViewController.xib; sourceTree = "<group>"; };
 		55B8AE0C1ADE6A8900798260 /* HackerBooks2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B8AE101ADE6A8900798260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B8AE111ADE6A8900798260 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,6 +118,13 @@
 		55B8AE821AE1170000798260 /* MAVBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBookViewController.m; sourceTree = "<group>"; };
 		55B8AE831AE1170000798260 /* MAVBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVBookViewController.xib; sourceTree = "<group>"; };
 		55B8AE841AE1170000798260 /* MAVBookViewControlleriPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVBookViewControlleriPhone.xib; sourceTree = "<group>"; };
+		55F467741AE5556500B98B77 /* MAVAnnotationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVAnnotationsViewController.h; sourceTree = "<group>"; };
+		55F467751AE5556500B98B77 /* MAVAnnotationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVAnnotationsViewController.m; sourceTree = "<group>"; };
+		55F467771AE55DCF00B98B77 /* MAVAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVAnnotationViewController.h; sourceTree = "<group>"; };
+		55F467781AE55DCF00B98B77 /* MAVAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVAnnotationViewController.m; sourceTree = "<group>"; };
+		55F467791AE55DCF00B98B77 /* MAVAnnotationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MAVAnnotationViewController.xib; sourceTree = "<group>"; };
+		55F4677C1AE5625C00B98B77 /* placemark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placemark.png; sourceTree = "<group>"; };
+		55F4677E1AE562CC00B98B77 /* location-alt-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-alt-512.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +266,14 @@
 				55B8AE7C1AE115D000798260 /* MAVSimplePDFViewController.h */,
 				55B8AE7D1AE115D000798260 /* MAVSimplePDFViewController.m */,
 				55B8AE7E1AE115D000798260 /* MAVSimplePDFViewController.xib */,
+				55F467741AE5556500B98B77 /* MAVAnnotationsViewController.h */,
+				55F467751AE5556500B98B77 /* MAVAnnotationsViewController.m */,
+				55F467771AE55DCF00B98B77 /* MAVAnnotationViewController.h */,
+				55F467781AE55DCF00B98B77 /* MAVAnnotationViewController.m */,
+				55F467791AE55DCF00B98B77 /* MAVAnnotationViewController.xib */,
+				552F92531AE6A4B600A99ABD /* MAVPhotoViewController.h */,
+				552F92541AE6A4B600A99ABD /* MAVPhotoViewController.m */,
+				552F92551AE6A4B600A99ABD /* MAVPhotoViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,7 +281,9 @@
 		55B8AE6E1AE0258F00798260 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55F4677E1AE562CC00B98B77 /* location-alt-512.png */,
 				55B8AE611ADEE61600798260 /* books_readable.json */,
+				55F4677C1AE5625C00B98B77 /* placemark.png */,
 				55B8AE6F1AE0259900798260 /* book_front.png */,
 			);
 			name = Resources;
@@ -353,11 +380,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				55B8AE701AE0259900798260 /* book_front.png in Resources */,
+				55F4677D1AE5625C00B98B77 /* placemark.png in Resources */,
 				55B8AE801AE115D000798260 /* MAVSimplePDFViewController.xib in Resources */,
+				55F4677F1AE562CC00B98B77 /* location-alt-512.png in Resources */,
 				55B8AE861AE1170000798260 /* MAVBookViewController.xib in Resources */,
 				55B8AE1A1ADE6A8900798260 /* LaunchScreen.xib in Resources */,
 				55B8AE871AE1170000798260 /* MAVBookViewControlleriPhone.xib in Resources */,
 				55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */,
+				552F92571AE6A4B600A99ABD /* MAVPhotoViewController.xib in Resources */,
+				55F4677B1AE55DCF00B98B77 /* MAVAnnotationViewController.xib in Resources */,
 				55B8AE621ADEE61600798260 /* books_readable.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +409,7 @@
 			files = (
 				55B8AE541ADEDDEE00798260 /* _MAVBook.m in Sources */,
 				55B8AE6D1ADFCE0500798260 /* MAVLibraryTableViewController.m in Sources */,
+				55F467761AE5556500B98B77 /* MAVAnnotationsViewController.m in Sources */,
 				55B8AE5D1ADEDDEE00798260 /* MAVPdf.m in Sources */,
 				55B8AE591ADEDDEE00798260 /* MAVAnnotation.m in Sources */,
 				55B8AE851AE1170000798260 /* MAVBookViewController.m in Sources */,
@@ -391,9 +423,11 @@
 				55B8AE5B1ADEDDEE00798260 /* MAVBook.m in Sources */,
 				55B8AE7F1AE115D000798260 /* MAVSimplePDFViewController.m in Sources */,
 				55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */,
+				552F92561AE6A4B600A99ABD /* MAVPhotoViewController.m in Sources */,
 				55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */,
 				55B8AE5A1ADEDDEE00798260 /* MAVAuthor.m in Sources */,
 				55B8AE571ADEDDEE00798260 /* _MAVPhoto.m in Sources */,
+				55F4677A1AE55DCF00B98B77 /* MAVAnnotationViewController.m in Sources */,
 				55B8AE531ADEDDEE00798260 /* _MAVAuthor.m in Sources */,
 				55B8AE551ADEDDEE00798260 /* _MAVLocation.m in Sources */,
 				55B8AE741AE1105C00798260 /* UIViewController+Navigation.m in Sources */,
@@ -587,6 +621,7 @@
 				55B8AE2B1ADE6A8900798260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55B8AE2C1ADE6A8900798260 /* Build configuration list for PBXNativeTarget "HackerBooks2Tests" */ = {
 			isa = XCConfigurationList;
@@ -595,6 +630,7 @@
 				55B8AE2E1ADE6A8900798260 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

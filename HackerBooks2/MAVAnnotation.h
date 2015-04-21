@@ -1,5 +1,9 @@
 #import "_MAVAnnotation.h"
 
 @interface MAVAnnotation : _MAVAnnotation {}
-// Custom logic goes here.
+
++ (instancetype) annotationWithName: (NSString *) name
+                               book: (MAVBook *) book
+                            context: (NSManagedObjectContext *) context;
+
 @end
