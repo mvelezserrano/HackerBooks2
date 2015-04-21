@@ -7,6 +7,7 @@
 //
 
 #import "MAVAnnotationViewController.h"
+#import "MAVPhotoViewController.h"
 #import "MAVAnnotation.h"
 #import "MAVBook.h"
 
@@ -100,7 +101,13 @@
 }
 
 - (IBAction)showPhoto:(id)sender {
-    NSLog(@"showPhoto");
+    // Creamos un controlador de fotos.
+    MAVPhotoViewController *pVC = [[MAVPhotoViewController alloc]
+                                   initWithModel:self.model.photo];
+    
+    // Hacemos push
+    [self.navigationController pushViewController:pVC
+                                         animated:YES];
 }
 
 
