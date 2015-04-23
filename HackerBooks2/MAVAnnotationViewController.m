@@ -46,6 +46,13 @@
     
     [super viewWillAppear:animated];
     
+    // Alta en notificación
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(notifyThatBookDidChange:)
+               name:BOOK_DID_CHANGE_NOTIFICATION_NAME
+             object:nil];
+    
     // Asignamos delegados
     self.nameView.delegate = self;
     
@@ -86,9 +93,15 @@
         self.model.name = self.nameView.text;
         self.model.text = self.textView.text;
     }
+    
+    // Me doy de baja de las notificaciones
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     // Guardo la nota en la bbdd
     //[self saveToDB];
 }
+
+
 
 -(void) cancel:(id)sender{
     self.deleteNote = YES;
@@ -108,6 +121,14 @@
     // Hacemos push
     [self.navigationController pushViewController:pVC
                                          animated:YES];
+}
+
+
+// BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
+- (void) notifyThatBookDidChange:(NSNotification *) notification {
+    NSLog(@"Entramos al notifyThatBookDidChange de MAVAnnotationViewController");
+    self.deleteNote = YES;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
