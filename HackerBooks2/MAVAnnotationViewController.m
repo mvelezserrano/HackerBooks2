@@ -98,7 +98,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     // Guardo la nota en la bbdd
-    //[self saveToDB];
+    [self saveToDB];
 }
 
 
@@ -126,7 +126,6 @@
 
 // BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
 - (void) notifyThatBookDidChange:(NSNotification *) notification {
-    NSLog(@"Entramos al notifyThatBookDidChange de MAVAnnotationViewController");
     self.deleteNote = YES;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Mavs. All rights reserved.
 //
 
+#define BOOK_DID_CHANGE_NOTIFICATION_NAME @"bookDidChangeNotification"
 @import UIKit;
 @class MAVPhoto;
 

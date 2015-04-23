@@ -42,6 +42,13 @@
     // sino lo que queda disponible dentro del navigation
     //self.edgesForExtendedLayout = UIRectEdgeNone;
     
+    // Alta en notificación
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(notifyThatBookDidChange:)
+               name:BOOK_DID_CHANGE_NOTIFICATION_NAME
+             object:nil];
+    
     // Sincronizo modelo --> vista
     self.photoView.image = self.model.image;
 }
@@ -49,6 +56,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     // Sincronizo vista --> modelo
     self.model.image = self.photoView.image;
@@ -193,6 +202,14 @@
     
     self.imagePickerPopover = nil;
 }
+
+
+// BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
+- (void) notifyThatBookDidChange:(NSNotification *) notification {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
 
 
 

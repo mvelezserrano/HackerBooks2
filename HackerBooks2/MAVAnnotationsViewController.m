@@ -99,7 +99,6 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 
 // BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
 - (void) notifyThatBookDidChange:(NSNotification *) notification {
-    NSLog(@"Entramos al notifyThatBookDidChange de MAVAnnotationViewController");
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
