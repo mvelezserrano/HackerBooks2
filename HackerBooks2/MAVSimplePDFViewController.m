@@ -60,14 +60,14 @@
     
     // Asignar delegados!!!!
     self.browser.delegate = self;
-    /*
+    
     // Alta en notificación
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
            selector:@selector(notifyThatBookDidChange:)
                name:BOOK_DID_CHANGE_NOTIFICATION_NAME
              object:nil];
-    */
+    
     // Asegurarse de que no se ocupa toda la pantalla cuando
     // estás en un combinador
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -80,10 +80,9 @@
 - (void) viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
-    /*
+    
     // Me doy de baja de las notificaciones
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-     */
 }
 
 
@@ -109,7 +108,7 @@
 
 // BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
 - (void) notifyThatBookDidChange:(NSNotification *) notification {
-    /*
+    
     // Sacamos el libro
     MAVBook *book = [notification.userInfo objectForKey:BOOK_KEY];
     
@@ -118,7 +117,6 @@
     
     // Sincronizamos modelo --> vista
     [self syncViewToModel];
-    */
 }
 
 

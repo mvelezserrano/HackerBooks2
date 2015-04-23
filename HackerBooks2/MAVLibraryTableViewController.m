@@ -106,6 +106,16 @@
                                     didSelectBook:b];
     }
     
+    // Mandamos una notificación
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    NSDictionary *dict = @{BOOK_KEY : b};
+    
+    NSNotification *n = [NSNotification notificationWithName:BOOK_DID_CHANGE_NOTIFICATION_NAME
+                                                      object:self
+                                                    userInfo:dict];
+    [nc postNotification:n];
+    
     // Guardar el último libro seleccionado
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     NSData *lastBookData = [self archiveURIRepresentationOfBook:b];

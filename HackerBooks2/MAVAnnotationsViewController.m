@@ -20,6 +20,24 @@
 
 @implementation MAVAnnotationsViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    // Alta en notificación
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(notifyThatBookDidChange:)
+               name:BOOK_DID_CHANGE_NOTIFICATION_NAME
+             object:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    // Me doy de baja de las notificaciones
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (id) initWithFetchedResultsController:(NSFetchedResultsController *) aFetchedResultsController
                                   style:(UITableViewStyle) aStyle
                                    book: (MAVBook *) aBook {
@@ -77,6 +95,12 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     // Hacer el push
     [self.navigationController pushViewController:aVC
                                          animated:YES];
+}
+
+// BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
+- (void) notifyThatBookDidChange:(NSNotification *) notification {
+    NSLog(@"Entramos al notifyThatBookDidChange de MAVAnnotationViewController");
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
