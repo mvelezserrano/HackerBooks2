@@ -29,6 +29,12 @@
            selector:@selector(notifyThatBookDidChange:)
                name:BOOK_DID_CHANGE_NOTIFICATION_NAME
              object:nil];
+    
+    // Icono para crear annotation
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                target:self
+                                                                                action:@selector(addAnnotation)];
+    self.navigationItem.rightBarButtonItem=addButton;
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -100,6 +106,13 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 // BOOK_DID_CHANGE_NOTIFICATION_NAME     --> Para saber los métodos que reciben esta notificación.
 - (void) notifyThatBookDidChange:(NSNotification *) notification {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void) addAnnotation {
+    
+    MAVAnnotationViewController *newAnnotation = [[MAVAnnotationViewController alloc] initWithNewNoteOnBook:self.book];
+    [self.navigationController pushViewController:newAnnotation
+                                         animated:YES];
 }
 
 
