@@ -9,8 +9,8 @@
 #import "MAVAnnotationsViewController.h"
 #import "MAVAnnotationViewController.h"
 #import "MAVBook.h"
-#import "MAVPhoto.h"
 #import "MAVAnnotation.h"
+#import "MAVAnnotationPhoto.h"
 
 @interface MAVAnnotationsViewController ()
 

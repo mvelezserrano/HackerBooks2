@@ -2,7 +2,7 @@
 #import "MAVTag.h"
 #import "MAVAuthor.h"
 #import "MAVPdf.h"
-#import "MAVPhoto.h"
+#import "MAVBookCoverPhoto.h"
 
 
 #define FAVORITE @"Favorite"
@@ -77,9 +77,9 @@
     
     
     // Gestión de la portada
-    MAVPhoto *photo = [MAVPhoto photoWithUrl:[dict objectForKey:@"image_url"]
+    MAVBookCoverPhoto *photo = [MAVBookCoverPhoto photoWithUrl:[dict objectForKey:@"image_url"]
                                      context:context];
-    [book setPhoto:photo];
+    [book setCoverPhoto:photo];
     
     return book;
 }

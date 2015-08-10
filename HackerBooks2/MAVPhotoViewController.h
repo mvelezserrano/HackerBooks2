@@ -8,19 +8,19 @@
 
 #define BOOK_DID_CHANGE_NOTIFICATION_NAME @"bookDidChangeNotification"
 @import UIKit;
-@class MAVPhoto;
+@class MAVAnnotationPhoto;
 
 @interface MAVPhotoViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 
-@property (strong, nonatomic) MAVPhoto *model;
+@property (strong, nonatomic) MAVAnnotationPhoto *model;
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 
 - (IBAction)takePicture:(id)sender;
 - (IBAction)applyFilter:(id)sender;
 - (IBAction)deletePhoto:(id)sender;
 
-- (id) initWithModel: (MAVPhoto *) model;
+- (id) initWithModel: (MAVAnnotationPhoto *) model;
 
 @end

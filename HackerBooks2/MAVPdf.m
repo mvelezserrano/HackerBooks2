@@ -14,7 +14,7 @@
           context: (NSManagedObjectContext *) context {
     
     MAVPdf *pdf = [self insertInManagedObjectContext:context];
-    pdf.url = url;
+    pdf.urlString = url;
     
     return pdf;
 }

@@ -7,7 +7,7 @@
 //
 
 #import "MAVPhotoViewController.h"
-#import "MAVPhoto.h"
+#import "MAVAnnotationPhoto.h"
 #import "Settings.h"
 @import CoreImage;
 
@@ -20,7 +20,7 @@
 
 #pragma mark - Init
 
-- (id) initWithModel: (MAVPhoto *) model {
+- (id) initWithModel: (MAVAnnotationPhoto *) model {
     
     if (self = [super initWithNibName:nil
                                bundle:nil]) {

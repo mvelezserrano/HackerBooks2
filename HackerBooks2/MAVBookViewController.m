@@ -7,11 +7,11 @@
 //
 
 #import "MAVBook.h"
-#import "MAVPhoto.h"
 #import "MAVBookViewController.h"
 #import "MAVSimplePDFViewController.h"
 #import "MAVAnnotation.h"
 #import "MAVAnnotationsViewController.h"
+#import "MAVBookCoverPhoto.h"
 #import "Settings.h"
 
 @interface MAVBookViewController ()
@@ -107,10 +107,10 @@
     
     self.title = self.model.title;
     //self.bookImage.image = [self.model.photo image];
-    if (self.model.photo.photoData == nil) {
+    if (self.model.coverPhoto.photoData == nil) {
         self.bookImage.image = [UIImage imageNamed:@"book_front.png"];
     } else {
-        self.bookImage.image = [self.model.photo image];
+        self.bookImage.image = [self.model.coverPhoto image];
     }
     self.bookTitle.text = self.model.title;
     self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
@@ -130,10 +130,10 @@
     // Modo Apaisado
     self.title = self.model.title;
     //self.bookImageLandscape.image = [self.model.photo image];
-    if (self.model.photo.photoData == nil) {
+    if (self.model.coverPhoto.photoData == nil) {
         self.bookImageLandscape.image = [UIImage imageNamed:@"book_front.png"];
     } else {
-        self.bookImageLandscape.image = [self.model.photo image];
+        self.bookImageLandscape.image = [self.model.coverPhoto image];
     }
     self.bookTitleLandscape.text = self.model.title;
     self.bookAuthorsLandscape.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];

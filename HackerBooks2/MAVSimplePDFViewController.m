@@ -125,7 +125,7 @@
 
 - (void)syncViewToModel {
     
-    [self withPDFURL:[NSURL URLWithString:self.model.pdf.url]
+    [self withPDFURL:[NSURL URLWithString:self.model.pdf.urlString]
      completionBlock:^(NSData *data) {
          
          self.model.pdf.pdfData = data;

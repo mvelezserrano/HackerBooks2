@@ -1,5 +1,5 @@
 #import "MAVAnnotation.h"
-#import "MAVPhoto.h"
+#import "MAVAnnotationPhoto.h"
 #import "MAVLocation.h"
 
 @interface MAVAnnotation ()
@@ -19,7 +19,7 @@
     a.name = name;
     a.creationDate = [NSDate date];
     a.book = book;
-    a.photo = [MAVPhoto insertInManagedObjectContext:context];
+    a.photo = [MAVAnnotationPhoto insertInManagedObjectContext:context];
     a.location = [MAVLocation insertInManagedObjectContext:context];
     a.modificationDate = [NSDate date];
     

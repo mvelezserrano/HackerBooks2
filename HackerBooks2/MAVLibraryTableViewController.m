@@ -10,8 +10,8 @@
 #import "MAVBook.h"
 #import "MAVTag.h"
 #import "MAVAuthor.h"
-#import "MAVPhoto.h"
 #import "MAVBookViewController.h"
+#import "MAVBookCoverPhoto.h"
 #import "Settings.h"
 
 @interface MAVLibraryTableViewController ()
@@ -60,15 +60,15 @@
     // Configurarla (sincronizar libreta --> celda)
     cell.tag = indexPath.row;
     // Si la imagen no está descargada, la descargo, sino, la obtengo.
-    if (b.photo.photoData == nil) {
+    if (b.coverPhoto.photoData == nil) {
         cell.imageView.image = [UIImage imageNamed:@"book_front.png"];
-        [self withImageURL:[NSURL URLWithString:b.photo.url]
+        [self withImageURL:[NSURL URLWithString:b.coverPhoto.urlString]
            completionBlock:^(NSData *data) {
-               b.photo.photoData = data;
+               b.coverPhoto.photoData = data;
                //Cada vez que descargamos una foto, la guardamos en la bbdd.
                [self saveToDB];
                if (cell.tag == indexPath.row) {
-                   cell.imageView.image = [b.photo image];
+                   cell.imageView.image = [b.coverPhoto image];
                    [cell setNeedsLayout];
                }
                
@@ -79,7 +79,7 @@
                }
            }];
     } else {
-        cell.imageView.image = [b.photo image];
+        cell.imageView.image = [b.coverPhoto image];
     }
     
     cell.textLabel.text = b.title;
