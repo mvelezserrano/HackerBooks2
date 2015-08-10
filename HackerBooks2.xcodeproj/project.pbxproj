@@ -25,14 +25,12 @@
 		55B8AE541ADEDDEE00798260 /* _MAVBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE3B1ADEDDEE00798260 /* _MAVBook.m */; };
 		55B8AE551ADEDDEE00798260 /* _MAVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE3D1ADEDDEE00798260 /* _MAVLocation.m */; };
 		55B8AE561ADEDDEE00798260 /* _MAVPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE3F1ADEDDEE00798260 /* _MAVPdf.m */; };
-		55B8AE571ADEDDEE00798260 /* _MAVPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE411ADEDDEE00798260 /* _MAVPhoto.m */; };
 		55B8AE581ADEDDEE00798260 /* _MAVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE431ADEDDEE00798260 /* _MAVTag.m */; };
 		55B8AE591ADEDDEE00798260 /* MAVAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE451ADEDDEE00798260 /* MAVAnnotation.m */; };
 		55B8AE5A1ADEDDEE00798260 /* MAVAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE471ADEDDEE00798260 /* MAVAuthor.m */; };
 		55B8AE5B1ADEDDEE00798260 /* MAVBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE491ADEDDEE00798260 /* MAVBook.m */; };
 		55B8AE5C1ADEDDEE00798260 /* MAVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE4B1ADEDDEE00798260 /* MAVLocation.m */; };
 		55B8AE5D1ADEDDEE00798260 /* MAVPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE4D1ADEDDEE00798260 /* MAVPdf.m */; };
-		55B8AE5E1ADEDDEE00798260 /* MAVPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */; };
 		55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE511ADEDDEE00798260 /* MAVTag.m */; };
 		55B8AE621ADEE61600798260 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE611ADEE61600798260 /* books_readable.json */; };
 		55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE691ADFCD1A00798260 /* AGTCoreDataTableViewController.m */; };
@@ -96,8 +94,6 @@
 		55B8AE3D1ADEDDEE00798260 /* _MAVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MAVLocation.m; sourceTree = "<group>"; };
 		55B8AE3E1ADEDDEE00798260 /* _MAVPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MAVPdf.h; sourceTree = "<group>"; };
 		55B8AE3F1ADEDDEE00798260 /* _MAVPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MAVPdf.m; sourceTree = "<group>"; };
-		55B8AE401ADEDDEE00798260 /* _MAVPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MAVPhoto.h; sourceTree = "<group>"; };
-		55B8AE411ADEDDEE00798260 /* _MAVPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MAVPhoto.m; sourceTree = "<group>"; };
 		55B8AE421ADEDDEE00798260 /* _MAVTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MAVTag.h; sourceTree = "<group>"; };
 		55B8AE431ADEDDEE00798260 /* _MAVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MAVTag.m; sourceTree = "<group>"; };
 		55B8AE441ADEDDEE00798260 /* MAVAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVAnnotation.h; sourceTree = "<group>"; };
@@ -110,8 +106,6 @@
 		55B8AE4B1ADEDDEE00798260 /* MAVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVLocation.m; sourceTree = "<group>"; };
 		55B8AE4C1ADEDDEE00798260 /* MAVPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVPdf.h; sourceTree = "<group>"; };
 		55B8AE4D1ADEDDEE00798260 /* MAVPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVPdf.m; sourceTree = "<group>"; };
-		55B8AE4E1ADEDDEE00798260 /* MAVPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVPhoto.h; sourceTree = "<group>"; };
-		55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVPhoto.m; sourceTree = "<group>"; };
 		55B8AE501ADEDDEE00798260 /* MAVTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVTag.h; sourceTree = "<group>"; };
 		55B8AE511ADEDDEE00798260 /* MAVTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVTag.m; sourceTree = "<group>"; };
 		55B8AE611ADEE61600798260 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = books_readable.json; path = "../../2.Recursos para proyectos/books_readable.json"; sourceTree = "<group>"; };
@@ -236,8 +230,6 @@
 				55B8A42B1B7926F5007478E2 /* MAVAnnotationPhoto.m */,
 				55B8A42C1B7926F5007478E2 /* MAVBookCoverPhoto.h */,
 				55B8A42D1B7926F5007478E2 /* MAVBookCoverPhoto.m */,
-				55B8AE4E1ADEDDEE00798260 /* MAVPhoto.h */,
-				55B8AE4F1ADEDDEE00798260 /* MAVPhoto.m */,
 				55B8AE501ADEDDEE00798260 /* MAVTag.h */,
 				55B8AE511ADEDDEE00798260 /* MAVTag.m */,
 				55B8AE331ADED6A700798260 /* AGTCoreDataStack.h */,
@@ -264,8 +256,6 @@
 				55B8A4251B7926DD007478E2 /* _MAVAnnotationPhoto.m */,
 				55B8A4261B7926DD007478E2 /* _MAVBookCoverPhoto.h */,
 				55B8A4271B7926DD007478E2 /* _MAVBookCoverPhoto.m */,
-				55B8AE401ADEDDEE00798260 /* _MAVPhoto.h */,
-				55B8AE411ADEDDEE00798260 /* _MAVPhoto.m */,
 				55B8AE421ADEDDEE00798260 /* _MAVTag.h */,
 				55B8AE431ADEDDEE00798260 /* _MAVTag.m */,
 			);
@@ -438,7 +428,6 @@
 				55B8A42F1B7926F5007478E2 /* MAVBookCoverPhoto.m in Sources */,
 				55B8AE581ADEDDEE00798260 /* _MAVTag.m in Sources */,
 				55B8AE521ADEDDEE00798260 /* _MAVAnnotation.m in Sources */,
-				55B8AE5E1ADEDDEE00798260 /* MAVPhoto.m in Sources */,
 				55B8AE121ADE6A8900798260 /* main.m in Sources */,
 				55B8AE561ADEDDEE00798260 /* _MAVPdf.m in Sources */,
 				55B8AE5C1ADEDDEE00798260 /* MAVLocation.m in Sources */,
@@ -449,7 +438,6 @@
 				552F92561AE6A4B600A99ABD /* MAVPhotoViewController.m in Sources */,
 				55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */,
 				55B8AE5A1ADEDDEE00798260 /* MAVAuthor.m in Sources */,
-				55B8AE571ADEDDEE00798260 /* _MAVPhoto.m in Sources */,
 				55F4677A1AE55DCF00B98B77 /* MAVAnnotationViewController.m in Sources */,
 				55B8AE531ADEDDEE00798260 /* _MAVAuthor.m in Sources */,
 				55B8AE551ADEDDEE00798260 /* _MAVLocation.m in Sources */,
