@@ -18,7 +18,7 @@ extern const struct MAVAnnotationRelationships {
 
 @class MAVBook;
 @class MAVLocation;
-@class MAVPhoto;
+@class MAVAnnotationPhoto;
 
 @interface MAVAnnotationID : NSManagedObjectID {}
 @end
@@ -53,7 +53,7 @@ extern const struct MAVAnnotationRelationships {
 
 //- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) MAVPhoto *photo;
+@property (nonatomic, strong) MAVAnnotationPhoto *photo;
 
 //- (BOOL)validatePhoto:(id*)value_ error:(NSError**)error_;
 
@@ -79,7 +79,7 @@ extern const struct MAVAnnotationRelationships {
 - (MAVLocation*)primitiveLocation;
 - (void)setPrimitiveLocation:(MAVLocation*)value;
 
-- (MAVPhoto*)primitivePhoto;
-- (void)setPrimitivePhoto:(MAVPhoto*)value;
+- (MAVAnnotationPhoto*)primitivePhoto;
+- (void)setPrimitivePhoto:(MAVAnnotationPhoto*)value;
 
 @end

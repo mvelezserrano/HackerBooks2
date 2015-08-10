@@ -5,7 +5,7 @@
 
 const struct MAVPdfAttributes MAVPdfAttributes = {
 	.pdfData = @"pdfData",
-	.url = @"url",
+	.urlString = @"urlString",
 };
 
 const struct MAVPdfRelationships MAVPdfRelationships = {
@@ -43,7 +43,7 @@ const struct MAVPdfRelationships MAVPdfRelationships = {
 
 @dynamic pdfData;
 
-@dynamic url;
+@dynamic urlString;
 
 @dynamic book;
 

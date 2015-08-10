@@ -1,31 +1,31 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to MAVPdf.h instead.
+// Make changes to MAVBookCoverPhoto.h instead.
 
 @import CoreData;
 
-extern const struct MAVPdfAttributes {
-	__unsafe_unretained NSString *pdfData;
+extern const struct MAVBookCoverPhotoAttributes {
+	__unsafe_unretained NSString *photoData;
 	__unsafe_unretained NSString *urlString;
-} MAVPdfAttributes;
+} MAVBookCoverPhotoAttributes;
 
-extern const struct MAVPdfRelationships {
+extern const struct MAVBookCoverPhotoRelationships {
 	__unsafe_unretained NSString *book;
-} MAVPdfRelationships;
+} MAVBookCoverPhotoRelationships;
 
 @class MAVBook;
 
-@interface MAVPdfID : NSManagedObjectID {}
+@interface MAVBookCoverPhotoID : NSManagedObjectID {}
 @end
 
-@interface _MAVPdf : NSManagedObject {}
+@interface _MAVBookCoverPhoto : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) MAVPdfID* objectID;
+@property (nonatomic, readonly, strong) MAVBookCoverPhotoID* objectID;
 
-@property (nonatomic, strong) NSData* pdfData;
+@property (nonatomic, strong) NSData* photoData;
 
-//- (BOOL)validatePdfData:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validatePhotoData:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* urlString;
 
@@ -37,10 +37,10 @@ extern const struct MAVPdfRelationships {
 
 @end
 
-@interface _MAVPdf (CoreDataGeneratedPrimitiveAccessors)
+@interface _MAVBookCoverPhoto (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSData*)primitivePdfData;
-- (void)setPrimitivePdfData:(NSData*)value;
+- (NSData*)primitivePhotoData;
+- (void)setPrimitivePhotoData:(NSData*)value;
 
 - (NSString*)primitiveUrlString;
 - (void)setPrimitiveUrlString:(NSString*)value;

@@ -11,8 +11,8 @@ const struct MAVBookAttributes MAVBookAttributes = {
 const struct MAVBookRelationships MAVBookRelationships = {
 	.annotations = @"annotations",
 	.authors = @"authors",
+	.coverPhoto = @"coverPhoto",
 	.pdf = @"pdf",
-	.photo = @"photo",
 	.tags = @"tags",
 };
 
@@ -95,9 +95,9 @@ const struct MAVBookRelationships MAVBookRelationships = {
 	return result;
 }
 
-@dynamic pdf;
+@dynamic coverPhoto;
 
-@dynamic photo;
+@dynamic pdf;
 
 @dynamic tags;
 

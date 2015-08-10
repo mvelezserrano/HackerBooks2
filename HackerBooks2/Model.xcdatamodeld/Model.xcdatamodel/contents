@@ -48,7 +48,7 @@
     </entity>
     <elements>
         <element name="Annotation" positionX="-20" positionY="99" width="128" height="150"/>
-        <element name="Author" positionX="-290" positionY="-156" width="128" height="75"/>
+        <element name="Author" positionX="-290" positionY="-189" width="128" height="75"/>
         <element name="Book" positionX="-11" positionY="-189" width="128" height="148"/>
         <element name="Location" positionX="-288" positionY="9" width="128" height="105"/>
         <element name="Pdf" positionX="-47" positionY="-414" width="128" height="88"/>

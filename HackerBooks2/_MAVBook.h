@@ -11,15 +11,15 @@ extern const struct MAVBookAttributes {
 extern const struct MAVBookRelationships {
 	__unsafe_unretained NSString *annotations;
 	__unsafe_unretained NSString *authors;
+	__unsafe_unretained NSString *coverPhoto;
 	__unsafe_unretained NSString *pdf;
-	__unsafe_unretained NSString *photo;
 	__unsafe_unretained NSString *tags;
 } MAVBookRelationships;
 
 @class MAVAnnotation;
 @class MAVAuthor;
+@class MAVBookCoverPhoto;
 @class MAVPdf;
-@class MAVPhoto;
 @class MAVTag;
 
 @interface MAVBookID : NSManagedObjectID {}
@@ -51,13 +51,13 @@ extern const struct MAVBookRelationships {
 
 - (NSMutableSet*)authorsSet;
 
+@property (nonatomic, strong) MAVBookCoverPhoto *coverPhoto;
+
+//- (BOOL)validateCoverPhoto:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) MAVPdf *pdf;
 
 //- (BOOL)validatePdf:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) MAVPhoto *photo;
-
-//- (BOOL)validatePhoto:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSSet *tags;
 
@@ -106,11 +106,11 @@ extern const struct MAVBookRelationships {
 - (NSMutableSet*)primitiveAuthors;
 - (void)setPrimitiveAuthors:(NSMutableSet*)value;
 
+- (MAVBookCoverPhoto*)primitiveCoverPhoto;
+- (void)setPrimitiveCoverPhoto:(MAVBookCoverPhoto*)value;
+
 - (MAVPdf*)primitivePdf;
 - (void)setPrimitivePdf:(MAVPdf*)value;
-
-- (MAVPhoto*)primitivePhoto;
-- (void)setPrimitivePhoto:(MAVPhoto*)value;
 
 - (NSMutableSet*)primitiveTags;
 - (void)setPrimitiveTags:(NSMutableSet*)value;
