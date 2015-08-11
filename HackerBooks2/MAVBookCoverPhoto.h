@@ -6,7 +6,7 @@
 
 @property (nonatomic, strong) UIImage *image;
 
-+ (id) photoWithUrl: (NSString *) url
-            context: (NSManagedObjectContext *) context;
++ (id) bookCoverPhotoWithUrl: (NSString *) url
+                     context: (NSManagedObjectContext *) context;
 
 @end

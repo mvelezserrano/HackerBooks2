@@ -20,8 +20,14 @@
 + (instancetype) bookWithTitle: (NSString *) title
                        context: (NSManagedObjectContext *) context {
     
-    MAVBook *book = [self insertInManagedObjectContext:context];
-    book.title = title;
+//    MAVBook *book = [self insertInManagedObjectContext:context];
+//    book.title = title;
+    
+    MAVBook *book =  [self uniqueObjectWithValue:[title capitalizedString]
+                                          forKey:MAVBookAttributes.title inManagedObjectContext:context];
+    // proxyForComparison makes sure that Favorite always comes first // Uso KVC para saltarme la propiedad readOnly de proxyForSorting
+    [book setValue:book.title
+            forKey:MAVBookAttributes.proxyForSorting];
     
     return book;
 }
@@ -77,8 +83,8 @@
     
     
     // Gestión de la portada
-    MAVBookCoverPhoto *photo = [MAVBookCoverPhoto photoWithUrl:[dict objectForKey:@"image_url"]
-                                     context:context];
+    MAVBookCoverPhoto *photo = [MAVBookCoverPhoto bookCoverPhotoWithUrl:[dict objectForKey:@"image_url"]
+                                                                context:context];
     [book setCoverPhoto:photo];
     
     return book;

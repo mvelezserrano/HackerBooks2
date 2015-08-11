@@ -24,11 +24,17 @@
 }
 
 
-+ (id) photoWithUrl: (NSString *) url
-            context: (NSManagedObjectContext *) context {
++ (id) bookCoverPhotoWithUrl: (NSString *) url
+                     context: (NSManagedObjectContext *) context {
     
-    MAVBookCoverPhoto *photo = [self insertInManagedObjectContext:context];
-    photo.urlString = url;
+//    MAVBookCoverPhoto *photo = [self insertInManagedObjectContext:context];
+//    photo.urlString = url;
+    
+    MAVBookCoverPhoto *photo =  [self uniqueObjectWithValue:[url capitalizedString]
+                                                     forKey:MAVBookCoverPhotoAttributes.urlString inManagedObjectContext:context];
+    // proxyForComparison makes sure that Favorite always comes first // Uso KVC para saltarme la propiedad readOnly de proxyForSorting
+    [photo setValue:photo.urlString
+             forKey:MAVBookCoverPhotoAttributes.proxyForSorting];
     
     return photo;
 }

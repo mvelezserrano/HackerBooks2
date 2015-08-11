@@ -10,6 +10,18 @@
 @implementation MAVAuthor
 
 + (id) authorWithName: (NSString *) name
+              context: (NSManagedObjectContext *) context {
+    
+    MAVAuthor *author =  [self uniqueObjectWithValue:[name capitalizedString]
+                                              forKey:MAVAuthorAttributes.name inManagedObjectContext:context];
+    // proxyForComparison makes sure that Favorite always comes first // Uso KVC para saltarme la propiedad readOnly de proxyForSorting
+    [author setValue:author.name
+              forKey:MAVAuthorAttributes.proxyForSorting];
+    
+    return author;
+}
+
++ (id) authorWithName: (NSString *) name
                  book: (MAVBook *) book
               context: (NSManagedObjectContext *) context {
     
