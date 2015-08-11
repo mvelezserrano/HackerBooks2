@@ -2,6 +2,7 @@
 // Make changes to MAVAnnotation.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVAnnotationAttributes {
 	__unsafe_unretained NSString *creationDate;
@@ -23,7 +24,7 @@ extern const struct MAVAnnotationRelationships {
 @interface MAVAnnotationID : NSManagedObjectID {}
 @end
 
-@interface _MAVAnnotation : NSManagedObject {}
+@interface _MAVAnnotation : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

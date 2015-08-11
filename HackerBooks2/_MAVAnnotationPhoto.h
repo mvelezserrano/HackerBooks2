@@ -2,6 +2,7 @@
 // Make changes to MAVAnnotationPhoto.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVAnnotationPhotoAttributes {
 	__unsafe_unretained NSString *photoData;
@@ -16,7 +17,7 @@ extern const struct MAVAnnotationPhotoRelationships {
 @interface MAVAnnotationPhotoID : NSManagedObjectID {}
 @end
 
-@interface _MAVAnnotationPhoto : NSManagedObject {}
+@interface _MAVAnnotationPhoto : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

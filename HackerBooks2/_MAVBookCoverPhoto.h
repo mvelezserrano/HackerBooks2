@@ -2,6 +2,7 @@
 // Make changes to MAVBookCoverPhoto.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVBookCoverPhotoAttributes {
 	__unsafe_unretained NSString *photoData;
@@ -17,7 +18,7 @@ extern const struct MAVBookCoverPhotoRelationships {
 @interface MAVBookCoverPhotoID : NSManagedObjectID {}
 @end
 
-@interface _MAVBookCoverPhoto : NSManagedObject {}
+@interface _MAVBookCoverPhoto : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

@@ -2,6 +2,7 @@
 // Make changes to MAVTag.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVTagAttributes {
 	__unsafe_unretained NSString *name;
@@ -16,7 +17,7 @@ extern const struct MAVTagRelationships {
 @interface MAVTagID : NSManagedObjectID {}
 @end
 
-@interface _MAVTag : NSManagedObject {}
+@interface _MAVTag : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

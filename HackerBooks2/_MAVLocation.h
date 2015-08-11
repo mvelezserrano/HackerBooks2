@@ -2,6 +2,7 @@
 // Make changes to MAVLocation.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVLocationAttributes {
 	__unsafe_unretained NSString *address;
@@ -18,7 +19,7 @@ extern const struct MAVLocationRelationships {
 @interface MAVLocationID : NSManagedObjectID {}
 @end
 
-@interface _MAVLocation : NSManagedObject {}
+@interface _MAVLocation : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

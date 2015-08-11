@@ -2,6 +2,7 @@
 // Make changes to MAVBook.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVBookAttributes {
 	__unsafe_unretained NSString *isFavorite;
@@ -25,7 +26,7 @@ extern const struct MAVBookRelationships {
 @interface MAVBookID : NSManagedObjectID {}
 @end
 
-@interface _MAVBook : NSManagedObject {}
+@interface _MAVBook : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

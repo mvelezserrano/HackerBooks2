@@ -2,6 +2,7 @@
 // Make changes to MAVPdf.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVPdfAttributes {
 	__unsafe_unretained NSString *pdfData;
@@ -17,7 +18,7 @@ extern const struct MAVPdfRelationships {
 @interface MAVPdfID : NSManagedObjectID {}
 @end
 
-@interface _MAVPdf : NSManagedObject {}
+@interface _MAVPdf : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

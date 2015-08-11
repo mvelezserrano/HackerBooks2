@@ -2,6 +2,7 @@
 // Make changes to MAVAuthor.h instead.
 
 @import CoreData;
+#import "MAVBaseManagedObject.h"
 
 extern const struct MAVAuthorAttributes {
 	__unsafe_unretained NSString *name;
@@ -16,7 +17,7 @@ extern const struct MAVAuthorRelationships {
 @interface MAVAuthorID : NSManagedObjectID {}
 @end
 
-@interface _MAVAuthor : NSManagedObject {}
+@interface _MAVAuthor : MAVBaseManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
