@@ -6,6 +6,7 @@
 
 extern const struct MAVBookCoverPhotoAttributes {
 	__unsafe_unretained NSString *photoData;
+	__unsafe_unretained NSString *proxyForSorting;
 	__unsafe_unretained NSString *urlString;
 } MAVBookCoverPhotoAttributes;
 
@@ -28,6 +29,10 @@ extern const struct MAVBookCoverPhotoRelationships {
 
 //- (BOOL)validatePhotoData:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* proxyForSorting;
+
+//- (BOOL)validateProxyForSorting:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSString* urlString;
 
 //- (BOOL)validateUrlString:(id*)value_ error:(NSError**)error_;
@@ -42,6 +47,9 @@ extern const struct MAVBookCoverPhotoRelationships {
 
 - (NSData*)primitivePhotoData;
 - (void)setPrimitivePhotoData:(NSData*)value;
+
+- (NSString*)primitiveProxyForSorting;
+- (void)setPrimitiveProxyForSorting:(NSString*)value;
 
 - (NSString*)primitiveUrlString;
 - (void)setPrimitiveUrlString:(NSString*)value;

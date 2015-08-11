@@ -6,6 +6,7 @@
 
 extern const struct MAVAuthorAttributes {
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *proxyForSorting;
 } MAVAuthorAttributes;
 
 extern const struct MAVAuthorRelationships {
@@ -27,6 +28,10 @@ extern const struct MAVAuthorRelationships {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* proxyForSorting;
+
+//- (BOOL)validateProxyForSorting:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSSet *books;
 
 - (NSMutableSet*)booksSet;
@@ -45,6 +50,9 @@ extern const struct MAVAuthorRelationships {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+- (NSString*)primitiveProxyForSorting;
+- (void)setPrimitiveProxyForSorting:(NSString*)value;
 
 - (NSMutableSet*)primitiveBooks;
 - (void)setPrimitiveBooks:(NSMutableSet*)value;

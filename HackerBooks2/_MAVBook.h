@@ -6,6 +6,7 @@
 
 extern const struct MAVBookAttributes {
 	__unsafe_unretained NSString *isFavorite;
+	__unsafe_unretained NSString *proxyForSorting;
 	__unsafe_unretained NSString *title;
 } MAVBookAttributes;
 
@@ -39,6 +40,10 @@ extern const struct MAVBookRelationships {
 - (void)setIsFavoriteValue:(BOOL)value_;
 
 //- (BOOL)validateIsFavorite:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* proxyForSorting;
+
+//- (BOOL)validateProxyForSorting:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -97,6 +102,9 @@ extern const struct MAVBookRelationships {
 
 - (BOOL)primitiveIsFavoriteValue;
 - (void)setPrimitiveIsFavoriteValue:(BOOL)value_;
+
+- (NSString*)primitiveProxyForSorting;
+- (void)setPrimitiveProxyForSorting:(NSString*)value;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;

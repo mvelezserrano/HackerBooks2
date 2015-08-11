@@ -5,6 +5,7 @@
 
 const struct MAVBookCoverPhotoAttributes MAVBookCoverPhotoAttributes = {
 	.photoData = @"photoData",
+	.proxyForSorting = @"proxyForSorting",
 	.urlString = @"urlString",
 };
 
@@ -42,6 +43,8 @@ const struct MAVBookCoverPhotoRelationships MAVBookCoverPhotoRelationships = {
 }
 
 @dynamic photoData;
+
+@dynamic proxyForSorting;
 
 @dynamic urlString;
 

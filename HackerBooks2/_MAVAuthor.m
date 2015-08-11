@@ -5,6 +5,7 @@
 
 const struct MAVAuthorAttributes MAVAuthorAttributes = {
 	.name = @"name",
+	.proxyForSorting = @"proxyForSorting",
 };
 
 const struct MAVAuthorRelationships MAVAuthorRelationships = {
@@ -41,6 +42,8 @@ const struct MAVAuthorRelationships MAVAuthorRelationships = {
 }
 
 @dynamic name;
+
+@dynamic proxyForSorting;
 
 @dynamic books;
 

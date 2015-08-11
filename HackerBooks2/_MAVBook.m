@@ -5,6 +5,7 @@
 
 const struct MAVBookAttributes MAVBookAttributes = {
 	.isFavorite = @"isFavorite",
+	.proxyForSorting = @"proxyForSorting",
 	.title = @"title",
 };
 
@@ -70,6 +71,8 @@ const struct MAVBookRelationships MAVBookRelationships = {
 - (void)setPrimitiveIsFavoriteValue:(BOOL)value_ {
 	[self setPrimitiveIsFavorite:@(value_)];
 }
+
+@dynamic proxyForSorting;
 
 @dynamic title;
 
