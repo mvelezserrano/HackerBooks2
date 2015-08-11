@@ -31,6 +31,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return [self.fetchedResultsController.fetchedObjects count];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
