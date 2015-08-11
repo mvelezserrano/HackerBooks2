@@ -13,6 +13,7 @@
 		55B8A4291B7926DD007478E2 /* _MAVBookCoverPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A4271B7926DD007478E2 /* _MAVBookCoverPhoto.m */; };
 		55B8A42E1B7926F5007478E2 /* MAVAnnotationPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A42B1B7926F5007478E2 /* MAVAnnotationPhoto.m */; };
 		55B8A42F1B7926F5007478E2 /* MAVBookCoverPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A42D1B7926F5007478E2 /* MAVBookCoverPhoto.m */; };
+		55B8A4321B793104007478E2 /* MAVBaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A4311B793104007478E2 /* MAVBaseManagedObject.m */; };
 		55B8AE121ADE6A8900798260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE111ADE6A8900798260 /* main.m */; };
 		55B8AE151ADE6A8900798260 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE141ADE6A8900798260 /* AppDelegate.m */; };
 		55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE161ADE6A8900798260 /* Images.xcassets */; };
@@ -71,6 +72,8 @@
 		55B8A42B1B7926F5007478E2 /* MAVAnnotationPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVAnnotationPhoto.m; sourceTree = "<group>"; };
 		55B8A42C1B7926F5007478E2 /* MAVBookCoverPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVBookCoverPhoto.h; sourceTree = "<group>"; };
 		55B8A42D1B7926F5007478E2 /* MAVBookCoverPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBookCoverPhoto.m; sourceTree = "<group>"; };
+		55B8A4301B793104007478E2 /* MAVBaseManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVBaseManagedObject.h; sourceTree = "<group>"; };
+		55B8A4311B793104007478E2 /* MAVBaseManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBaseManagedObject.m; sourceTree = "<group>"; };
 		55B8AE0C1ADE6A8900798260 /* HackerBooks2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B8AE101ADE6A8900798260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B8AE111ADE6A8900798260 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 		55B8AE321ADEC23E00798260 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				55B8A4301B793104007478E2 /* MAVBaseManagedObject.h */,
+				55B8A4311B793104007478E2 /* MAVBaseManagedObject.m */,
 				55B8AE601ADEDDF900798260 /* Machine */,
 				55B8AE441ADEDDEE00798260 /* MAVAnnotation.h */,
 				55B8AE451ADEDDEE00798260 /* MAVAnnotation.m */,
@@ -428,6 +433,7 @@
 				55B8A42F1B7926F5007478E2 /* MAVBookCoverPhoto.m in Sources */,
 				55B8AE581ADEDDEE00798260 /* _MAVTag.m in Sources */,
 				55B8AE521ADEDDEE00798260 /* _MAVAnnotation.m in Sources */,
+				55B8A4321B793104007478E2 /* MAVBaseManagedObject.m in Sources */,
 				55B8AE121ADE6A8900798260 /* main.m in Sources */,
 				55B8AE561ADEDDEE00798260 /* _MAVPdf.m in Sources */,
 				55B8AE5C1ADEDDEE00798260 /* MAVLocation.m in Sources */,
