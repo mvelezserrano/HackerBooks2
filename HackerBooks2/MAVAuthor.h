@@ -9,4 +9,7 @@
                  book: (MAVBook *) book
               context: (NSManagedObjectContext *) context;
 
++ (NSArray *) arrayOfAuthorsWithArrayOfStrings: (NSArray *) arrayOfStrings
+                                       context: (NSManagedObjectContext *) context;
+
 @end

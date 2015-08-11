@@ -14,11 +14,23 @@
 
 #pragma mark - Class methods
 
++ (NSArray *) arrayOfTagsWithArrayOfStrings: (NSArray *) arrayOfStrings
+                                    context: (NSManagedObjectContext *) context {
+    
+    NSMutableArray *arrayOfTags = [[NSMutableArray alloc] initWithCapacity:[arrayOfStrings count]];
+    
+    for (NSString *tag in arrayOfStrings) {
+        
+        MAVTag *newTag = [MAVTag tagWithName:tag
+                                     context:context];
+        [arrayOfTags addObject:newTag];
+    }
+    
+    return arrayOfTags;
+}
+
 + (id) tagWithName: (NSString *) name
            context: (NSManagedObjectContext *) context {
-    
-//    MAVTag *tag = [self insertInManagedObjectContext:context];
-//    tag.name = name;
     
     // BookTags should be unique, so we use the unique (findOrCreate)
     // method in our base class

@@ -9,6 +9,21 @@
 
 @implementation MAVAuthor
 
++ (NSArray *) arrayOfAuthorsWithArrayOfStrings: (NSArray *) arrayOfStrings
+                                       context: (NSManagedObjectContext *) context {
+    
+    NSMutableArray *arrayOfAuthors = [[NSMutableArray alloc] initWithCapacity:[arrayOfStrings count]];
+    
+    for (NSString *author in arrayOfStrings) {
+        
+        MAVAuthor *newAuthor = [MAVAuthor authorWithName:author
+                                                 context:context];
+        [arrayOfAuthors addObject:newAuthor];
+    }
+    
+    return arrayOfAuthors;
+}
+
 + (id) authorWithName: (NSString *) name
               context: (NSManagedObjectContext *) context {
     

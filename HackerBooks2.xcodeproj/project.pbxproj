@@ -14,6 +14,7 @@
 		55B8A42E1B7926F5007478E2 /* MAVAnnotationPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A42B1B7926F5007478E2 /* MAVAnnotationPhoto.m */; };
 		55B8A42F1B7926F5007478E2 /* MAVBookCoverPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A42D1B7926F5007478E2 /* MAVBookCoverPhoto.m */; };
 		55B8A4321B793104007478E2 /* MAVBaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A4311B793104007478E2 /* MAVBaseManagedObject.m */; };
+		55B8A4351B7A6527007478E2 /* NSString+TokenizeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8A4341B7A6527007478E2 /* NSString+TokenizeCategory.m */; };
 		55B8AE121ADE6A8900798260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE111ADE6A8900798260 /* main.m */; };
 		55B8AE151ADE6A8900798260 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8AE141ADE6A8900798260 /* AppDelegate.m */; };
 		55B8AE171ADE6A8900798260 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55B8AE161ADE6A8900798260 /* Images.xcassets */; };
@@ -74,6 +75,8 @@
 		55B8A42D1B7926F5007478E2 /* MAVBookCoverPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBookCoverPhoto.m; sourceTree = "<group>"; };
 		55B8A4301B793104007478E2 /* MAVBaseManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAVBaseManagedObject.h; sourceTree = "<group>"; };
 		55B8A4311B793104007478E2 /* MAVBaseManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAVBaseManagedObject.m; sourceTree = "<group>"; };
+		55B8A4331B7A6527007478E2 /* NSString+TokenizeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TokenizeCategory.h"; sourceTree = "<group>"; };
+		55B8A4341B7A6527007478E2 /* NSString+TokenizeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TokenizeCategory.m"; sourceTree = "<group>"; };
 		55B8AE0C1ADE6A8900798260 /* HackerBooks2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B8AE101ADE6A8900798260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55B8AE111ADE6A8900798260 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 			children = (
 				55B8AE721AE1105C00798260 /* UIViewController+Navigation.h */,
 				55B8AE731AE1105C00798260 /* UIViewController+Navigation.m */,
+				55B8A4331B7A6527007478E2 /* NSString+TokenizeCategory.h */,
+				55B8A4341B7A6527007478E2 /* NSString+TokenizeCategory.m */,
 			);
 			name = Categories;
 			path = ..;
@@ -440,6 +445,7 @@
 				55B8A4281B7926DD007478E2 /* _MAVAnnotationPhoto.m in Sources */,
 				55B8AE5B1ADEDDEE00798260 /* MAVBook.m in Sources */,
 				55B8AE7F1AE115D000798260 /* MAVSimplePDFViewController.m in Sources */,
+				55B8A4351B7A6527007478E2 /* NSString+TokenizeCategory.m in Sources */,
 				55B8AE5F1ADEDDEE00798260 /* MAVTag.m in Sources */,
 				552F92561AE6A4B600A99ABD /* MAVPhotoViewController.m in Sources */,
 				55B8AE6A1ADFCD1A00798260 /* AGTCoreDataTableViewController.m in Sources */,

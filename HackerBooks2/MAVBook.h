@@ -11,4 +11,11 @@
 + (instancetype) bookWithDictionary: (NSDictionary *) dict
                             context: (NSManagedObjectContext *) context;
 
++ (instancetype) bookWithTitle:(NSString *) title
+                       authors:(NSArray *) arrayOfAuthors
+                          tags:(NSArray *) arrayOfTags
+                    coverPhoto:(MAVBookCoverPhoto *) cover
+                           pdf:(MAVPdf *) pdf
+                       context:(NSManagedObjectContext *) context;
+
 @end

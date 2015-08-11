@@ -9,6 +9,9 @@
               book: (MAVBook *) book
            context: (NSManagedObjectContext *) context;
 
++ (NSArray *) arrayOfTagsWithArrayOfStrings: (NSArray *) arrayOfStrings
+                                    context: (NSManagedObjectContext *) context;
+
 - (NSComparisonResult) compare:(MAVTag *) tag;
  
 @end

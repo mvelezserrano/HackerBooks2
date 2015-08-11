@@ -3,6 +3,8 @@
 #import "MAVAuthor.h"
 #import "MAVPdf.h"
 #import "MAVBookCoverPhoto.h"
+#import "Settings.h"
+#import "NSString+TokenizeCategory.h"
 
 
 #define FAVORITE @"Favorite"
@@ -20,9 +22,6 @@
 + (instancetype) bookWithTitle: (NSString *) title
                        context: (NSManagedObjectContext *) context {
     
-//    MAVBook *book = [self insertInManagedObjectContext:context];
-//    book.title = title;
-    
     MAVBook *book =  [self uniqueObjectWithValue:[title capitalizedString]
                                           forKey:MAVBookAttributes.title inManagedObjectContext:context];
     // proxyForComparison makes sure that Favorite always comes first // Uso KVC para saltarme la propiedad readOnly de proxyForSorting
@@ -32,63 +31,105 @@
     return book;
 }
 
-
-+ (instancetype) bookWithDictionary: (NSDictionary *) dict
-                            context: (NSManagedObjectContext *) context {
++ (instancetype) bookWithDictionary:(NSDictionary *)dict
+                            context:(NSManagedObjectContext *)context {
     
-    MAVBook *book = [self insertInManagedObjectContext:context];
-    book.title = [dict objectForKey:@"title"];
-    //book.managedObjectContext = context;
+    // Un array de autores a partir de un array de nombres de autor
+    NSArray *arrayOfAuthors = [MAVAuthor arrayOfAuthorsWithArrayOfStrings:[[dict objectForKey:AUTHORS] tokenizeByCommas]
+                                                                  context:context];
+    // Un array de tags a partir de un array de nombres de tag
+    NSArray *arrayOfTags = [MAVTag arrayOfTagsWithArrayOfStrings:[[dict objectForKey:TAGS] tokenizeByCommas]
+                                                         context:context];
     
-    // Gestionar favorito....
-    //book.isFavoriteValue = NO;
-    
-    NSMutableSet *mutSet = [[NSMutableSet alloc] init];
-    
-    // Gestión de los tags
-    NSArray *arr = [[dict objectForKey:@"tags"] componentsSeparatedByString:@", "];
-    
-    for (NSString *tag in arr) {
-        // NSSet no permite añadir dos veces el mismo objeto, por lo que
-        // no es necesario comprobar si el tag ya existe en el NSSet.
-        [mutSet addObject:[MAVTag tagWithName:tag
-                                         book:book
-                                      context:context]];
-    }
-    
-    [book addTags:[mutSet copy]];
-    [mutSet removeAllObjects];
-    
-    
-    // Gestión de los autores
-    arr = [[dict objectForKey:@"authors"] componentsSeparatedByString:@", "];
-    
-    for (NSString *author in arr) {
-        // NSSet no permite añadir dos veces el mismo objeto, por lo que
-        // no es necesario comprobar si el tag ya existe en el NSSet.
-        [mutSet addObject:[MAVAuthor authorWithName:author
-                                               book:book
-                                            context:context]];
-    }
-    
-    [book addAuthors:[mutSet copy]];
-    [mutSet removeAllObjects];
-    
-    
-    
-    // Gestión del pdf
-    MAVPdf *pdf = [MAVPdf pdfWithUrl:[dict objectForKey:@"pdf_url"]
-                             context:context];
-    [book setPdf:pdf];
-    
-    
-    // Gestión de la portada
-    MAVBookCoverPhoto *photo = [MAVBookCoverPhoto bookCoverPhotoWithUrl:[dict objectForKey:@"image_url"]
+//    UIImage *defImage = [UIImage imageNamed:@"book_front.png"];
+    MAVBookCoverPhoto *cover = [MAVBookCoverPhoto bookCoverPhotoWithUrl:[dict objectForKey:IMAGE_URL]
                                                                 context:context];
-    [book setCoverPhoto:photo];
+    
+    MAVPdf *pdf = [MAVPdf pdfWithUrl:[dict objectForKey:PDF_URL]
+                             context:context];
+    
+    return [self bookWithTitle:[dict objectForKey:TITLE]
+                       authors:arrayOfAuthors
+                          tags:arrayOfTags
+                    coverPhoto:cover
+                           pdf:pdf
+                       context:context];
+}
+
++ (instancetype) bookWithTitle:(NSString *) title
+                       authors:(NSArray *) arrayOfAuthors
+                          tags:(NSArray *) arrayOfTags
+                    coverPhoto:(MAVBookCoverPhoto *) cover
+                           pdf:(MAVPdf *) pdf
+                       context:(NSManagedObjectContext *) context {
+    
+    MAVBook *book = [self bookWithTitle:title
+                                context:context];
+    [book setAuthors:[NSSet setWithArray:arrayOfAuthors]];
+    [book setTags:[NSSet setWithArray:arrayOfTags]];
+    [book setCoverPhoto:cover];
+    [book setPdf:pdf];
     
     return book;
 }
+
+
+//+ (instancetype) bookWithDictionary: (NSDictionary *) dict
+//                            context: (NSManagedObjectContext *) context {
+//    
+//    MAVBook *book = [self insertInManagedObjectContext:context];
+//    book.title = [dict objectForKey:@"title"];
+//    //book.managedObjectContext = context;
+//    
+//    // Gestionar favorito....
+//    //book.isFavoriteValue = NO;
+//    
+//    NSMutableSet *mutSet = [[NSMutableSet alloc] init];
+//    
+//    // Gestión de los tags
+//    NSArray *arr = [[dict objectForKey:@"tags"] componentsSeparatedByString:@", "];
+//    
+//    for (NSString *tag in arr) {
+//        // NSSet no permite añadir dos veces el mismo objeto, por lo que
+//        // no es necesario comprobar si el tag ya existe en el NSSet.
+//        [mutSet addObject:[MAVTag tagWithName:tag
+//                                         book:book
+//                                      context:context]];
+//    }
+//    
+//    [book addTags:[mutSet copy]];
+//    [mutSet removeAllObjects];
+//    
+//    
+//    // Gestión de los autores
+//    arr = [[dict objectForKey:@"authors"] componentsSeparatedByString:@", "];
+//    
+//    for (NSString *author in arr) {
+//        // NSSet no permite añadir dos veces el mismo objeto, por lo que
+//        // no es necesario comprobar si el tag ya existe en el NSSet.
+//        [mutSet addObject:[MAVAuthor authorWithName:author
+//                                               book:book
+//                                            context:context]];
+//    }
+//    
+//    [book addAuthors:[mutSet copy]];
+//    [mutSet removeAllObjects];
+//    
+//    
+//    
+//    // Gestión del pdf
+//    MAVPdf *pdf = [MAVPdf pdfWithUrl:[dict objectForKey:@"pdf_url"]
+//                             context:context];
+//    [book setPdf:pdf];
+//    
+//    
+//    // Gestión de la portada
+//    MAVBookCoverPhoto *photo = [MAVBookCoverPhoto bookCoverPhotoWithUrl:[dict objectForKey:@"image_url"]
+//                                                                context:context];
+//    [book setCoverPhoto:photo];
+//    
+//    return book;
+//}
 
 - (void)setIsFavoriteValue:(BOOL)value_ {
     [self setIsFavorite:@(value_)];
