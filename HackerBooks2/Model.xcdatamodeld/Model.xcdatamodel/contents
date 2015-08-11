@@ -24,15 +24,20 @@
         <attribute name="title" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="annotations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Annotation" inverseName="book" inverseEntity="Annotation" syncable="YES"/>
         <relationship name="authors" toMany="YES" deletionRule="Nullify" destinationEntity="Author" inverseName="books" inverseEntity="Author" syncable="YES"/>
+        <relationship name="bookTags" toMany="YES" deletionRule="Nullify" destinationEntity="BookTag" inverseName="book" inverseEntity="BookTag" syncable="YES"/>
         <relationship name="coverPhoto" maxCount="1" deletionRule="Cascade" destinationEntity="BookCoverPhoto" inverseName="book" inverseEntity="BookCoverPhoto" syncable="YES"/>
         <relationship name="pdf" maxCount="1" deletionRule="Cascade" destinationEntity="Pdf" inverseName="book" inverseEntity="Pdf" syncable="YES"/>
-        <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="BookCoverPhoto" representedClassName="MAVBookCoverPhoto" syncable="YES">
         <attribute name="photoData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="proxyForSorting" attributeType="String" syncable="YES"/>
         <attribute name="urlString" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="coverPhoto" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <entity name="BookTag" representedClassName="MAVBookTag" syncable="YES">
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookTags" inverseEntity="Book" syncable="YES"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="bookTags" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="MAVLocation" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,16 +53,17 @@
     <entity name="Tag" representedClassName="MAVTag" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="proxyForSorting" attributeType="String" syncable="YES"/>
-        <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
+        <relationship name="bookTags" toMany="YES" deletionRule="Nullify" destinationEntity="BookTag" inverseName="tag" inverseEntity="BookTag" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Annotation" positionX="-20" positionY="99" width="128" height="150"/>
-        <element name="Author" positionX="-290" positionY="-189" width="128" height="88"/>
+        <element name="Annotation" positionX="207" positionY="-99" width="128" height="150"/>
+        <element name="Author" positionX="-254" positionY="81" width="128" height="88"/>
         <element name="Book" positionX="-11" positionY="-189" width="128" height="163"/>
-        <element name="Location" positionX="-288" positionY="9" width="128" height="105"/>
+        <element name="Location" positionX="385" positionY="72" width="128" height="105"/>
         <element name="Pdf" positionX="-47" positionY="-414" width="128" height="88"/>
-        <element name="AnnotationPhoto" positionX="-290" positionY="164" width="128" height="73"/>
-        <element name="Tag" positionX="241" positionY="-57" width="128" height="88"/>
+        <element name="AnnotationPhoto" positionX="-27" positionY="90" width="128" height="73"/>
+        <element name="Tag" positionX="-380" positionY="-216" width="128" height="88"/>
         <element name="BookCoverPhoto" positionX="241" positionY="-405" width="128" height="103"/>
+        <element name="BookTag" positionX="-216" positionY="-216" width="128" height="90"/>
     </elements>
 </model>
