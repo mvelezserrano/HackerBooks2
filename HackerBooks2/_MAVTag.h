@@ -10,10 +10,10 @@ extern const struct MAVTagAttributes {
 } MAVTagAttributes;
 
 extern const struct MAVTagRelationships {
-	__unsafe_unretained NSString *books;
+	__unsafe_unretained NSString *bookTags;
 } MAVTagRelationships;
 
-@class MAVBook;
+@class MAVBookTag;
 
 @interface MAVTagID : NSManagedObjectID {}
 @end
@@ -32,17 +32,17 @@ extern const struct MAVTagRelationships {
 
 //- (BOOL)validateProxyForSorting:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSSet *books;
+@property (nonatomic, strong) NSSet *bookTags;
 
-- (NSMutableSet*)booksSet;
+- (NSMutableSet*)bookTagsSet;
 
 @end
 
-@interface _MAVTag (BooksCoreDataGeneratedAccessors)
-- (void)addBooks:(NSSet*)value_;
-- (void)removeBooks:(NSSet*)value_;
-- (void)addBooksObject:(MAVBook*)value_;
-- (void)removeBooksObject:(MAVBook*)value_;
+@interface _MAVTag (BookTagsCoreDataGeneratedAccessors)
+- (void)addBookTags:(NSSet*)value_;
+- (void)removeBookTags:(NSSet*)value_;
+- (void)addBookTagsObject:(MAVBookTag*)value_;
+- (void)removeBookTagsObject:(MAVBookTag*)value_;
 
 @end
 
@@ -54,7 +54,7 @@ extern const struct MAVTagRelationships {
 - (NSString*)primitiveProxyForSorting;
 - (void)setPrimitiveProxyForSorting:(NSString*)value;
 
-- (NSMutableSet*)primitiveBooks;
-- (void)setPrimitiveBooks:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveBookTags;
+- (void)setPrimitiveBookTags:(NSMutableSet*)value;
 
 @end

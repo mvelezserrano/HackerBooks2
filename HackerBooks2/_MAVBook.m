@@ -12,9 +12,9 @@ const struct MAVBookAttributes MAVBookAttributes = {
 const struct MAVBookRelationships MAVBookRelationships = {
 	.annotations = @"annotations",
 	.authors = @"authors",
+	.bookTags = @"bookTags",
 	.coverPhoto = @"coverPhoto",
 	.pdf = @"pdf",
-	.tags = @"tags",
 };
 
 @implementation MAVBookID
@@ -98,20 +98,20 @@ const struct MAVBookRelationships MAVBookRelationships = {
 	return result;
 }
 
+@dynamic bookTags;
+
+- (NSMutableSet*)bookTagsSet {
+	[self willAccessValueForKey:@"bookTags"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"bookTags"];
+
+	[self didAccessValueForKey:@"bookTags"];
+	return result;
+}
+
 @dynamic coverPhoto;
 
 @dynamic pdf;
-
-@dynamic tags;
-
-- (NSMutableSet*)tagsSet {
-	[self willAccessValueForKey:@"tags"];
-
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"tags"];
-
-	[self didAccessValueForKey:@"tags"];
-	return result;
-}
 
 @end
 

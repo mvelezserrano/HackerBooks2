@@ -13,16 +13,16 @@ extern const struct MAVBookAttributes {
 extern const struct MAVBookRelationships {
 	__unsafe_unretained NSString *annotations;
 	__unsafe_unretained NSString *authors;
+	__unsafe_unretained NSString *bookTags;
 	__unsafe_unretained NSString *coverPhoto;
 	__unsafe_unretained NSString *pdf;
-	__unsafe_unretained NSString *tags;
 } MAVBookRelationships;
 
 @class MAVAnnotation;
 @class MAVAuthor;
+@class MAVBookTag;
 @class MAVBookCoverPhoto;
 @class MAVPdf;
-@class MAVTag;
 
 @interface MAVBookID : NSManagedObjectID {}
 @end
@@ -57,6 +57,10 @@ extern const struct MAVBookRelationships {
 
 - (NSMutableSet*)authorsSet;
 
+@property (nonatomic, strong) NSSet *bookTags;
+
+- (NSMutableSet*)bookTagsSet;
+
 @property (nonatomic, strong) MAVBookCoverPhoto *coverPhoto;
 
 //- (BOOL)validateCoverPhoto:(id*)value_ error:(NSError**)error_;
@@ -64,10 +68,6 @@ extern const struct MAVBookRelationships {
 @property (nonatomic, strong) MAVPdf *pdf;
 
 //- (BOOL)validatePdf:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSSet *tags;
-
-- (NSMutableSet*)tagsSet;
 
 @end
 
@@ -87,11 +87,11 @@ extern const struct MAVBookRelationships {
 
 @end
 
-@interface _MAVBook (TagsCoreDataGeneratedAccessors)
-- (void)addTags:(NSSet*)value_;
-- (void)removeTags:(NSSet*)value_;
-- (void)addTagsObject:(MAVTag*)value_;
-- (void)removeTagsObject:(MAVTag*)value_;
+@interface _MAVBook (BookTagsCoreDataGeneratedAccessors)
+- (void)addBookTags:(NSSet*)value_;
+- (void)removeBookTags:(NSSet*)value_;
+- (void)addBookTagsObject:(MAVBookTag*)value_;
+- (void)removeBookTagsObject:(MAVBookTag*)value_;
 
 @end
 
@@ -115,13 +115,13 @@ extern const struct MAVBookRelationships {
 - (NSMutableSet*)primitiveAuthors;
 - (void)setPrimitiveAuthors:(NSMutableSet*)value;
 
+- (NSMutableSet*)primitiveBookTags;
+- (void)setPrimitiveBookTags:(NSMutableSet*)value;
+
 - (MAVBookCoverPhoto*)primitiveCoverPhoto;
 - (void)setPrimitiveCoverPhoto:(MAVBookCoverPhoto*)value;
 
 - (MAVPdf*)primitivePdf;
 - (void)setPrimitivePdf:(MAVPdf*)value;
-
-- (NSMutableSet*)primitiveTags;
-- (void)setPrimitiveTags:(NSMutableSet*)value;
 
 @end

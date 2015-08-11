@@ -9,7 +9,7 @@ const struct MAVTagAttributes MAVTagAttributes = {
 };
 
 const struct MAVTagRelationships MAVTagRelationships = {
-	.books = @"books",
+	.bookTags = @"bookTags",
 };
 
 @implementation MAVTagID
@@ -45,14 +45,14 @@ const struct MAVTagRelationships MAVTagRelationships = {
 
 @dynamic proxyForSorting;
 
-@dynamic books;
+@dynamic bookTags;
 
-- (NSMutableSet*)booksSet {
-	[self willAccessValueForKey:@"books"];
+- (NSMutableSet*)bookTagsSet {
+	[self willAccessValueForKey:@"bookTags"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"books"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"bookTags"];
 
-	[self didAccessValueForKey:@"books"];
+	[self didAccessValueForKey:@"bookTags"];
 	return result;
 }
 
