@@ -1,5 +1,6 @@
 #import "MAVTag.h"
 #import "MAVBook.h"
+#import "Settings.h"
 
 @interface MAVTag ()
 
@@ -16,9 +17,22 @@
 + (id) tagWithName: (NSString *) name
            context: (NSManagedObjectContext *) context {
     
-    MAVTag *tag = [self insertInManagedObjectContext:context];
-    tag.name = name;
+//    MAVTag *tag = [self insertInManagedObjectContext:context];
+//    tag.name = name;
     
+    // BookTags should be unique, so we use the unique (findOrCreate)
+    // method in our base class
+    MAVTag *tag =  [self uniqueObjectWithValue:[name capitalizedString]
+                                        forKey:MAVTagAttributes.name inManagedObjectContext:context];
+    // proxyForComparison makes sure that Favorite always comes first // Uso KVC para saltarme la propiedad readOnly de proxyForSorting
+    if ([tag.name isEqualToString:FAVORITE_TAG]) {
+        [tag setValue:[NSString stringWithFormat:@"__%@", tag.name]
+               forKey:MAVTagAttributes.proxyForSorting];
+    } else {
+        [tag setValue:tag.name
+               forKey:MAVTagAttributes.proxyForSorting];
+    }
+     
     return tag;
 }
 

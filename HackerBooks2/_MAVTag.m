@@ -5,6 +5,7 @@
 
 const struct MAVTagAttributes MAVTagAttributes = {
 	.name = @"name",
+	.proxyForSorting = @"proxyForSorting",
 };
 
 const struct MAVTagRelationships MAVTagRelationships = {
@@ -41,6 +42,8 @@ const struct MAVTagRelationships MAVTagRelationships = {
 }
 
 @dynamic name;
+
+@dynamic proxyForSorting;
 
 @dynamic books;
 

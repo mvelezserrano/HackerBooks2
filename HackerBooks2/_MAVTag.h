@@ -6,6 +6,7 @@
 
 extern const struct MAVTagAttributes {
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *proxyForSorting;
 } MAVTagAttributes;
 
 extern const struct MAVTagRelationships {
@@ -27,6 +28,10 @@ extern const struct MAVTagRelationships {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSString* proxyForSorting;
+
+//- (BOOL)validateProxyForSorting:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) NSSet *books;
 
 - (NSMutableSet*)booksSet;
@@ -45,6 +50,9 @@ extern const struct MAVTagRelationships {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+- (NSString*)primitiveProxyForSorting;
+- (void)setPrimitiveProxyForSorting:(NSString*)value;
 
 - (NSMutableSet*)primitiveBooks;
 - (void)setPrimitiveBooks:(NSMutableSet*)value;

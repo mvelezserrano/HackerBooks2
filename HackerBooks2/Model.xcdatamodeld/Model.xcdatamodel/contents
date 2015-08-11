@@ -44,6 +44,7 @@
     </entity>
     <entity name="Tag" representedClassName="MAVTag" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="proxyForSorting" attributeType="String" syncable="YES"/>
         <relationship name="books" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
@@ -53,7 +54,7 @@
         <element name="Location" positionX="-288" positionY="9" width="128" height="105"/>
         <element name="Pdf" positionX="-47" positionY="-414" width="128" height="88"/>
         <element name="AnnotationPhoto" positionX="-290" positionY="164" width="128" height="73"/>
-        <element name="Tag" positionX="241" positionY="-57" width="128" height="75"/>
+        <element name="Tag" positionX="241" positionY="-57" width="128" height="88"/>
         <element name="BookCoverPhoto" positionX="241" positionY="-405" width="128" height="88"/>
     </elements>
 </model>
