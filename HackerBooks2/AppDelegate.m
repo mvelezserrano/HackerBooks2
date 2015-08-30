@@ -11,6 +11,7 @@
 #import "AGTCoreDataStack.h"
 #import "MAVBook.h"
 #import "MAVTag.h"
+#import "MAVBookTag.h"
 #import "MAVLibraryTableViewController.h"
 #import "MAVBookViewController.h"
 #import "UIViewController+Navigation.h"
@@ -68,8 +69,23 @@
     
     
     //// Fetch con MAVTag
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+//    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+//    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+//                                                          ascending:YES
+//                                                           selector:@selector(compare:)]];
+//    req.fetchBatchSize = 20;
+//    
+//    // FetchedResultsController
+//    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
+//                                      initWithFetchRequest:req
+//                                      managedObjectContext:self.stack.context
+//                                      sectionNameKeyPath:MAVTagAttributes.name
+//                                      cacheName:nil];
+    
+    
+    //// Fetch con MAVBookTag
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBookTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookTagAttributes.name
                                                           ascending:YES
                                                            selector:@selector(compare:)]];
     req.fetchBatchSize = 20;
@@ -78,16 +94,9 @@
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
                                       initWithFetchRequest:req
                                       managedObjectContext:self.stack.context
-                                      sectionNameKeyPath:MAVTagAttributes.name
+                                      sectionNameKeyPath:MAVBookTagAttributes.name
                                       cacheName:nil];
     
-    /*
-    // Creamos el controlador
-    MAVLibraryTableViewController *libTableVC = [[MAVLibraryTableViewController alloc] initWithFetchedResultsController:fc
-                                                                                                                  style:UITableViewStylePlain];
-    
-    self.window.rootViewController = [libTableVC wrappedInNavigation];
-    */
     // Guardar cambios
     [self.stack saveWithErrorBlock:^(NSError *error) {
         NSLog(@"Error al guardar! %@", error);
@@ -259,7 +268,8 @@
                                             }];
     
     MAVTag *firstTag = [results objectAtIndex:0];
-    MAVBook *firstBook = [[[firstTag books] allObjects] objectAtIndex:0];
+    MAVBookTag *bookTag = [[firstTag.bookTags allObjects] objectAtIndex:0];
+    MAVBook *firstBook = [bookTag book];
     NSURL *uri = firstBook.objectID.URIRepresentation;
     
     NSLog(@"First Book title: %@", firstBook.title);

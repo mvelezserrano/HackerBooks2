@@ -7,6 +7,8 @@
 //
 
 #import "MAVBook.h"
+#import "MAVTag.h"
+#import "MAVBookTag.h"
 #import "MAVBookViewController.h"
 #import "MAVSimplePDFViewController.h"
 #import "MAVAnnotation.h"
@@ -114,7 +116,15 @@
     }
     self.bookTitle.text = self.model.title;
     self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
-    self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
+    
+//    self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
+    NSArray *arrayBookTags = [self.model.bookTags allObjects];
+    NSMutableArray *arrayTagNames = [NSMutableArray arrayWithCapacity:arrayBookTags.count];
+    for (MAVTag *tag in arrayBookTags) {
+        [arrayTagNames addObject:tag.name];
+    }
+    self.bookTags.text = [arrayTagNames componentsJoinedByString:@", "];
+    
     
     if ([self.model isFavoriteValue]) {
         [self.favoriteSwitch setOn:YES];
@@ -137,7 +147,9 @@
     }
     self.bookTitleLandscape.text = self.model.title;
     self.bookAuthorsLandscape.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
-    self.bookTagsLandscape.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
+    
+//    self.bookTagsLandscape.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
+    self.bookTagsLandscape.text = [arrayTagNames componentsJoinedByString:@", "];
     
     if ([self.model isFavoriteValue]) {
         [self.favoriteSwitchLandscape setOn:YES];

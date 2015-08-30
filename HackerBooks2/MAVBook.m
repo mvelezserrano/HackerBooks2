@@ -1,13 +1,11 @@
 #import "MAVBook.h"
+#import "MAVBookTag.h"
 #import "MAVTag.h"
 #import "MAVAuthor.h"
 #import "MAVPdf.h"
 #import "MAVBookCoverPhoto.h"
 #import "Settings.h"
 #import "NSString+TokenizeCategory.h"
-
-
-#define FAVORITE @"Favorite"
 
 @interface MAVBook ()
 
@@ -66,7 +64,20 @@
     MAVBook *book = [self bookWithTitle:title
                                 context:context];
     [book setAuthors:[NSSet setWithArray:arrayOfAuthors]];
-    [book setTags:[NSSet setWithArray:arrayOfTags]];
+    
+    NSMutableArray *arrayOfbookTags = [[NSMutableArray alloc] initWithCapacity:[arrayOfTags count]];
+    
+    for (MAVTag *tag in arrayOfTags) {
+        MAVBookTag *bookTag = [MAVBookTag bookTagWithName:[[title stringByAppendingString:@" - "] stringByAppendingString:tag.name]
+                                                     book:book
+                                                      tag:tag
+                                                  context:context];
+        [arrayOfbookTags addObject:bookTag];
+//        NSLog(@"bookTag: %@", bookTag.name);
+    }
+    
+    [book setBookTags:[NSSet setWithArray:arrayOfbookTags]];
+    
     [book setCoverPhoto:cover];
     [book setPdf:pdf];
     
@@ -135,10 +146,10 @@
     [self setIsFavorite:@(value_)];
     if ([self isFavoriteValue]) {
         NSLog(@"Lo pongo en favoritos");
-        [self addTagsObject:[MAVTag tagWithName:FAVORITE
-                                           book:self
-                                        context:[self managedObjectContext]]];
-        [self saveToDB];
+//        [self addTagsObject:[MAVTag tagWithName:FAVORITE_TAG
+//                                           book:self
+//                                        context:[self managedObjectContext]]];
+//        [self saveToDB];
     } else {
         NSLog(@"Lo quito de favoritos");
     }

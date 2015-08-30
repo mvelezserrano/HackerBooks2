@@ -8,7 +8,7 @@
 
 #define FIRST_BOOT @"firstBoot"
 #define LAST_SELECTED_BOOK @"lastBook"
-#define FAVORITE_TAG @"favorite"
+#define FAVORITE_TAG @"Favorite"
 #define TITLE @"title"
 #define AUTHORS @"authors"
 #define TAGS @"tags"

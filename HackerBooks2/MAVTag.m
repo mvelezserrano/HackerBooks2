@@ -49,7 +49,7 @@
 }
 
 + (id) tagWithName: (NSString *) name
-              book: (MAVBook *) book
+           bookTag: (MAVBookTag *) bookTag
            context: (NSManagedObjectContext *) context {
     
     // Comprobamos que el tag no exista ya en la BBDD.
@@ -74,7 +74,7 @@
     }
     
     // Añado el libro al NSSet de books del tag
-    [tag addBooksObject:book];
+    [tag addBookTagsObject:bookTag];
     
     return tag;
 }

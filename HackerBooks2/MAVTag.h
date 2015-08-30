@@ -6,7 +6,7 @@
            context: (NSManagedObjectContext *) context;
 
 + (id) tagWithName: (NSString *) name
-              book: (MAVBook *) book
+           bookTag: (MAVBookTag *) bookTag
            context: (NSManagedObjectContext *) context;
 
 + (NSArray *) arrayOfTagsWithArrayOfStrings: (NSArray *) arrayOfStrings

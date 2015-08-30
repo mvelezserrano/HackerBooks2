@@ -9,6 +9,7 @@
 #import "MAVLibraryTableViewController.h"
 #import "MAVBook.h"
 #import "MAVTag.h"
+#import "MAVBookTag.h"
 #import "MAVAuthor.h"
 #import "MAVBookViewController.h"
 #import "MAVBookCoverPhoto.h"
@@ -31,25 +32,51 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSFetchedResultsController *) getTagsFetchResultsController {
+    
+    //Fetch con MAVTag
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
+    req.fetchBatchSize = 20;
+    
+    // FetchedResultsController
+    NSFetchedResultsController *TagFc = [[NSFetchedResultsController alloc]
+                                         initWithFetchRequest:req
+                                         managedObjectContext:[self.fetchedResultsController managedObjectContext]
+                                         sectionNameKeyPath:MAVTagAttributes.name
+                                         cacheName:nil];
+    
+    return TagFc;
+}
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return [self.fetchedResultsController.fetchedObjects count];
+    return [[self getTagsFetchResultsController].fetchedObjects count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    MAVTag *tag = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    return [[tag.books allObjects] count];
+    MAVTag *tag = [[self getTagsFetchResultsController].fetchedObjects objectAtIndex:section];
+    return [[tag.bookTags allObjects] count];
     
 }
 
-//FetchRequest con book
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    MAVTag *tag = [[self getTagsFetchResultsController].fetchedObjects objectAtIndex:section];
+    return tag.name;
+}
+
+//FetchRequest con MAVBookTag
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // Averiguar cual es el MAVTag
-    MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    MAVBookTag *bt = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     // Averiguar cual es el libro
-    MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
+//    MAVBook *b = [[bt.books allObjects] objectAtIndex:indexPath.row];
+    MAVBook *b = bt.book;
     
     // Crear una celda
     static NSString *cellID = @"bookCell";
@@ -97,7 +124,7 @@
 #pragma mark - Table Delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    /*
     // Averiguar cual es el MAVTag
     MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
     // Averiguar cual es el libro
@@ -126,6 +153,7 @@
     [def setObject:lastBookData
             forKey:LAST_SELECTED_BOOK];
     [def synchronize];
+    */
 }
 
 
