@@ -73,7 +73,6 @@
                                                       tag:tag
                                                   context:context];
         [arrayOfbookTags addObject:bookTag];
-//        NSLog(@"bookTag: %@", bookTag.name);
     }
     
     [book setBookTags:[NSSet setWithArray:arrayOfbookTags]];

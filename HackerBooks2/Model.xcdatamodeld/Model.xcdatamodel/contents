@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Annotation" representedClassName="MAVAnnotation" syncable="YES">
         <attribute name="creationDate" attributeType="Date" syncable="YES"/>
         <attribute name="modificationDate" attributeType="Date" indexed="YES" syncable="YES"/>
@@ -36,8 +36,8 @@
     </entity>
     <entity name="BookTag" representedClassName="MAVBookTag" syncable="YES">
         <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
-        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookTags" inverseEntity="Book" syncable="YES"/>
-        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="bookTags" inverseEntity="Tag" syncable="YES"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookTags" inverseEntity="Book" syncable="YES"/>
+        <relationship name="tag" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="bookTags" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="MAVLocation" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -57,13 +57,13 @@
     </entity>
     <elements>
         <element name="Annotation" positionX="207" positionY="-99" width="128" height="150"/>
+        <element name="AnnotationPhoto" positionX="-27" positionY="90" width="128" height="73"/>
         <element name="Author" positionX="-254" positionY="81" width="128" height="88"/>
         <element name="Book" positionX="-11" positionY="-189" width="128" height="163"/>
+        <element name="BookCoverPhoto" positionX="241" positionY="-405" width="128" height="103"/>
+        <element name="BookTag" positionX="-216" positionY="-216" width="128" height="88"/>
         <element name="Location" positionX="385" positionY="72" width="128" height="105"/>
         <element name="Pdf" positionX="-47" positionY="-414" width="128" height="88"/>
-        <element name="AnnotationPhoto" positionX="-27" positionY="90" width="128" height="73"/>
         <element name="Tag" positionX="-380" positionY="-216" width="128" height="88"/>
-        <element name="BookCoverPhoto" positionX="241" positionY="-405" width="128" height="103"/>
-        <element name="BookTag" positionX="-216" positionY="-216" width="128" height="90"/>
     </elements>
 </model>
