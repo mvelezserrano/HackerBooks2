@@ -68,7 +68,7 @@
     NSMutableArray *arrayOfbookTags = [[NSMutableArray alloc] initWithCapacity:[arrayOfTags count]];
     
     for (MAVTag *tag in arrayOfTags) {
-        MAVBookTag *bookTag = [MAVBookTag bookTagWithName:[[title stringByAppendingString:@" - "] stringByAppendingString:tag.name]
+        MAVBookTag *bookTag = [MAVBookTag bookTagWithName:[[tag.name stringByAppendingString:@" - "] stringByAppendingString:title]
                                                      book:book
                                                       tag:tag
                                                   context:context];

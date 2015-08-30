@@ -117,11 +117,10 @@
     self.bookTitle.text = self.model.title;
     self.bookAuthors.text = [[self.model.authors allObjects] componentsJoinedByString:@", "];
     
-//    self.bookTags.text = [[self.model.tags allObjects] componentsJoinedByString:@", "];
     NSArray *arrayBookTags = [self.model.bookTags allObjects];
     NSMutableArray *arrayTagNames = [NSMutableArray arrayWithCapacity:arrayBookTags.count];
-    for (MAVTag *tag in arrayBookTags) {
-        [arrayTagNames addObject:tag.name];
+    for (MAVBookTag *bookTag in arrayBookTags) {
+        [arrayTagNames addObject:bookTag.tag.name];
     }
     self.bookTags.text = [arrayTagNames componentsJoinedByString:@", "];
     

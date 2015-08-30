@@ -17,6 +17,8 @@
 
 @interface MAVLibraryTableViewController ()
 
+@property (nonatomic) NSIndexPath *modifiedIndexPath;
+
 @end
 
 @implementation MAVLibraryTableViewController
@@ -25,6 +27,8 @@
     [super viewDidLoad];
     
     self.title = @"Programming Library";
+    
+    self.modifiedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +46,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
     MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
                                                                                     error:nil] objectAtIndex:section];
     return [[tag.bookTags allObjects] count];
@@ -51,6 +58,9 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
     MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
                                                                                      error:nil] objectAtIndex:section];
     return tag.name;
@@ -59,11 +69,17 @@
 //FetchRequest con MAVBookTag
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSUInteger count = [self.fetchedResultsController.fetchedObjects count];
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
+    MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
+                                                                                     error:nil] objectAtIndex:indexPath.section];
     
-    // Averiguar cual es el MAVTag
-    MAVBookTag *bt = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-    // Averiguar cual es el libro
+    NSArray *bookTagsArray = [tag.bookTags allObjects];
+    MAVBookTag *bt = [bookTagsArray objectAtIndex:indexPath.row];
+    
+    NSLog(@"Section:%ld, Row:%ld", (long)indexPath.section, (long)indexPath.row);
     MAVBook *b = bt.book;
     
     // Crear una celda
@@ -112,11 +128,20 @@
 #pragma mark - Table Delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    /*
+    
     // Averiguar cual es el MAVTag
-    MAVTag *t = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+                                                          ascending:YES
+                                                           selector:@selector(compare:)]];
+    MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
+                                                                                     error:nil] objectAtIndex:indexPath.section];
+    
+    NSArray *bookTagsArray = [tag.bookTags allObjects];
+    MAVBookTag *bt = [bookTagsArray objectAtIndex:indexPath.row];
+    
     // Averiguar cual es el libro
-    MAVBook *b = [[t.books allObjects] objectAtIndex:indexPath.row];
+    MAVBook *b = bt.book;
     
     // Envio información al delegado si corresponde
     if ([self.delegate respondsToSelector:@selector(libraryTableViewController:didSelectBook:)]) {
@@ -141,7 +166,6 @@
     [def setObject:lastBookData
             forKey:LAST_SELECTED_BOOK];
     [def synchronize];
-    */
 }
 
 
