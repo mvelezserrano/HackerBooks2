@@ -71,8 +71,8 @@
     
     
     // Fetch con MAVTag
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBookTag entityName]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookTagAttributes.name
                                                           ascending:YES
                                                            selector:@selector(compare:)]];
     
@@ -80,7 +80,7 @@
     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc]
                                       initWithFetchRequest:req
                                       managedObjectContext:self.stack.context
-                                      sectionNameKeyPath:MAVTagAttributes.name
+                                      sectionNameKeyPath:MAVBookTagAttributes.name
                                       cacheName:nil];
     
     // Guardar cambios

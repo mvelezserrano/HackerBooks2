@@ -9,6 +9,7 @@
 #define BOOK_DID_CHANGE_NOTIFICATION_NAME @"bookDidChangeNotification"
 #define BOOK_KEY @"bookKey"
 #import "AGTCoreDataTableViewController.h"
+#import "AGTCoreDataStack.h"
 @class MAVLibraryTableViewController;
 @class MAVBook;
 
