@@ -142,16 +142,38 @@
 //}
 
 - (void)setIsFavoriteValue:(BOOL)value_ {
-    [self setIsFavorite:@(value_)];
-    if ([self isFavoriteValue]) {
-        NSLog(@"Lo pongo en favoritos");
-//        [self addTagsObject:[MAVTag tagWithName:FAVORITE_TAG
-//                                           book:self
-//                                        context:[self managedObjectContext]]];
-//        [self saveToDB];
-    } else {
-        NSLog(@"Lo quito de favoritos");
+//    [self setIsFavorite:@(value_)];
+    
+    // Solo hacemos algo si los valores son !=
+    if (value_ != self.isFavoriteValue) {
+        MAVTag *fav = [MAVTag tagWithName:FAVORITE_TAG
+                                  context:[self managedObjectContext]];
+        if (value_) {
+            // Hacemos favorito
+            // Creamos el BookTag: si no era favorito, ahora
+            // lo será. Si lo era, no pasa nada.
+            [MAVBookTag bookTagWithName:@"Favorite"
+                                   book:self
+                                    tag:fav
+                                context:self.managedObjectContext];
+        }else{
+            // Lo hacemos NO favorito
+            // Obtengo el BookTag favorito correspondiente y lo destruyo
+            MAVBookTag *fb = [MAVBookTag bookTagWithName:@"Favorite"
+                                                    book:self
+                                                     tag:fav
+                                                 context:self.managedObjectContext];
+            [self.managedObjectContext deleteObject:fb];
+            // Esto fuerza a Core Data a hacer los cambios en la relaciones
+            // que están pendientes. Sino, los haría en el siguiente RunLoop.
+            // En general, no debes de estr mandando el mensaje
+            // processPendingChanges en vano, o escarallas el rendimiento.
+            // Hazlo sólo cuando veas que sin él, la App no funciona
+            // correctamente, como en este caso (prueba a quitarlo).
+            [self.managedObjectContext processPendingChanges];
+        }
     }
+    [self setIsFavorite:@(value_)];
 }
 
 

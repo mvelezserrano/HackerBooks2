@@ -66,7 +66,7 @@
     return tag.name;
 }
 
-//FetchRequest con MAVBookTag
+
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
