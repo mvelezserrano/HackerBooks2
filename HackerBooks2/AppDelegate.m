@@ -72,7 +72,7 @@
     
     // Fetch con MAVTag
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVBookTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVBookTagAttributes.name
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:MAVBookTagAttributes.name
                                                           ascending:YES
                                                            selector:@selector(compare:)]];
     
@@ -96,10 +96,6 @@
                 forKey:LAST_SELECTED_BOOK];
         [def synchronize];
     }
-    
-    [self performSelector:@selector(printContextState)
-               withObject:nil
-               afterDelay:5];
     
     // Detectamos el tipo de pantalla
     if (!IS_IPHONE) {
@@ -313,39 +309,6 @@
     }
     
     return json;
-}
-
-- (void) printContextState{
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    NSUInteger numberOfTags = [[self.stack executeFetchRequest:req
-                                                    errorBlock:nil] count];
-    
-    req = [NSFetchRequest fetchRequestWithEntityName:[MAVBook entityName]];
-    NSUInteger numberOfBooks = [[self.stack executeFetchRequest:req
-                                                     errorBlock:nil] count];
-    
-    req = [NSFetchRequest fetchRequestWithEntityName:[MAVAuthor entityName]];
-    NSUInteger numberOfAuthors = [[self.stack executeFetchRequest:req
-                                                       errorBlock:nil] count];
-    
-    req = [NSFetchRequest fetchRequestWithEntityName:[MAVAnnotation entityName]];
-    NSUInteger numberOfAnnotations = [[self.stack executeFetchRequest:req
-                                                           errorBlock:nil] count];
-    
-    req = [NSFetchRequest fetchRequestWithEntityName:[MAVBookTag entityName]];
-    NSUInteger numberOfBookTags = [[self.stack executeFetchRequest:req
-                                                        errorBlock:nil] count];
-    
-    printf("----------------------------------------------------\n");
-    printf("Number of Tags:          %lu\n", (unsigned long)numberOfTags);
-    printf("Number of Books:         %lu\n", (unsigned long)numberOfBooks);
-    printf("Number of Authors:       %lu\n", (unsigned long)numberOfAuthors);
-    printf("Number of Annotations:   %lu\n", (unsigned long)numberOfAnnotations);
-    printf("Number of BookTags:      %lu\n", (unsigned long)numberOfBookTags);
-    
-//    [self performSelector:@selector(printContextState)
-//               withObject:nil
-//               afterDelay:5];
 }
 
 

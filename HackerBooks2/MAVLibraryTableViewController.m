@@ -14,10 +14,11 @@
 #import "MAVBookViewController.h"
 #import "MAVBookCoverPhoto.h"
 #import "Settings.h"
+#import <math.h>
 
 @interface MAVLibraryTableViewController ()
 
-@property (nonatomic) NSIndexPath *modifiedIndexPath;
+@property (strong, nonatomic) NSIndexPath *modifiedIndexPath;
 
 @end
 
@@ -46,7 +47,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.proxyForSorting
                                                           ascending:YES
                                                            selector:@selector(compare:)]];
     MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
@@ -58,7 +59,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.proxyForSorting
                                                           ascending:YES
                                                            selector:@selector(compare:)]];
     MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
@@ -66,21 +67,26 @@
     return tag.name;
 }
 
-
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[MAVTag entityName]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: MAVTagAttributes.name
-                                                          ascending:YES
-                                                           selector:@selector(compare:)]];
-    MAVTag *tag = [[self.fetchedResultsController.managedObjectContext executeFetchRequest:req
-                                                                                     error:nil] objectAtIndex:indexPath.section];
+    NSLog(@"MSec: %ld, MRow: %ld", (long)self.modifiedIndexPath.section, (long)self.modifiedIndexPath.row);
+    NSLog(@"Sec: %ld, Row: %ld", (long)indexPath.section, (long)indexPath.row);
     
-    NSArray *bookTagsArray = [tag.bookTags allObjects];
-    MAVBookTag *bt = [bookTagsArray objectAtIndex:indexPath.row];
+    NSUInteger totalBookTags = [self.fetchedResultsController.fetchedObjects count];
     
-    NSLog(@"Section:%ld, Row:%ld", (long)indexPath.section, (long)indexPath.row);
-    MAVBook *b = bt.book;
+    MAVBookTag *bookTag = [self.fetchedResultsController.fetchedObjects objectAtIndex:self.modifiedIndexPath.row];
+    MAVBook *b = bookTag.book;
+    
+    // Y cuando disminuye??... books.count?? De donde???? No entiendo la explicación del algorismo de la solución!!!
+    NSUInteger newRow = self.modifiedIndexPath.row + 1;
+    
+    
+//    NSUInteger newRow;
+//    newRow = fmin(totalBookTags,self.modifiedIndexPath.row + 1);
+//    newRow = fmax(0, self.modifiedIndexPath.row - 1);
+    
+    self.modifiedIndexPath = [NSIndexPath indexPathForRow:newRow
+                                                inSection:indexPath.section];
     
     // Crear una celda
     static NSString *cellID = @"bookCell";
